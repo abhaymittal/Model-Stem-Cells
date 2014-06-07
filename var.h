@@ -2,7 +2,7 @@
 #define VAR_H
 
 
-class var
+class Var
 {
     private:
 
@@ -12,6 +12,12 @@ class var
     int value;
 
     public:
+
+    Var()
+    {}
+
+    Var(int var_n,int ind,int del, int val):var_name(var_n),index(ind),delta(del),value(val)
+    {}
 
     char get_var_name();
     int set_var_name(char var_x);
