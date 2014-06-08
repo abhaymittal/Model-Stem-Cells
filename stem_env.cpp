@@ -91,12 +91,12 @@ int** stem_env:: draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
         counter_2=counter_2+dep_val_2.get_delta();
 
         ind_val.set_value(ind_val.get_value()+inc_ind);
-        if(counter_1>ind_val.get_delta())
+        if(counter_1>=ind_val.get_delta())
         {
             dep_val_1.set_value(dep_val_1.get_value()+inc_dep_1);
             counter_1=counter_1-ind_val.get_delta();
         }
-        if(counter_2>ind_val.get_delta())
+        if(counter_2>=ind_val.get_delta())
         {
             dep_val_2.set_value(dep_val_2.get_value()+inc_dep_2);
             counter_2=counter_2-ind_val.get_delta();
