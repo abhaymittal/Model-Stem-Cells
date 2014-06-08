@@ -1,43 +1,43 @@
     #include "var.h"
 
-    Var::get_var()
+    char Var::get_var_name()
     {
         return var_name;
     }
 
-    Var::set_var(char var_x
+    int Var::set_var_name(char var_x)
     {
         var_name=var_x;
         return 0;
     }
 
-    Var::get_index()
+    int Var::get_index()
     {
         return index;
     }
 
-    Var::set_index(int in_val)
+    int Var::set_index(int in_val)
     {
         index=in_val;
         return 0;
     }
 
-    Var::get_delta()
+    int Var::get_delta()
     {
         return delta;
     }
 
-    Var::set_delta(int del)
+    int Var::set_delta(int del)
     {
         delta=del;
         return 0;
     }
 
-    Var::get_value()
+    int Var::get_value()
     {
         return value;
     }
-    Var::set_value(int val)
+    int Var::set_value(int val)
     {
         value=val;
         return 0;

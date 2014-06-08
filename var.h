@@ -30,5 +30,5 @@ class Var
 
     int get_value();
     int set_value(int val);
-}
+};
 #endif // VAR_H
