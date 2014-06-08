@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="stem_env.cpp" />
+		<Unit filename="stem_env.h" />
+		<Unit filename="var.cpp" />
+		<Unit filename="var.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
