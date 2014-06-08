@@ -1,8 +1,8 @@
 #include "stem_env.h"
 #include "var.h"
 #include <cmath>
-
-stem_env::int draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
+using namespace std;
+int** stem_env:: draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
 {
 
     char sign_x=((z2-z1)<0)?'-':'+';
@@ -10,11 +10,13 @@ stem_env::int draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
     char sign_z=((x2-x1)<0)?'-':'+';
     char sign_ind, sign_dep_1, sign_dep_2;
 
+    Var ind_val;
+
     if(abs(y2-y1)>abs(x2-x1))
     {
         if(abs(z2-z1)>abs(y2-y1))
         {
-            Var ind_val('z',2,abs(z2-z1),z1,);
+            ind_val=*(new Var('z',2,abs(z2-z1),z1));
             sign_ind=((z2-z1)<0)?'-':'+';
 
             Var dep_val_1('x',0,abs(x2-x1),x1);
@@ -25,7 +27,7 @@ stem_env::int draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
         }
         else
         {
-            Var ind_val'y',1,abs(y2-y1),y1);
+            Var ind_val('y',1,abs(y2-y1),y1);
             sign_ind=((y2-y1)<0)?'-':'+';
 
             Var dep_val_1('z',2,abs(z2-z1),z1);
@@ -88,12 +90,25 @@ stem_env::int draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
         counter_1=counter_1+dep_val_1.get_delta();
         counter_2=counter_2+dep_val_2.get_delta();
 
+        ind_val.set_value(ind_val.get_value()+inc_ind);
         if(counter_1>ind_val.get_delta())
         {
-
+            dep_val_1.set_value(dep_val_1.get_value()+inc_dep_1);
+            counter_1=counter_1-ind_val.get_delta();
         }
+        if(counter_2>ind_val.get_delta())
+        {
+            dep_val_2.set_value(dep_val_2.get_value()+inc_dep_2);
+            counter_2=counter_2-ind_val.get_delta();
+        }
+
+        pt_array[pt_index][ind_val.get_index()]=ind_val.get_value();
+        pt_array[pt_index][dep_val_1.get_index()]=dep_val_1.get_value();
+        pt_array[pt_index][dep_val_2.get_index()]=dep_val_2.get_value();
+        pt_index++;
+
     }
-    return 0
+    return pt_array;
 
 }
 
