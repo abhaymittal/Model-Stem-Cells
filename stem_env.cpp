@@ -10,7 +10,7 @@ int** stem_env:: draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
     char sign_z=((x2-x1)<0)?'-':'+';
     char sign_ind, sign_dep_1, sign_dep_2;
 
-    Var ind_val;
+    Var ind_val,dep_val_1,dep_val_2;
 
     if(abs(y2-y1)>abs(x2-x1))
     {
@@ -19,21 +19,21 @@ int** stem_env:: draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
             ind_val=*(new Var('z',2,abs(z2-z1),z1));
             sign_ind=((z2-z1)<0)?'-':'+';
 
-            Var dep_val_1('x',0,abs(x2-x1),x1);
+            dep_val_1=*(new Var('x',0,abs(x2-x1),x1));
             sign_dep_1=((x2-x1)<0)?'-':'+';
 
-            Var dep_val_2('y',1,abs(y2-y1),y1);
+            dep_val_2=*(new Var('y',1,abs(y2-y1),y1));
             sign_dep_2=((y2-y1)<0)?'-':'+';
         }
         else
         {
-            Var ind_val('y',1,abs(y2-y1),y1);
+            ind_val=*(new Var('y',1,abs(y2-y1),y1));
             sign_ind=((y2-y1)<0)?'-':'+';
 
-            Var dep_val_1('z',2,abs(z2-z1),z1);
+            dep_val_1=*(new Var('z',2,abs(z2-z1),z1));
             sign_dep_1=((z2-z1)<0)?'-':'+';
 
-            Var dep_val_2('x',0,abs(x2-x1),x1);
+            dep_val_2=*(new Var('x',0,abs(x2-x1),x1));
             sign_dep_2=((x2-x1)<0)?'-':'+';
         }
     }
@@ -41,24 +41,24 @@ int** stem_env:: draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
     {
         if (abs(z2-z1)>abs(x2-x1))
         {
-            Var ind_val('z',2,abs(z2-z1),z1);
+            ind_val=*(new Var('z',2,abs(z2-z1),z1));
             sign_ind=((z2-z1)<0)?'-':'+';
 
-            Var dep_val_1('x',0,abs(x2-x1),x1);
+            dep_val_1=*(new Var('x',0,abs(x2-x1),x1));
             sign_dep_1=((x2-x1)<0)?'-':'+';
 
-            Var dep_val_2('y',1,abs(y2-y1),y1);
+            dep_val_2=*(new Var('y',1,abs(y2-y1),y1));
             sign_dep_2=((y2-y1)<0)?'-':'+';
         }
         else
         {
-            Var ind_val('x',0,abs(x2-x1),x1);
+            ind_val=*(new Var('x',0,abs(x2-x1),x1));
             sign_ind=((x2-x1)<0)?'-':'+';
 
-            Var dep_val_1('y',1,abs(y2-y1),y1);
+            dep_val_1=*(new Var('y',1,abs(y2-y1),y1));
             sign_dep_1=((y2-y1)<0)?'-':'+';
 
-            Var dep_val_2('z',2,abs(z2-z1),z1);
+            dep_val_2=*(new Var('z',2,abs(z2-z1),z1));
             sign_dep_2=((z2-z1)<0)?'-':'+';
         }
     }
@@ -78,7 +78,7 @@ int** stem_env:: draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
 
     inc_ind=(sign_ind=='+')?1:-1;
     inc_dep_1=(sign_dep_1=='+')?1:-1;
-    inc_dep_2=(sign_dep_2=='+')?1:-)1;
+    inc_dep_2=(sign_dep_2=='+')?1:-1;
 
     pt_array[pt_index][ind_val.get_index()]=ind_val.get_value();
     pt_array[pt_index][dep_val_1.get_index()]=dep_val_1.get_value();
