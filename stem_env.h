@@ -18,6 +18,27 @@ public:
     int set_z(int zval);
 };
 
+class Line_3d
+{
+    private:
+    long id;
+    int no_point;
+    Point_3d *point;
+
+    public:
+
+    Line_3d(int n_point);
+    Line_3d(int _id, int n_point);
+    int set_id(long _id);
+    int get_no_point();
+    int set_no_point(int _no_point);
+    int set_point(int index,Point_3d pt);
+    Point get_point(int index);
+    int set_point_array(int n_point, Point_3d* p_array);
+    Point_3d* get_point_array();
+
+}
+
 class Stem_env
 {
 private:
