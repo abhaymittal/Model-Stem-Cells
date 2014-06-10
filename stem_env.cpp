@@ -201,9 +201,6 @@ Point_3d** Stem_env::setup_environment(int length, int width, int depth, int fib
 int** Stem_env::draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
 {
 
-    //char sign_x=((z2-z1)<0)?'-':'+';
-    //char sign_y=((y2-y1)<0)?'-':'+';
-    //char sign_z=((x2-x1)<0)?'-':'+';
     char sign_ind, sign_dep_1, sign_dep_2;
 
     Var ind_val,dep_val_1,dep_val_2;
