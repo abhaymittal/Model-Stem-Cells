@@ -1,0 +1,6 @@
+Remove from stem_env
+	char sign_x=((z2-z1)<0)?'-':'+';
+    char sign_y=((y2-y1)<0)?'-':'+';
+    char sign_z=((x2-x1)<0)?'-':'+';
+
+####################################

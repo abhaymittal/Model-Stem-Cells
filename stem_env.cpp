@@ -41,7 +41,7 @@ int Point_3d::set_z(int zval)
 }
 
 
-int Stem_env::create_line(int i, Point_3d box[8], Point_3d lines[][2], int f2, int d2, int xmin, int xmax, int xdiff1, int length, int width, int depth)
+int Stem_env::create_line(int i, Point_3d box[8], Point_3d** lines, int f2, int d2, int xmin, int xmax, int xdiff1, int length, int width, int depth)
 {
     int j, x_translate, y_translate, z_translate;
     int ymin, ymax, f2_x2, f2_x2_y2;
@@ -126,13 +126,19 @@ int Stem_env::create_line(int i, Point_3d box[8], Point_3d lines[][2], int f2, i
     return 0;
 }
 
-int Stem_env::setup_environment(int length, int width, int depth, int fiber_count, int fiber_length);
+Point_3d** Stem_env::setup_environment(int length, int width, int depth, int fiber_count, int fiber_length)
 {
 
     Point_3d box[8];
-    Point_3d lines[fiber_count][2];
+    Point_3d** lines;
     int i;
     int f2, d2, xmin, xmax, xdiff1;
+
+    lines=new Point_3d*[fiber_count];
+    for(int i=0;i<fiber_count;i++)
+    {
+        lines[i]=new Point_3d[2];
+    }
 
     box[0].set_x(0);
     box[0].set_y(0);
@@ -189,15 +195,15 @@ int Stem_env::setup_environment(int length, int width, int depth, int fiber_coun
         create_line(i, box, lines, f2, d2, xmin, xmax, xdiff1, length, width, depth);
     }
 
-    return 0;
+    return lines;
 }
 
-int** stem_env:: draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
+int** Stem_env::draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
 {
 
-    char sign_x=((z2-z1)<0)?'-':'+';
-    char sign_y=((y2-y1)<0)?'-':'+';
-    char sign_z=((x2-x1)<0)?'-':'+';
+    //char sign_x=((z2-z1)<0)?'-':'+';
+    //char sign_y=((y2-y1)<0)?'-':'+';
+    //char sign_z=((x2-x1)<0)?'-':'+';
     char sign_ind, sign_dep_1, sign_dep_2;
 
     Var ind_val,dep_val_1,dep_val_2;
