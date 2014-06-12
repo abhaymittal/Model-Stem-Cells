@@ -238,7 +238,7 @@ Point_3d** Stem_env::setup_environment(int length, int width, int depth, int fib
     return lines;
 }
 
-Point_3d* Stem_env::draw_3D_line(Point_3d p1, Point_3d p2)
+Line_3d Stem_env::draw_3D_line(Point_3d p1, Point_3d p2)
 {
 
     char sign_ind, sign_dep_1, sign_dep_2;
@@ -297,20 +297,22 @@ Point_3d* Stem_env::draw_3D_line(Point_3d p1, Point_3d p2)
     }
 
 
-    Point_3d *pt_array = new Point_3d[ind_val.get_delta()+1];
+    Line_3d out_line(ind_val.get_delta()+1);
 
     int ind_val_f=ind_val.get_delta()+ind_val.get_value();
     int counter_1=0, counter_2=0;
     int inc_ind, inc_dep_1, inc_dep_2;
     int pt_index=0;
+    Point_3d temp_pt;
 
     inc_ind=(sign_ind=='+')?1:-1;
     inc_dep_1=(sign_dep_1=='+')?1:-1;
     inc_dep_2=(sign_dep_2=='+')?1:-1;
 
-    pt_array[pt_index].set_var(ind_val.get_var_name(),ind_val.get_value());
-    pt_array[pt_index].set_var(dep_val_1.get_var_name(),dep_val_1.get_value());
-    pt_array[pt_index].set_var(dep_val_2.get_var_name(),dep_val_2.get_value());
+    temp_pt.set_var(ind_val.get_var_name(),ind_val.get_value());
+    temp_pt.set_var(dep_val_1.get_var_name(),dep_val_1.get_value());
+    temp_pt.set_var(dep_val_2.get_var_name(),dep_val_2.get_value());
+    out_line.set_point(pt_index,temp_pt);
     pt_index++;
 
     while(ind_val.get_value()!=ind_val_f)
@@ -330,13 +332,14 @@ Point_3d* Stem_env::draw_3D_line(Point_3d p1, Point_3d p2)
             counter_2=counter_2-ind_val.get_delta();
         }
 
-        pt_array[pt_index].set_var(ind_val.get_var_name(),ind_val.get_value());
-        pt_array[pt_index].set_var(dep_val_1.get_var_name(),dep_val_1.get_value());
-        pt_array[pt_index].set_var(dep_val_2.get_var_name(),dep_val_2.get_value());
+        temp_pt.set_var(ind_val.get_var_name(),ind_val.get_value());
+        temp_pt.set_var(dep_val_1.get_var_name(),dep_val_1.get_value());
+        temp_pt.set_var(dep_val_2.get_var_name(),dep_val_2.get_value());
+        out_line.set_point(pt_index,temp_pt);
         pt_index++;
 
     }
-    return pt_array;
+    return out_line;
 
 }
 

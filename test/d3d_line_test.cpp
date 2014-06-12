@@ -6,10 +6,10 @@ int main()
     Stem_env st;
     Point_3d p1(1,2,1),p2(19,11,11);
 
-    Point_3d *pt=st.draw_3D_line(p1,p2);
+    Line_3d l1=st.draw_3D_line(p1,p2);
 
-    for(int i=0;i<19;i++)
+    for(int i=0;i<l1.get_no_point();i++)
     {
-        printf("%d | %d | %d\n",pt[i].get_x(),pt[i].get_y(),pt[i].get_z());
+        printf("%d | %d | %d\n",l1.get_point(i).get_x(),l1.get_point(i).get_y(),l1.get_point(i).get_z());
     }
 }
