@@ -1,6 +1,20 @@
-Remove from stem_env
-	char sign_x=((z2-z1)<0)?'-':'+';
-    char sign_y=((y2-y1)<0)?'-':'+';
-    char sign_z=((x2-x1)<0)?'-':'+';
 
-####################################
+Setup env - point map return krna h ....
+
+
+1. obj.setup_environment(int length, int width, int depth, long int fiber_count, int fiber_length, int lines[n][4], int point_3D[length*width*depth] );?
+
+
+?5?:?32? ?PM use this prototype of setupEnvironemnt?
+
+
+ andf use call by ref?
+
+
+ for last 2 parameters?
+
+
+ lines[0-2] : point cordinates , line[3] : angle of orientation?
+
+ angle and one end point line
+ 
