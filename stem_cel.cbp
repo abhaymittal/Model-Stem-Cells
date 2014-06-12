@@ -31,11 +31,15 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="stem_env.cpp" />
-		<Unit filename="stem_env.h" />
-		<Unit filename="test/stem_env_test2.cpp" />
-		<Unit filename="var.cpp" />
-		<Unit filename="var.h" />
+		<Unit filename="include/Line_3d.h" />
+		<Unit filename="include/Point_3d.h" />
+		<Unit filename="include/Stem_env.h" />
+		<Unit filename="include/Var.h" />
+		<Unit filename="src/Line_3d.cpp" />
+		<Unit filename="src/Point_3d.cpp" />
+		<Unit filename="src/Stem_env.cpp" />
+		<Unit filename="src/Var.cpp" />
+		<Unit filename="test/d3d_line_test.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
