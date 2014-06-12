@@ -22,6 +22,27 @@ int Point_3d::get_z()
     return z;
 }
 
+int Point_3d::get_var(char var_name)
+{
+    switch(var_name)
+    {
+        case 'x':
+            return x;
+        break;
+
+        case 'y':
+            return y;
+        break;
+
+        case 'z':
+            return z;
+        break;
+
+    }
+    return -1;
+}
+
+
 int Point_3d::set_x(int xval)
 {
     x = xval;
@@ -37,6 +58,25 @@ int Point_3d::set_y(int yval)
 int Point_3d::set_z(int zval)
 {
     z = zval;
+    return 0;
+}
+
+int Point_3d::set_var(char var_name,int val)
+{
+    switch(var_name)
+    {
+        case 'x':
+            x=val;
+        break;
+
+        case 'y':
+            y=val;
+        break;
+
+        case 'z':
+            z=val;
+        break;
+    }
     return 0;
 }
 
@@ -198,71 +238,66 @@ Point_3d** Stem_env::setup_environment(int length, int width, int depth, int fib
     return lines;
 }
 
-int** Stem_env::draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
+Point_3d* Stem_env::draw_3D_line(Point_3d p1, Point_3d p2)
 {
 
     char sign_ind, sign_dep_1, sign_dep_2;
 
     Var ind_val,dep_val_1,dep_val_2;
 
-    if(abs(y2-y1)>abs(x2-x1))
+    if(abs(p2.get_y()-p1.get_y())>abs(p2.get_x()-p1.get_x()))
     {
-        if(abs(z2-z1)>abs(y2-y1))
+        if(abs(p2.get_z()-p1.get_z())>abs(p2.get_y()-p1.get_y()))
         {
-            ind_val=*(new Var('z',2,abs(z2-z1),z1));
-            sign_ind=((z2-z1)<0)?'-':'+';
+            ind_val=*(new Var('z',2,abs(p2.get_z()-p1.get_z()),p1.get_z()));
+            sign_ind=((p2.get_z()-p1.get_z())<0)?'-':'+';
 
-            dep_val_1=*(new Var('x',0,abs(x2-x1),x1));
-            sign_dep_1=((x2-x1)<0)?'-':'+';
+            dep_val_1=*(new Var('x',0,abs(p2.get_x()-p1.get_x()),p1.get_x()));
+            sign_dep_1=((p2.get_x()-p1.get_x())<0)?'-':'+';
 
-            dep_val_2=*(new Var('y',1,abs(y2-y1),y1));
-            sign_dep_2=((y2-y1)<0)?'-':'+';
+            dep_val_2=*(new Var('y',1,abs(p2.get_y()-p1.get_y()),p1.get_y()));
+            sign_dep_2=((p2.get_y()-p1.get_y())<0)?'-':'+';
         }
         else
         {
-            ind_val=*(new Var('y',1,abs(y2-y1),y1));
-            sign_ind=((y2-y1)<0)?'-':'+';
+            ind_val=*(new Var('y',1,abs(p2.get_y()-p1.get_y()),p1.get_y()));
+            sign_ind=((p2.get_y()-p1.get_y())<0)?'-':'+';
 
-            dep_val_1=*(new Var('z',2,abs(z2-z1),z1));
-            sign_dep_1=((z2-z1)<0)?'-':'+';
+            dep_val_1=*(new Var('z',2,abs(p2.get_z()-p1.get_z()),p1.get_z()));
+            sign_dep_1=((p2.get_z()-p1.get_z())<0)?'-':'+';
 
-            dep_val_2=*(new Var('x',0,abs(x2-x1),x1));
-            sign_dep_2=((x2-x1)<0)?'-':'+';
+            dep_val_2=*(new Var('x',0,abs(p2.get_x()-p1.get_x()),p1.get_x()));
+            sign_dep_2=((p2.get_x()-p1.get_x())<0)?'-':'+';
         }
     }
     else
     {
-        if (abs(z2-z1)>abs(x2-x1))
+        if (abs(p2.get_z()-p1.get_z())>abs(p2.get_x()-p1.get_x()))
         {
-            ind_val=*(new Var('z',2,abs(z2-z1),z1));
-            sign_ind=((z2-z1)<0)?'-':'+';
+            ind_val=*(new Var('z',2,abs(p2.get_z()-p1.get_z()),p1.get_z()));
+            sign_ind=((p2.get_z()-p1.get_z())<0)?'-':'+';
 
-            dep_val_1=*(new Var('x',0,abs(x2-x1),x1));
-            sign_dep_1=((x2-x1)<0)?'-':'+';
+            dep_val_1=*(new Var('x',0,abs(p2.get_x()-p1.get_x()),p1.get_x()));
+            sign_dep_1=((p2.get_x()-p1.get_x())<0)?'-':'+';
 
-            dep_val_2=*(new Var('y',1,abs(y2-y1),y1));
-            sign_dep_2=((y2-y1)<0)?'-':'+';
+            dep_val_2=*(new Var('y',1,abs(p2.get_y()-p1.get_y()),p1.get_y()));
+            sign_dep_2=((p2.get_y()-p1.get_y())<0)?'-':'+';
         }
         else
         {
-            ind_val=*(new Var('x',0,abs(x2-x1),x1));
-            sign_ind=((x2-x1)<0)?'-':'+';
+            ind_val=*(new Var('x',0,abs(p2.get_x()-p1.get_x()),p1.get_x()));
+            sign_ind=((p2.get_x()-p1.get_x())<0)?'-':'+';
 
-            dep_val_1=*(new Var('y',1,abs(y2-y1),y1));
-            sign_dep_1=((y2-y1)<0)?'-':'+';
+            dep_val_1=*(new Var('y',1,abs(p2.get_y()-p1.get_y()),p1.get_y()));
+            sign_dep_1=((p2.get_y()-p1.get_y())<0)?'-':'+';
 
-            dep_val_2=*(new Var('z',2,abs(z2-z1),z1));
-            sign_dep_2=((z2-z1)<0)?'-':'+';
+            dep_val_2=*(new Var('z',2,abs(p2.get_z()-p1.get_z()),p1.get_z()));
+            sign_dep_2=((p2.get_z()-p1.get_z())<0)?'-':'+';
         }
     }
 
 
-    int **pt_array;
-    pt_array=new int*[ind_val.get_delta()+1];
-    for(int i=0;i<ind_val.get_delta()+1;i++)
-    {
-        pt_array[i]=new int[3];
-    }
+    Point_3d *pt_array = new Point_3d[ind_val.get_delta()+1];
 
     int ind_val_f=ind_val.get_delta()+ind_val.get_value();
     int counter_1=0, counter_2=0;
@@ -273,9 +308,9 @@ int** Stem_env::draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
     inc_dep_1=(sign_dep_1=='+')?1:-1;
     inc_dep_2=(sign_dep_2=='+')?1:-1;
 
-    pt_array[pt_index][ind_val.get_index()]=ind_val.get_value();
-    pt_array[pt_index][dep_val_1.get_index()]=dep_val_1.get_value();
-    pt_array[pt_index][dep_val_2.get_index()]=dep_val_2.get_value();
+    pt_array[pt_index].set_var(ind_val.get_var_name(),ind_val.get_value());
+    pt_array[pt_index].set_var(dep_val_1.get_var_name(),dep_val_1.get_value());
+    pt_array[pt_index].set_var(dep_val_2.get_var_name(),dep_val_2.get_value());
     pt_index++;
 
     while(ind_val.get_value()!=ind_val_f)
@@ -295,9 +330,9 @@ int** Stem_env::draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
             counter_2=counter_2-ind_val.get_delta();
         }
 
-        pt_array[pt_index][ind_val.get_index()]=ind_val.get_value();
-        pt_array[pt_index][dep_val_1.get_index()]=dep_val_1.get_value();
-        pt_array[pt_index][dep_val_2.get_index()]=dep_val_2.get_value();
+        pt_array[pt_index].set_var(ind_val.get_var_name(),ind_val.get_value());
+        pt_array[pt_index].set_var(dep_val_1.get_var_name(),dep_val_1.get_value());
+        pt_array[pt_index].set_var(dep_val_2.get_var_name(),dep_val_2.get_value());
         pt_index++;
 
     }
@@ -317,13 +352,13 @@ int** Stem_env::draw_3D_line(int x1, int y1, int z1, int x2, int y2, int z2)
 Line_3d::Line_3d(int n_point)
 {
     no_point=n_point;
-    point=new Point_3d*[n_point];
+    point=new Point_3d[n_point];
 }
 Line_3d::Line_3d(int _id, int n_point)
 {
     id=_id;
     no_point=n_point;
-    point=new Point_3d*[n_point];
+    point=new Point_3d[n_point];
 }
 
 long Line_3d::get_id()
@@ -352,7 +387,7 @@ int Line_3d::set_point(int index,Point_3d pt)
     return 0;
 }
 
-Point Line_3d::get_point(int index)
+Point_3d Line_3d::get_point(int index)
 {
     return point[index];
 }
