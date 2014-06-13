@@ -1,4 +1,4 @@
-    #include "var.h"
+    #include "Var.h"
 
     char Var::get_var_name()
     {

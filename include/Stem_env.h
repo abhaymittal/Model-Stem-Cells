@@ -1,6 +1,7 @@
 #ifndef STEM_ENV_H
 #define STEM_ENV_H
-
+#include "Point_3d.h"
+#include "Line_3d.h"
 class Stem_env
 {
 private:

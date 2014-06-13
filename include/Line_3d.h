@@ -1,6 +1,6 @@
 #ifndef LINE_3D_H
 #define LINE_3D_H
-
+#include "Point_3d.h"
 
 
 class Line_3d

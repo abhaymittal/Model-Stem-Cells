@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1402643321 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/test/d3d_line_test.cpp
+	"../include/Stem_env.h"
+	<cstdio>
+
+1402643297 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Stem_env.h
+	"Point_3d.h"
+	"Line_3d.h"
+
+1402588104 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Point_3d.h
+
+1402643216 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Line_3d.h
+	"Point_3d.h"
+
