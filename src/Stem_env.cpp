@@ -272,3 +272,31 @@ Line_3d Stem_env::draw_3D_line(Point_3d p1, Point_3d p2)
     return out_line;
 
 }
+
+long*** Stem_env::generate_pt_freq_map(Line_3d* line,int length, int width, int depth,long fiber_count)
+{
+    long ***pt_map;
+    pt_map=new int**[length];
+    for(int i=0;i<length;i++)
+    {
+        pt_map[i]=new int**[width];
+        for(int j=0;j<width;j++)
+        {
+            pt_map[i][j]=new int[depth];
+            for(int k=0;k<depth;k++)
+            {
+                pt_map[i][j][k]=0;
+            }
+        }
+    }
+
+    for(long i=0;i<fiber_count;i++)
+    {
+        for(int j=0;j<line[i].get_no_point();j++)
+        {
+            pt_map[line[i].get_point(j).get_x()][line[i].get_point(j).get_y()][line[i].get_point(j).get_z()]++;
+        }
+    }
+
+    return pt_map;
+}
