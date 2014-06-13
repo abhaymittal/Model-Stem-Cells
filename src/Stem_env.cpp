@@ -1,13 +1,12 @@
 #include <ctime>    //time
 #include <cstdlib>  //rand, srand
 #include <cmath>    //sqrt, floor, ceil
-
-#include "../include/Stem_env.h"
-#include "../include/Var.h"
-#include "../include/Point_3d.h"
-#include "../include/Line_3d.h"
-
 #include <iostream>
+
+#include "Stem_env.h"
+#include "Var.h"
+#include "Point_3d.h"
+#include "Line_3d.h"
 
 using namespace std;
 
@@ -96,10 +95,6 @@ Line_3d Stem_env::create_line(int length, int width, int depth, Point_3d box[8],
     end_pt.set_x(end_pt.get_x() + x_translate);
     end_pt.set_y(end_pt.get_y() + y_translate);
     end_pt.set_z(end_pt.get_z() + z_translate);
-
-    cout << "x1 = " << start_pt.get_x() << "y1 = " << start_pt.get_y() << "z1 = " << start_pt.get_z() << ", x2 = " << end_pt.get_x() << "y2 = " << end_pt.get_y() << "z2 = " << end_pt.get_z()<< "\n";
-
-    cout << "Entering d3d\n";
     return draw_3D_line(start_pt, end_pt);
 }
 
@@ -107,7 +102,7 @@ Line_3d* Stem_env::setup_environment(int length, int width, int depth, int fiber
 {
 
     Point_3d box[8];
-    Line_3d lines[fiber_count];
+    Line_3d *lines = new Line_3d[fiber_count];
     int i;
     static long id=0L;
     int f2, d2, xmin, xmax, xdiff1;
@@ -167,7 +162,6 @@ Line_3d* Stem_env::setup_environment(int length, int width, int depth, int fiber
     for(i=0; i<fiber_count; i++)
     {
         lines[i]=create_line(length, width, depth, box, f2, d2, xmin, xmax, xdiff1);
-        cout << "LINE: " << lines[i].get_point(0).get_x() << "\n";
         lines[i].set_id(id);
         id++;
     }
@@ -233,10 +227,9 @@ Line_3d Stem_env::draw_3D_line(Point_3d p1, Point_3d p2)
         }
     }
 
-
     Line_3d out_line(ind_val.get_delta()+1);
 
-    int ind_val_f=ind_val.get_delta()+ind_val.get_value();
+    int ind_val_f=p2.get_var(ind_val.get_var_name());
     int counter_1=0, counter_2=0;
     int inc_ind, inc_dep_1, inc_dep_2;
     int pt_index=0;
@@ -276,8 +269,6 @@ Line_3d Stem_env::draw_3D_line(Point_3d p1, Point_3d p2)
         pt_index++;
 
     }
-
-    cout << "d3d - ok" << "\n";
     return out_line;
 
 }

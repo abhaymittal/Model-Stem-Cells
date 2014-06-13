@@ -1,4 +1,4 @@
-#include "../include/Point_3d.h"
+#include "Point_3d.h"
 int Point_3d::get_x()
 {
     return x;

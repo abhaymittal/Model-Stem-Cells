@@ -1,4 +1,4 @@
-#include "../include/Line_3d.h"
+#include "Line_3d.h"
 
 Line_3d::Line_3d(){}
 Line_3d::Line_3d(int n_point)

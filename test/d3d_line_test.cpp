@@ -1,10 +1,10 @@
-#include "../stem_env.h"
+#include "../include/Stem_env.h"
 #include <cstdio>
 
 int main()
 {
     Stem_env st;
-    Point_3d p1(1,2,1),p2(19,11,11);
+    Point_3d p1(7,13,15),p2(7,14,1);
 
     Line_3d l1=st.draw_3D_line(p1,p2);
 
