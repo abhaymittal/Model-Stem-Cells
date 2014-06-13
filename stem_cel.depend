@@ -33,3 +33,74 @@
 1402643656 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Var.cpp
 	"Var.h"
 
+1402649875 source:/run/media/pratik/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Line_3d.cpp
+	"Line_3d.h"
+
+1402649932 /run/media/pratik/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Line_3d.h
+	"Point_3d.h"
+
+1402588314 /run/media/pratik/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Point_3d.h
+
+1402649862 source:/run/media/pratik/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Point_3d.cpp
+	"Point_3d.h"
+
+1402649895 source:/run/media/pratik/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Stem_env.cpp
+	<ctime>
+	<cstdlib>
+	<cmath>
+	<iostream>
+	"Stem_env.h"
+	"Var.h"
+	"Point_3d.h"
+	"Line_3d.h"
+	<iostream>
+
+1402649849 /run/media/pratik/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Stem_env.h
+	"Point_3d.h"
+	"Line_3d.h"
+
+1402588314 /run/media/pratik/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Var.h
+
+1402649821 source:/run/media/pratik/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Var.cpp
+	"Var.h"
+
+1402649642 source:/run/media/pratik/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/test/stem_env_test2.cpp
+	<iostream>
+	<cmath>
+	"../include/Stem_env.h"
+
+1402649875 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Line_3d.cpp
+	"Line_3d.h"
+
+1402649932 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Line_3d.h
+	"Point_3d.h"
+
+1402588314 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Point_3d.h
+
+1402649862 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Point_3d.cpp
+	"Point_3d.h"
+
+1402650840 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Stem_env.cpp
+	<ctime>
+	<cstdlib>
+	<cmath>
+	<iostream>
+	"Stem_env.h"
+	"Var.h"
+	"Point_3d.h"
+	"Line_3d.h"
+
+1402649849 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Stem_env.h
+	"Point_3d.h"
+	"Line_3d.h"
+
+1402588314 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Var.h
+
+1402649821 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Var.cpp
+	"Var.h"
+
+1402649642 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/test/stem_env_test2.cpp
+	<iostream>
+	<cmath>
+	"../include/Stem_env.h"
+
