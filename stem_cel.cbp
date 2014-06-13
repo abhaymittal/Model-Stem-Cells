@@ -30,6 +30,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="include" />
 		</Compiler>
 		<Unit filename="include/Line_3d.h" />
 		<Unit filename="include/Point_3d.h" />
