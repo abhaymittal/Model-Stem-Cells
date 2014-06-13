@@ -1,5 +1,6 @@
-#include "Line_3d.h"
+#include "../include/Line_3d.h"
 
+Line_3d::Line_3d(){}
 Line_3d::Line_3d(int n_point)
 {
     no_point=n_point;
@@ -34,7 +35,9 @@ int Line_3d::set_no_point(int _no_point)
 
 int Line_3d::set_point(int index,Point_3d pt)
 {
-    point[index]=pt;
+    point[index].set_x(pt.get_x());
+    point[index].set_y(pt.get_y());
+    point[index].set_z(pt.get_z());
     return 0;
 }
 

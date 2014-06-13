@@ -1,3 +1,5 @@
+#include "Point_3d.h"
+
 #ifndef LINE_3D_H
 #define LINE_3D_H
 
@@ -12,6 +14,7 @@ class Line_3d
 
     public:
 
+    Line_3d();
     Line_3d(int n_point);
     Line_3d(int _id, int n_point);
     long get_id();

@@ -2,34 +2,37 @@
 #include <cstdlib>  //rand, srand
 #include <cmath>    //sqrt, floor, ceil
 
-#include "Stem_env.h"
-#include "Var.h"
-#include "Point_3d.h"
-#include "Line_3d.h"
+#include "../include/Stem_env.h"
+#include "../include/Var.h"
+#include "../include/Point_3d.h"
+#include "../include/Line_3d.h"
+
+#include <iostream>
 
 using namespace std;
 
 
 
 
-int Stem_env::create_line(int i, Point_3d box[8], Point_3d** lines, int f2, int d2, int xmin, int xmax, int xdiff1, int length, int width, int depth)
+Line_3d Stem_env::create_line(int length, int width, int depth, Point_3d box[8], int f2, int d2, int xmin, int xmax, int xdiff1)
 {
     int j, x_translate, y_translate, z_translate;
     int ymin, ymax, f2_x2, f2_x2_y2;
+    Point_3d start_pt, end_pt;
 
     j = rand()%8; //random vertex of box
-    lines[i][0].set_x(box[j].get_x());
-    lines[i][0].set_y(box[j].get_y());
-    lines[i][0].set_z(box[j].get_z());
+    start_pt.set_x(box[j].get_x());
+    start_pt.set_y(box[j].get_y());
+    start_pt.set_z(box[j].get_z());
 
-    lines[i][1].set_x(( rand() % xdiff1 ) + xmin);
+    end_pt.set_x(( rand() % xdiff1 ) + xmin);
 
-    f2_x2 = f2 - (lines[i][1].get_x() * lines[i][1].get_x()); // currently origin is assumed as fixed point, so f2_x2 is calculated before adjustment
+    f2_x2 = f2 - (end_pt.get_x() * end_pt.get_x()); // currently origin is assumed as fixed point, so f2_x2 is calculated before adjustment
 
     //adjustment
-    if(lines[i][0].get_x() != 0)
+    if(start_pt.get_x() != 0)
     {
-        lines[i][1].set_x(length - lines[i][1].get_x()); //lines[i][0].x - lines[i][1].x
+        end_pt.set_x(length - end_pt.get_x()); //start_pt.x - end_pt.x
     }
 
     if( f2_x2 > d2 )
@@ -44,73 +47,72 @@ int Stem_env::create_line(int i, Point_3d box[8], Point_3d** lines, int f2, int 
     ymax = floor(sqrt(f2_x2));
     if(width<ymax) ymax = width;
 
-    lines[i][1].set_y(( rand() % ((ymax - ymin) + 1) ) + ymin);
-    f2_x2_y2 = f2_x2 - (lines[i][1].get_y() * lines[i][1].get_y());
+    end_pt.set_y(( rand() % ((ymax - ymin) + 1) ) + ymin);
+    f2_x2_y2 = f2_x2 - (end_pt.get_y() * end_pt.get_y());
 
-    if(lines[i][0].get_y() != 0)
+    if(start_pt.get_y() != 0)
     {
-        lines[i][1].set_y(width - lines[i][1].get_y());
+        end_pt.set_y(width - end_pt.get_y());
     }
 
-    lines[i][1].set_z(floor(sqrt(f2_x2_y2))); // floor => inside sphere of radius fiber_length, ceil => outside
+    end_pt.set_z(floor(sqrt(f2_x2_y2))); // floor => inside sphere of radius fiber_length, ceil => outside
 
-    if(lines[i][0].get_z() != 0)
+    if(start_pt.get_z() != 0)
     {
-        lines[i][1].set_z(depth - lines[i][1].get_z());
+        end_pt.set_z(depth - end_pt.get_z());
     }
 
 
-    if(lines[i][0].get_x() == 0)
+    if(start_pt.get_x() == 0)
     {
-        x_translate = rand()%((length - lines[i][1].get_x()) + 1 );
-    }
-    else
-    {
-        x_translate = -( rand() % (lines[i][1].get_x() + 1) );
-    }
-
-    if(lines[i][0].get_y() == 0)
-    {
-        y_translate = rand()%((width - lines[i][1].get_y()) + 1 );
+        x_translate = rand()%((length - end_pt.get_x()) + 1 );
     }
     else
     {
-        y_translate = -( rand() % (lines[i][1].get_y() + 1) );
+        x_translate = -( rand() % (end_pt.get_x() + 1) );
     }
 
-    if(lines[i][0].get_z() == 0)
+    if(start_pt.get_y() == 0)
     {
-        z_translate = rand()%((depth - lines[i][1].get_z()) + 1 );
+        y_translate = rand()%((width - end_pt.get_y()) + 1 );
     }
     else
     {
-        z_translate = -( rand() % (lines[i][1].get_z() + 1) );
+        y_translate = -( rand() % (end_pt.get_y() + 1) );
     }
 
-    lines[i][0].set_x(lines[i][0].get_x() + x_translate);
-    lines[i][0].set_y(lines[i][0].get_y() + y_translate);
-    lines[i][0].set_z(lines[i][0].get_z() + z_translate);
-    lines[i][1].set_x(lines[i][1].get_x() + x_translate);
-    lines[i][1].set_y(lines[i][1].get_y() + y_translate);
-    lines[i][1].set_z(lines[i][1].get_z() + z_translate);
+    if(start_pt.get_z() == 0)
+    {
+        z_translate = rand()%((depth - end_pt.get_z()) + 1 );
+    }
+    else
+    {
+        z_translate = -( rand() % (end_pt.get_z() + 1) );
+    }
 
-    return 0;
+    start_pt.set_x(start_pt.get_x() + x_translate);
+    start_pt.set_y(start_pt.get_y() + y_translate);
+    start_pt.set_z(start_pt.get_z() + z_translate);
+    end_pt.set_x(end_pt.get_x() + x_translate);
+    end_pt.set_y(end_pt.get_y() + y_translate);
+    end_pt.set_z(end_pt.get_z() + z_translate);
+
+    cout << "x1 = " << start_pt.get_x() << ", x2 = " << end_pt.get_x() << "\n";
+
+    cout << "Entering d3d\n";
+    return draw_3D_line(start_pt, end_pt);
 }
 
-Point_3d** Stem_env::setup_environment(int length, int width, int depth, int fiber_count, int fiber_length)
+Line_3d* Stem_env::setup_environment(int length, int width, int depth, int fiber_count, int fiber_length)
 {
 
     Point_3d box[8];
-    Point_3d** lines;
+    Line_3d lines[fiber_count];
     int i;
+    static long id=0L;
     int f2, d2, xmin, xmax, xdiff1;
 
-    lines=new Point_3d*[fiber_count];
-    for(int i=0;i<fiber_count;i++)
-    {
-        lines[i]=new Point_3d[2];
-    }
-
+    //Initialize coordinates of box
     box[0].set_x(0);
     box[0].set_y(0);
     box[0].set_z(0);
@@ -143,6 +145,7 @@ Point_3d** Stem_env::setup_environment(int length, int width, int depth, int fib
     box[7].set_y(width);
     box[7].set_z(depth);
 
+    //seed random number generator with current time
     srand(time(NULL));
 
     f2 = fiber_length * fiber_length;
@@ -163,7 +166,10 @@ Point_3d** Stem_env::setup_environment(int length, int width, int depth, int fib
 
     for(i=0; i<fiber_count; i++)
     {
-        create_line(i, box, lines, f2, d2, xmin, xmax, xdiff1, length, width, depth);
+        lines[i]=create_line(length, width, depth, box, f2, d2, xmin, xmax, xdiff1);
+        cout << "LINE: " << lines[i].get_point(0).get_x() << "\n";
+        lines[i].set_id(id);
+        id++;
     }
 
     return lines;
@@ -270,6 +276,8 @@ Line_3d Stem_env::draw_3D_line(Point_3d p1, Point_3d p2)
         pt_index++;
 
     }
+
+    cout << "d3d - ok" << "\n";
     return out_line;
 
 }
