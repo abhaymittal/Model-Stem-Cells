@@ -1,6 +1,7 @@
 #include <ctime>    //time
 #include <cstdlib>  //rand, srand
 #include <cmath>    //sqrt, floor, ceil
+#include <iostream>
 
 #include "Stem_env.h"
 #include "Var.h"
@@ -227,10 +228,9 @@ Line_3d Stem_env::draw_3D_line(Point_3d p1, Point_3d p2)
         }
     }
 
-
     Line_3d out_line(ind_val.get_delta()+1);
 
-    int ind_val_f=ind_val.get_delta()+ind_val.get_value();
+    int ind_val_f=p2.get_var(ind_val.get_var_name());
     int counter_1=0, counter_2=0;
     int inc_ind, inc_dep_1, inc_dep_2;
     int pt_index=0;
