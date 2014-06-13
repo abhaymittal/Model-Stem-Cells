@@ -9,7 +9,8 @@ private:
 
 public:
   Line_3d draw_3D_line(Point_3d p1, Point_3d p2);
-  Line_3d* setup_environment(int length, int width, int depth, int fiber_count, int fiber_length);
+  Line_3d* setup_environment(int length, int width, int depth, long fiber_count, int fiber_length);
+  long*** generate_pt_freq_map(Line_3d* line,int length, int width, int depth,long fiber_count);
 };
 
 #endif

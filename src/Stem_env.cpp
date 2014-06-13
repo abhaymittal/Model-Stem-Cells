@@ -98,12 +98,12 @@ Line_3d Stem_env::create_line(int length, int width, int depth, Point_3d box[8],
     return draw_3D_line(start_pt, end_pt);
 }
 
-Line_3d* Stem_env::setup_environment(int length, int width, int depth, int fiber_count, int fiber_length)
+Line_3d* Stem_env::setup_environment(int length, int width, int depth, long fiber_count, int fiber_length)
 {
 
     Point_3d box[8];
     Line_3d *lines = new Line_3d[fiber_count];
-    int i;
+    long i;
     static long id=0L;
     int f2, d2, xmin, xmax, xdiff1;
 
