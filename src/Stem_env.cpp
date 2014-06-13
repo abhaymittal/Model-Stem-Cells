@@ -97,7 +97,7 @@ Line_3d Stem_env::create_line(int length, int width, int depth, Point_3d box[8],
     end_pt.set_y(end_pt.get_y() + y_translate);
     end_pt.set_z(end_pt.get_z() + z_translate);
 
-    cout << "x1 = " << start_pt.get_x() << ", x2 = " << end_pt.get_x() << "\n";
+    cout << "x1 = " << start_pt.get_x() << "y1 = " << start_pt.get_y() << "z1 = " << start_pt.get_z() << ", x2 = " << end_pt.get_x() << "y2 = " << end_pt.get_y() << "z2 = " << end_pt.get_z()<< "\n";
 
     cout << "Entering d3d\n";
     return draw_3D_line(start_pt, end_pt);
