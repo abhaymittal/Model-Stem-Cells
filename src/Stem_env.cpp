@@ -106,7 +106,9 @@ Line_3d* Stem_env::setup_environment(int length, int width, int depth, long fibe
     long i;
     static long id=0L;
     int f2, d2, xmin, xmax, xdiff1;
-
+    length--;
+    depth--;
+    width--;
     //Initialize coordinates of box
     box[0].set_x(0);
     box[0].set_y(0);
@@ -276,13 +278,13 @@ Line_3d Stem_env::draw_3D_line(Point_3d p1, Point_3d p2)
 long*** Stem_env::generate_pt_freq_map(Line_3d* line,int length, int width, int depth,long fiber_count)
 {
     long ***pt_map;
-    pt_map=new int**[length];
+    pt_map=new long**[length];
     for(int i=0;i<length;i++)
     {
-        pt_map[i]=new int**[width];
+        pt_map[i]=new long*[width];
         for(int j=0;j<width;j++)
         {
-            pt_map[i][j]=new int[depth];
+            pt_map[i][j]=new long[depth];
             for(int k=0;k<depth;k++)
             {
                 pt_map[i][j][k]=0;
