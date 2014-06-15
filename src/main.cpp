@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 
     ofstream output_file("pt_map.xyz");
 
-    line=st.setup_environment(sim_param.get_length(),sim_param.get_width(),sim_param.get_depth(),sim_param.get_fiber_count(),sim_param.get_fiber_length());
+    line=st.setup_environment(sim_param);
     pt_map=st.generate_pt_freq_map(line,sim_param.get_length(),sim_param.get_width(),sim_param.get_depth(),sim_param.get_fiber_count());
 
     if(output_file.is_open())

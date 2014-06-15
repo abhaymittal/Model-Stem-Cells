@@ -7,6 +7,7 @@
 #include "Var.h"
 #include "Point_3d.h"
 #include "Line_3d.h"
+#include "Simulation_Parameters.h"
 
 using namespace std;
 
@@ -98,17 +99,18 @@ Line_3d Stem_env::create_line(int length, int width, int depth, Point_3d box[8],
     return draw_3D_line(start_pt, end_pt);
 }
 
-Line_3d* Stem_env::setup_environment(int length, int width, int depth, long fiber_count, int fiber_length)
+Line_3d* Stem_env::setup_environment(Simulation_Parameters sim_param)
 {
 
     Point_3d box[8];
-    Line_3d *lines = new Line_3d[fiber_count];
+    Line_3d *lines = new Line_3d[sim_param.get_fiber_count()];
     long i;
     static long id=0L;
     int f2, d2, xmin, xmax, xdiff1;
-    length--;
-    depth--;
-    width--;
+    int length = sim_param.get_length() - 1;
+    int width = sim_param.get_width() - 1;
+    int depth = sim_param.get_depth() - 1;
+
     //Initialize coordinates of box
     box[0].set_x(0);
     box[0].set_y(0);
@@ -145,7 +147,7 @@ Line_3d* Stem_env::setup_environment(int length, int width, int depth, long fibe
     //seed random number generator with current time
     srand(time(NULL));
 
-    f2 = fiber_length * fiber_length;
+    f2 = sim_param.get_fiber_length() * sim_param.get_fiber_length();
     d2 = depth * depth;
     if( (f2 - d2) > (width*width) )
     {
@@ -156,12 +158,12 @@ Line_3d* Stem_env::setup_environment(int length, int width, int depth, long fibe
         xmin = 0;
     }
 
-    xmax = (fiber_length<length)?fiber_length:length;
+    xmax = (sim_param.get_fiber_length()<length)?sim_param.get_fiber_length():length;
 
     xdiff1 = (xmax - xmin) + 1;
 
 
-    for(i=0; i<fiber_count; i++)
+    for(i=0; i<sim_param.get_fiber_count(); i++)
     {
         lines[i]=create_line(length, width, depth, box, f2, d2, xmin, xmax, xdiff1);
         lines[i].set_id(id);

@@ -1,8 +1,0 @@
-#ifndef SIMULATION_PARAMETERS_H
-#define SIMULATION_PARAMETERS_H
-
-class Simulation_Parameters
-{
-    
-};
-#endif // SIMULATION_PARAMETERS_H
