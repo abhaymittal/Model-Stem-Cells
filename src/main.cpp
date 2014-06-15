@@ -28,11 +28,11 @@ int main(int argc, char* argv[])
     ofstream output_file("pt_map.xyz");
 
     line=st.setup_environment(sim_param);
-    pt_map=st.generate_pt_freq_map(line,sim_param.get_length(),sim_param.get_width(),sim_param.get_depth(),sim_param.get_fiber_count());
+    pt_map=st.generate_pt_freq_map(line, sim_param);
 
     if(output_file.is_open())
     {
-        output_file<<(sim_param.get_length()*sim_param.get_width()*sim_param.get_depth()); //store num of points in .xyz file
+        output_file<<(sim_param.get_length() * sim_param.get_width() * sim_param.get_depth()); //store num of points in .xyz file
         output_file<<"\n"<<"Box Dimensions: length = "<<sim_param.get_length()<<", width = "<<sim_param.get_width()<<", depth = "<<sim_param.get_depth(); //comment line of .xyz file
 
         for(int x=0;x<sim_param.get_length();x++)
@@ -46,6 +46,11 @@ int main(int argc, char* argv[])
             }
         }
         output_file.close();
+        cout << "Output file saved\n";
+    }
+    else
+    {
+        cout << "Error in saving output file\n";
     }
 
     return 0;
