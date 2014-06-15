@@ -1,8 +1,8 @@
 <Parameters>
 	<Lattice>
-		<Length>10</Length>
+		<Length>20</Length>
 		<Width>20</Width>
-		<Depth>30</Depth>
+		<Depth>20</Depth>
 	</Lattice>
 
 	<FiberCount>1000</FiberCount>

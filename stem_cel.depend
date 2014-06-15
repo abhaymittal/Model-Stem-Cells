@@ -29,13 +29,12 @@
 1402668392 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Var.cpp
 	"Var.h"
 
-1402831622 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/main.cpp
+1402844750 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/main.cpp
 	"Stem_env.h"
 	"Line_3d.h"
+	"Simulation_Parameters.h"
 	<iostream>
 	<fstream>
-	<config.h>
-	<libxml++/libxml++.h>
 
 1379549618 /usr/include/libxml++-2.6/libxml++/libxml++.h
 	<libxml++/exceptions/internal_error.h>
@@ -560,4 +559,13 @@
 	<libxml++/document.h>
 	<list>
 	<map>
+
+1402844722 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Simulation_Parameters.h
+	<string>
+
+1402844831 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Simulation_Parameters.cpp
+	"Simulation_Parameters.h"
+	<iostream>
+	<config.h>
+	<libxml++/libxml++.h>
 

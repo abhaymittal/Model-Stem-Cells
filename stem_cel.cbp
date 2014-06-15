@@ -38,6 +38,7 @@
 		</Compiler>
 		<Unit filename="include/Line_3d.h" />
 		<Unit filename="include/Point_3d.h" />
+		<Unit filename="include/Simulation_Parameters.h" />
 		<Unit filename="include/Stem_env.h" />
 		<Unit filename="include/Var.h" />
 		<Unit filename="src/Line_3d.cpp" />
