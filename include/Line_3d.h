@@ -4,7 +4,7 @@
 
 /**
 *   @class  Line_3d
-*   @brief  Class representing a line in a three dimensional plane
+*   @brief  Class for representing a 3d line
 *   @author Abhay Mittal
 *   @author Pratik Varshney
 */
