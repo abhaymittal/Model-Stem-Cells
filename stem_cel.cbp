@@ -36,17 +36,15 @@
 			<Add option="`pkg-config --cflags --libs libxml++-2.6`" />
 			<Add directory="include" />
 		</Compiler>
-		<Unit filename="include/Line_3d.h" />
-		<Unit filename="include/Point_3d.h" />
-		<Unit filename="include/Simulation_Parameters.h" />
-		<Unit filename="include/Stem_env.h" />
-		<Unit filename="include/Var.h" />
-		<Unit filename="src/Line_3d.cpp" />
-		<Unit filename="src/Point_3d.cpp" />
-		<Unit filename="src/Simulation_Parameters.cpp" />
-		<Unit filename="src/Stem_env.cpp" />
-		<Unit filename="src/Var.cpp" />
-		<Unit filename="src/main.cpp" />
+		<Unit filename="include/AutomatonCell.h" />
+		<Unit filename="include/ECM.h" />
+		<Unit filename="include/SimulationParameters.h" />
+		<Unit filename="include/Utilities.h" />
+		<Unit filename="src/AutomatonCell.cpp" />
+		<Unit filename="src/ECM.cpp" />
+		<Unit filename="src/SimulationParameters.cpp" />
+		<Unit filename="src/USCP.cpp" />
+		<Unit filename="src/Utilities.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

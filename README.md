@@ -4,13 +4,13 @@
 
 Language: C++
 
-#Requirements
+#Requirements for compilation
 
 1. For reading/writing XML files
-	a) Required Packages:
+	a) Required Packages ( OS: Fedora ):
 		libxml++-devel libxml++-doc
 
-	b) Add to Compiler and Linker options
+	b) Add to Compiler and Linker options:
 		`pkg-config --cflags --libs libxml++-2.6`
 
 
