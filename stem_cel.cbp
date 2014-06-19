@@ -43,6 +43,7 @@
 		<Unit filename="include/Var.h" />
 		<Unit filename="src/Line_3d.cpp" />
 		<Unit filename="src/Point_3d.cpp" />
+		<Unit filename="src/Simulation_Parameters.cpp" />
 		<Unit filename="src/Stem_env.cpp" />
 		<Unit filename="src/Var.cpp" />
 		<Unit filename="src/main.cpp" />
