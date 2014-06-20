@@ -9,13 +9,14 @@
 #define AUTOMATONCELL_H_
 
 class AutomatonCell {
+private:
+    short unsigned int type;
+	short unsigned int count;
+	long int ID;
+
 public:
 	AutomatonCell();
 	virtual ~AutomatonCell();
-
-	short unsigned int type;
-	short unsigned int count;
-	long int ID;
 
 };
 
