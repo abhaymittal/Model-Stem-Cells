@@ -604,3 +604,14 @@
 	<config.h>
 	<libxml++/libxml++.h>
 
+1403367736 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Point.cpp
+	"Point.h"
+
+1403367774 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Point.h
+
+1403368459 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Line.cpp
+	"Line.h"
+
+1403367114 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Line.h
+	"Point.h"
+

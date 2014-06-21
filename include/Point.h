@@ -15,6 +15,8 @@ public:
     {}
     virtual ~Point();
 
+    Point& operator=(const Point& other);
+
     int getX() const {
 		return x;
 	}

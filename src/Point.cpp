@@ -9,6 +9,13 @@ Point::~Point() {
 	// TODO Auto-generated destructor stub
 }
 
+Point& Point::operator=(const Point& rhs)
+{
+    if (this == &rhs) return *this; // handle self assignment
+    //assignment operator
+    return *this;
+}
+
 int Point::getVar(char varName)
 {
     switch(varName)
