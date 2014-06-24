@@ -29,11 +29,6 @@ public:
 		return numberOfPoints;
 	}
 
-	void setNumberOfPoints(int numberOfPoints) {
-		this->numberOfPoints = numberOfPoints;
-	}
-
-
     Point getPoint(int index);
     int setPoint(int index, Point pt);
 

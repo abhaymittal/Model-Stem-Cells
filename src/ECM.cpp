@@ -134,7 +134,10 @@ Line ECM::drawRandomLine(SimulationParameters sim, Point box[8], int fiberLength
     int yMax=sim.getLatticeHeight()-1;
     int zMax=sim.getLatticeDepth()-1;
 
-    startPoint=box[rand()%8]; //random vertex of box
+    int randomIndex=rand()%8;
+    startPoint.setX(box[randomIndex].getX()); //random vertex of box
+    startPoint.setY(box[randomIndex].getY());
+    startPoint.setZ(box[randomIndex].getZ());
 
     endPoint.setX(( rand() % rangeRandomX ) + minRandomX);
 
@@ -200,11 +203,13 @@ Line ECM::drawRandomLine(SimulationParameters sim, Point box[8], int fiberLength
     endPoint.setX(endPoint.getX() + xTranslate);
     endPoint.setY(endPoint.getY() + yTranslate);
     endPoint.setZ(endPoint.getZ() + zTranslate);
+
     return drawLine(startPoint, endPoint);
 }
 
-void ECM::generatePtFreqMap(Line* line, SimulationParameters sim, AutomatonCell ***cells)
+AutomatonCell ***ECM::generatePtFreqMap(Line* line, SimulationParameters sim)
 {
+    AutomatonCell ***cells;
     cells=new AutomatonCell**[sim.getLatticeWidth()];
     for(int x=0;x<sim.getLatticeWidth();x++)
     {
@@ -226,9 +231,11 @@ void ECM::generatePtFreqMap(Line* line, SimulationParameters sim, AutomatonCell 
             cells[line[i].getPoint(j).getX()][line[i].getPoint(j).getY()][line[i].getPoint(j).getZ()].incrementCount();
         }
     }
+
+    return cells;
 }
 
-void ECM::setupECM(SimulationParameters sim, AutomatonCell ***cells){
+AutomatonCell ***ECM::setupECM(SimulationParameters sim){
 
 	Point box[8];
     Line *lines = new Line[sim.getFiberCount()];
@@ -284,7 +291,6 @@ void ECM::setupECM(SimulationParameters sim, AutomatonCell ***cells){
 
     rangeRandomX = (maxRandomX - minRandomX) + 1;
 
-
     for(i=0; i<sim.getFiberCount(); i++)
     {
         lines[i]=drawRandomLine(sim, box, fiberLengthSqr, zMaxSqr, minRandomX, maxRandomX, rangeRandomX);
@@ -292,7 +298,7 @@ void ECM::setupECM(SimulationParameters sim, AutomatonCell ***cells){
         id++;
     }
 
-    generatePtFreqMap(lines, sim, cells);
+    return generatePtFreqMap(lines, sim);
 
 }
 

@@ -11,7 +11,7 @@
 class AutomatonCell {
 private:
     short unsigned int type;
-	short unsigned int count;
+	short unsigned int cellCount;
 	long int ID;
 
 public:
@@ -27,11 +27,11 @@ public:
 	}
 
 	short unsigned int getCount() const {
-		return count;
+		return cellCount;
 	}
 
-	void setCount(short unsigned int count) {
-		this->count = count;
+	void setCount(short unsigned int cellCount) {
+		this->cellCount = cellCount;
 	}
 
 	long int getId() const {
@@ -42,9 +42,7 @@ public:
 		this->ID = ID;
 	}
 
-	void incrementCount() {
-        count++;
-	}
+	void incrementCount();
 
 };
 

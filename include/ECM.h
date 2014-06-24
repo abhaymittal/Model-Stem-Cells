@@ -18,13 +18,13 @@ class ECM {
 private:
     Line drawLine(Point p1, Point p2);
     Line drawRandomLine(SimulationParameters sim, Point box[8], int fiberLengthSqr, int zMaxSqr, int xMin, int xMax, int xRange);
-    void generatePtFreqMap(Line* line, SimulationParameters sim, AutomatonCell ***cells);
+    AutomatonCell ***generatePtFreqMap(Line* line, SimulationParameters sim);
 
 public:
 	ECM();
 	virtual ~ECM();
 
-	void setupECM(SimulationParameters sim, AutomatonCell ***cells);
+	AutomatonCell ***setupECM(SimulationParameters sim);
 };
 
 #endif /* ECM_H_ */
