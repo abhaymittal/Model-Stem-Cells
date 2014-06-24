@@ -49,7 +49,7 @@ void SimulationParameters::loadParametersFromFile(std::string filename)
 
             //set parameters value by evaluating corresponding xml xpath values
             //Note: returned double value is stored as int
-            latticeHeight = rootNode->eval_to_number("//Parameters/Lattice/Length");
+            latticeHeight = rootNode->eval_to_number("//Parameters/Lattice/Height");
             latticeWidth = rootNode->eval_to_number("//Parameters/Lattice/Width");
             latticeDepth = rootNode->eval_to_number("//Parameters/Lattice/Depth");
             fiberLength = rootNode->eval_to_number("//Parameters/FiberLength");

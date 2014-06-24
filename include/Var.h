@@ -1,34 +1,51 @@
-#ifndef VAR_H
-#define VAR_H
+#ifndef VAR_H_
+#define VAR_H_
 
 
 class Var
 {
-    private:
-
-    char var_name;
+private:
+    char varName;
     int index;
     int delta;
     int value;
 
-    public:
-
-    Var()
+public:
+    Var();
+    Var(int varN, int ind, int del, int val):varName(varN),index(ind),delta(del),value(val)
     {}
+    virtual ~Var();
 
-    Var(int var_n,int ind,int del, int val):var_name(var_n),index(ind),delta(del),value(val)
-    {}
+    char getVarName() const {
+		return varName;
+	}
 
-    char get_var_name();
-    int set_var_name(char var_x);
+	void setVarName(char varName) {
+		this->varName = varName;
+	}
 
-    int get_index();
-    int set_index(int in_val);
+	int getIndex() const {
+		return index;
+	}
 
-    int get_delta();
-    int set_delta(int del);
+	void setIndex(int index) {
+		this->index = index;
+	}
 
-    int get_value();
-    int set_value(int val);
+	int getDelta() const {
+		return delta;
+	}
+
+	void setDelta(int delta) {
+		this->delta = delta;
+	}
+
+	int getValue() const {
+		return value;
+	}
+
+	void setValue(int value) {
+		this->value = value;
+	}
 };
-#endif // VAR_H
+#endif // VAR_H_

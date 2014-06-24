@@ -42,6 +42,7 @@
 		<Unit filename="include/Point.h" />
 		<Unit filename="include/SimulationParameters.h" />
 		<Unit filename="include/Utilities.h" />
+		<Unit filename="include/Var.h" />
 		<Unit filename="src/AutomatonCell.cpp" />
 		<Unit filename="src/ECM.cpp" />
 		<Unit filename="src/Line.cpp" />
@@ -49,6 +50,7 @@
 		<Unit filename="src/SimulationParameters.cpp" />
 		<Unit filename="src/USCP.cpp" />
 		<Unit filename="src/Utilities.cpp" />
+		<Unit filename="src/Var.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
