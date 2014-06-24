@@ -33,6 +33,7 @@ void SimulationParameters::loadParameters()
 
 void SimulationParameters::loadParametersFromFile(std::string filename)
 {
+    latticeHeight=latticeWidth=latticeDepth=fiberLength=fiberCount=0; //Fix memory Error when file not found
     try
     {
         //create DomParser object to parse xml file
@@ -41,7 +42,6 @@ void SimulationParameters::loadParametersFromFile(std::string filename)
         //parse the xml file whose name is provided as an argument
         parser.parse_file(filename);
 
-        //check if parser is not NULL (i.e. a valid xml file is parsed)
         if(parser)
         {
             //get the root node of parsed file
