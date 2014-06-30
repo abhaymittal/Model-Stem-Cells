@@ -9,12 +9,22 @@
 #define UTILITIES_H_
 
 #include "AutomatonCell.h"
+#include "SimulationParameters.h"
 class Utilities {
 public:
 	Utilities();
 	virtual ~Utilities();
 
-	void generateECMFile(AutomatonCell * environment, int field);
+	void generateECMFile(SimulationParameters sim, AutomatonCell ***environment, int field);
+
+	//field constants
+
+	//field = 1, type
+	//field = 2, count
+	//field = 3, ID
+
+	static const int TYPE = 1, COUNT = 2, ID = 3;
+
 
 };
 
