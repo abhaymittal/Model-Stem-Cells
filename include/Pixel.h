@@ -5,7 +5,7 @@
 class Pixel
 {
     private:
-    int cellID;
+    long int cellID;
     public:
         /** Default constructor */
         Pixel();

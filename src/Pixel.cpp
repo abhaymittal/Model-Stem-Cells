@@ -1,6 +1,6 @@
 #include "Pixel.h"
 
-Pixel::Pixel()
+Pixel::Pixel():cellID(-1)
 {}
 
 Pixel::~Pixel()
