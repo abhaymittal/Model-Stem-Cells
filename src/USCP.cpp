@@ -11,6 +11,7 @@
 #include "ECM.h"
 #include "AutomatonCell.h"
 #include "Utilities.h"
+#include "System.h"
 
 using namespace std;
 
@@ -43,7 +44,9 @@ int main() {
 
     Utilities util;
     util.generateECMFile(sim, environment, util.COUNT);
-
+    /*Testing for the System class*/
+    System sys;
+    sys.setupCells(30,1,1,sim);
 	return 0;
 
 }
