@@ -11,9 +11,9 @@ class System
     Cell *cells;
     int cellCount;
     Pixel ***pixels;
-    int xMax;
-    int yMax;
-    int zMax;
+    int width;
+    int height;
+    int depth;
     public:
         /** Default constructor */
         System();

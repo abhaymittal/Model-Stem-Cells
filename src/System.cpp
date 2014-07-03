@@ -12,32 +12,32 @@ System::~System()
 
 int System::setupCells(int cellCount_, int radius, int senseRadius, SimulationParameters sim) {
     cellCount=cellCount_;
-    xMax=sim.getLatticeWidth()-1;
-    yMax=sim.getLatticeHeight()-1;
-    zMax=sim.getLatticeDepth()-1;
+    width=sim.getLatticeWidth();
+    height=sim.getLatticeHeight();
+    depth=sim.getLatticeDepth();
 
     cells=new Cell[cellCount];
-    pixels=new Pixel**[xMax];
-    for(int i=0;i<xMax;i++) {
-        pixels[i]=new Pixel*[yMax];
-        for(int j=0;j<yMax;j++) {
-            pixels[i][j]=new Pixel[zMax];
+    pixels=new Pixel**[width];
+    for(int i=0;i<width;i++) {
+        pixels[i]=new Pixel*[height];
+        for(int j=0;j<height;j++) {
+            pixels[i][j]=new Pixel[depth];
         }
     }
-
     int x,y,z;
-    for(int i=1;i<=cellCount;i++) {
+    for(int i=0;i<cellCount;i++) {
 
         do {
-            x=rand()%(xMax+1);
-            y=rand()%(yMax+1);
-            z=rand()%(zMax+1);
+            x=rand()%(width);
+            y=rand()%(height);
+            z=rand()%(depth);
         } while(pixels[x][y][z].getCellID()!=-1);
+
         cells[i].setCentroid(*new Point(x,y,z));
         cells[i].setRadius(1);
         cells[i].setSenseRadius(1);
-        cells[i].setID(i);
-        pixels[x][y][z].setCellID(i);
+        cells[i].setID(i+1);
+        pixels[x][y][z].setCellID(i+1);
     }
     return 0;
 }
