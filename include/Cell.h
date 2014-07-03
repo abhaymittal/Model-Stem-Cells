@@ -1,6 +1,7 @@
 #ifndef CELL_H
 #define CELL_H
 
+#include "Point.h"
 /**
 *   @class  Cell
 *   @brief  Class representing a cell
@@ -19,14 +20,15 @@ class Cell
         /** Default constructor */
         Cell();
 
+
         /** Default destructor */
         virtual ~Cell();
 
-        long int getId() const {
+        long int getID() const {
             return id;
         }
 
-        int setId(long id_) {
+        int setID(long id_) {
             id=id_;
             return 0;
         }
@@ -51,7 +53,9 @@ class Cell
             return centroid;
         }
         int setCentroid(Point centroid_) {
-            centroid=centroid_;
+            centroid.setX(centroid_.getX());
+            centroid.setY(centroid_.getY());
+            centroid.setZ(centroid_.getZ());
             return 0;
         }
 
