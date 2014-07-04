@@ -207,9 +207,8 @@ Line ECM::drawRandomLine(SimulationParameters sim, Point box[8], int fiberLength
     return drawLine(startPoint, endPoint);
 }
 
-AutomatonCell ***ECM::generatePtFreqMap(Line* line, SimulationParameters sim)
+int ECM::generatePtFreqMap(Line* line, SimulationParameters sim,AutomatonCell ***cells)
 {
-    AutomatonCell ***cells;
     cells=new AutomatonCell**[sim.getLatticeWidth()];
     for(int x=0;x<sim.getLatticeWidth();x++)
     {
@@ -232,10 +231,10 @@ AutomatonCell ***ECM::generatePtFreqMap(Line* line, SimulationParameters sim)
         }
     }
 
-    return cells;
+    return 0;
 }
 
-AutomatonCell ***ECM::setupECM(SimulationParameters sim){
+int ECM::setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap){
 
 	Point box[8];
     Line *lines = new Line[sim.getFiberCount()];
@@ -297,8 +296,7 @@ AutomatonCell ***ECM::setupECM(SimulationParameters sim){
         lines[i].setId(id);
         id++;
     }
-
-    return generatePtFreqMap(lines, sim);
-
+    generatePtFreqMap(lines, sim,ptFreqMap);
+    return 0;
 }
 

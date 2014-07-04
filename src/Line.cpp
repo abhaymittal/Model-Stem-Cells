@@ -35,9 +35,8 @@ int Line::setPoint(int index, Point pt)
     return 0;
 }
 
-Point* Line::getPointArray()
+int Line::getPointArray(Point* pt)
 {
-    Point *pt;
     pt=new Point[numberOfPoints];
     for(int i=0; i<numberOfPoints; i++)
     {
@@ -45,7 +44,7 @@ Point* Line::getPointArray()
         pt[i].setY(point[i].getY());
         pt[i].setZ(point[i].getZ());
     }
-    return pt;
+    return 0;
 }
 
 int Line::setPointArray(int numberOfPoints, Point* ptArray)

@@ -30,7 +30,7 @@ int main() {
 	int fiberLength = sim.getFiberLength();
 
 	AutomatonCell ***environment;
-	environment=ecm.setupECM(sim);
+	ecm.setupECM(sim,environment);
 
     /*****Display Parameters' Value******/
 

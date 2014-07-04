@@ -32,7 +32,7 @@ public:
     Point getPoint(int index);
     int setPoint(int index, Point pt);
 
-    Point* getPointArray();
+    int Line::getPointArray(Point* pt);
     int setPointArray(int numberOfPoints, Point* ptArray);
 
 };
