@@ -6,8 +6,9 @@ Line::Line() {
 }
 
 Line::~Line() {
-	// TODO Auto-generated destructor stub
+	delete point;
 }
+
 
 Line::Line(int numberOfPoints)
 {
@@ -22,7 +23,20 @@ Line::Line(int id, int numberOfPoints)
     this->point=new Point[numberOfPoints];
 }
 
-Point Line::getPoint(int index)
+long int Line::getId() const {
+		return id;
+	}
+
+int Line::setId(long int id) {
+    this->id = id;
+    return 0;
+}
+
+int Line::getNumberOfPoints() const {
+    return numberOfPoints;
+}
+
+Point Line::getPoint(int index) const
 {
     return point[index];
 }
@@ -35,7 +49,7 @@ int Line::setPoint(int index, Point pt)
     return 0;
 }
 
-int Line::getPointArray(Point* pt)
+int Line::getPointArray(Point* pt) const
 {
     pt=new Point[numberOfPoints];
     for(int i=0; i<numberOfPoints; i++)
