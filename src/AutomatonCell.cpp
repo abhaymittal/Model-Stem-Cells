@@ -8,8 +8,10 @@
 #include "AutomatonCell.h"
 
 AutomatonCell::AutomatonCell() {
-	// TODO Auto-generated constructor stub
 
+	type=0;
+	cellCount=0;
+    ID=0;
 }
 
 AutomatonCell::~AutomatonCell() {

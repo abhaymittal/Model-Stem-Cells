@@ -10,12 +10,14 @@
 
 #include "AutomatonCell.h"
 #include "SimulationParameters.h"
+#include "Pixel.h"
 class Utilities {
 public:
 	Utilities();
 	virtual ~Utilities();
 
 	void generateECMFile(SimulationParameters sim, AutomatonCell ***environment, int field);
+	int mergeCellECM(AutomatonCell ***ptFreqMap,AutomatonCell ***ecm,Pixel ***pixels, SimulationParameters sim);
 
 	//field constants
 

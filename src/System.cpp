@@ -45,3 +45,19 @@ int System::setupCells(int cellCount_, int radius, int senseRadius, SimulationPa
 long int System::getCellID(int x, int y, int z) {
     return pixels[x][y][z].getCellID();
 }
+
+int System::getPixelArray(Pixel ***px)
+        {
+            px=new Pixel**[width];
+            for(int i=0;i<width;i++) {
+                px[i]=new Pixel*[height];
+                for(int j=0;j<height;j++) {
+                    px[i][j]=new Pixel[depth];
+                    for(int k=0;k<depth;k++) {
+                        px[i][j][k].setCellID((*this).getCellID(i,j,k));
+                    }
+                }
+
+            }
+            return 0;
+        }

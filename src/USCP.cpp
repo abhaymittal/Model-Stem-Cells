@@ -40,13 +40,22 @@ int main() {
     cout << "fiberCount = " << fiberCount << endl;
     cout << "fiberLength = " << fiberLength << endl;
 
-    /*******Generate Output file*********/
-
-    Utilities util;
-    util.generateECMFile(sim, environment, util.COUNT);
-    /*Testing for the System class*/
     System sys;
     sys.setupCells(30,1,1,sim);
+    Pixel ***pxlMap;
+    sys.getPixelArray(pxlMap);
+    AutomatonCell ***maps;
+    Utilities util;
+    cout<<"To merge"<<endl;
+    util.mergeCellECM(maps,environment,pxlMap,sim);
+    cout<<"Merged";
+
+    /*******Generate Output file*********/
+
+
+    util.generateECMFile(sim, maps, util.COUNT);
+    /*Testing for the System class*/
+
 	return 0;
 
 }

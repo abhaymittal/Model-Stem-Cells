@@ -22,6 +22,8 @@ class System
 
         int setupCells(int cellCount_, int radius, int senseRadius, SimulationParameters sim);
         long int getCellID(int x, int y, int z);
+
+        int getPixelArray(Pixel ***px);
 };
 
 #endif // SYSTEM_H

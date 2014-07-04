@@ -14,7 +14,7 @@
 
 #include <libxml++/libxml++.h>
 
-SimulationParameters::SimulationParamegoogleters() {
+SimulationParameters::SimulationParameters() {
 	// TODO Auto-generated constructor stub
 }
 
