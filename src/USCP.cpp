@@ -12,6 +12,7 @@
 #include "AutomatonCell.h"
 #include "Utilities.h"
 #include "System.h"
+#include <cstdlib>
 
 using namespace std;
 
@@ -21,17 +22,12 @@ int main() {
 	SimulationParameters sim;
 	ECM ecm;
 	sim.loadParameters();
-
+    srand(time(NULL));
 	int height = sim.getLatticeHeight();
 	int width = sim.getLatticeWidth();
 	int depth = sim.getLatticeDepth();
-
 	long int fiberCount = sim.getFiberCount();
 	int fiberLength = sim.getFiberLength();
-
-	AutomatonCell ***environment;
-	ecm.setupECM(sim,environment);
-
     /*****Display Parameters' Value******/
 
 	cout << "height = " << height << endl;
@@ -40,20 +36,22 @@ int main() {
     cout << "fiberCount = " << fiberCount << endl;
     cout << "fiberLength = " << fiberLength << endl;
 
+
+    int cellCount=30;
+    AutomatonCell ***environment;
+    cout<<"Check"<<endl;
+	ecm.setupECM(sim,environment);
+
+
+    cout<<"Works till here"<<endl;
     System sys;
-    sys.setupCells(30,1,1,sim);
-    Pixel ***pxlMap;
-    sys.getPixelArray(pxlMap);
-    AutomatonCell ***maps;
+
+    Cell *cells = new Cell[cellCount];
+    sys.createCells(cellCount,1,1,sim,cells,environment);
     Utilities util;
-    cout<<"To merge"<<endl;
-    util.mergeCellECM(maps,environment,pxlMap,sim);
-    cout<<"Merged";
-
     /*******Generate Output file*********/
-
-
-    util.generateECMFile(sim, maps, util.COUNT);
+    cout<<"Works till here 2"<<endl;
+    util.generateECMFile(sim, environment, util.COUNT);
     /*Testing for the System class*/
 
 	return 0;

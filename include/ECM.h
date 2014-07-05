@@ -17,7 +17,7 @@
 class ECM {
 private:
     Line drawLine(Point p1, Point p2);
-    Line drawRandomLine(SimulationParameters sim, Point box[8], int fiberLengthSqr, int zMaxSqr, int xMin, int xMax, int xRange);
+    int drawRandomLine(SimulationParameters sim, Point box[8], int fiberLengthSqr, int zMaxSqr, int xMin, int xMax, int xRange, Line *outLine);
     int generatePtFreqMap(Line* line, SimulationParameters sim,AutomatonCell ***cells);
 
 public:

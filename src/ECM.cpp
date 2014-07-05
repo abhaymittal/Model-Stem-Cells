@@ -120,12 +120,11 @@ Line ECM::drawLine(Point p1, Point p2)
         tempPt.setVar(depVal2.getVarName(),depVal2.getValue());
         outLine.setPoint(ptIndex,tempPt);
         ptIndex++;
-
     }
     return outLine;
 }
 
-Line ECM::drawRandomLine(SimulationParameters sim, Point box[8], int fiberLengthSqr, int zMaxSqr, int minRandomX, int maxRandomX, int rangeRandomX)
+int ECM::drawRandomLine(SimulationParameters sim, Point box[8], int fiberLengthSqr, int zMaxSqr, int minRandomX, int maxRandomX, int rangeRandomX, Line *outLine)
 {
     int xTranslate, yTranslate, zTranslate;
     int minRandomY, maxRandomY, f2_x2, f2_x2_y2;
@@ -204,7 +203,8 @@ Line ECM::drawRandomLine(SimulationParameters sim, Point box[8], int fiberLength
     endPoint.setY(endPoint.getY() + yTranslate);
     endPoint.setZ(endPoint.getZ() + zTranslate);
 
-    return drawLine(startPoint, endPoint);
+    drawLine(startPoint, endPoint);
+    return 0;
 }
 
 int ECM::generatePtFreqMap(Line* line, SimulationParameters sim,AutomatonCell ***cells)
@@ -219,18 +219,22 @@ int ECM::generatePtFreqMap(Line* line, SimulationParameters sim,AutomatonCell **
             for(int z=0;z<sim.getLatticeDepth();z++)
             {
                 cells[x][y][z].setCount(0);
+                cells[x][y][z].setType(0);
+                cells[x][y][z].setId(0);
             }
         }
     }
-
+    cout<<"== 1\n";
     for(long i=0;i<sim.getFiberCount();i++)
     {
+        cout<<" = "<<endl;
         for(int j=0;j<line[i].getNumberOfPoints();j++)
         {
+            cout<<" Line ==> "<<line[i].getPoint(j).getX()<<" "<<line[i].getPoint(j).getY()<<" "<<line[i].getPoint(j).getZ()<<endl;
+            cells[line[i].getPoint(j).getX()][line[i].getPoint(j).getY()][line[i].getPoint(j).getZ()].setType(1);
             cells[line[i].getPoint(j).getX()][line[i].getPoint(j).getY()][line[i].getPoint(j).getZ()].incrementCount();
         }
     }
-
     return 0;
 }
 
@@ -279,8 +283,6 @@ int ECM::setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap){
     box[7].setZ(zMax);
 
     //seed random number generator with current time
-    srand(time(NULL));
-
     fiberLengthSqr = sim.getFiberLength() * sim.getFiberLength();
     zMaxSqr = zMax * zMax;
 
@@ -288,14 +290,27 @@ int ECM::setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap){
 
     maxRandomX = (sim.getFiberLength()<xMax)?sim.getFiberLength():xMax;
 
-    rangeRandomX = (maxRandomX - minRandomX) + 1;
+    rangeRandomX = (maxRandomX -minRandomX) + 1;
 
     for(i=0; i<sim.getFiberCount(); i++)
     {
-        lines[i]=drawRandomLine(sim, box, fiberLengthSqr, zMaxSqr, minRandomX, maxRandomX, rangeRandomX);
+        int randX=sim.getFiberLength()+(rand()%(sim.getLatticeWidth()-sim.getFiberLength()));
+        int randY=sim.getFiberLength()+(rand()%(sim.getLatticeHeight()-sim.getFiberLength()));
+        int randZ=sim.getFiberLength()+(rand()%(sim.getLatticeDepth()-sim.getFiberLength()));
+        int randTheta=rand()%360;
+        int randPhi=rand()%360;
+
+        int x2=(int)(randX+sim.getFiberLength()*sin(randTheta)*cos(randPhi));
+        int y2=(int)(randX+sim.getFiberLength()*sin(randTheta)*sin(randPhi));
+        int z2=(int)(randX+sim.getFiberLength()*cos(randTheta));
+        Point p1(randX,randY,randZ);
+        Point p2(x2,y2,z2);
+        cout<<"Pt1 = "<<randX<<" "<<randY<<" "<<randZ<<" | Pt2 = "<<x2<<" "<<y2<<" "<<z2<<endl;
+        lines[i]=drawLine(p1,p2);
         lines[i].setId(id);
         id++;
     }
+    cout<<"Working\n";
     generatePtFreqMap(lines, sim,ptFreqMap);
     return 0;
 }
