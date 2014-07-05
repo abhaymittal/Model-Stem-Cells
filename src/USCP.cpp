@@ -8,10 +8,9 @@
 
 #include <iostream>
 #include "SimulationParameters.h"
-#include "ECM.h"
+#include "Environment.h"
 #include "AutomatonCell.h"
 #include "Utilities.h"
-#include "System.h"
 #include <cstdlib>
 
 using namespace std;
@@ -20,7 +19,7 @@ int main() {
 
 	/*********Input Parameters***********/
 	SimulationParameters sim;
-	ECM ecm;
+	Environment env;
 	sim.loadParameters();
     srand(time(NULL));
 	int height = sim.getLatticeHeight();
@@ -37,23 +36,32 @@ int main() {
     cout << "fiberLength = " << fiberLength << endl;
 
 
-    int cellCount=30;
+    int cellCount=100;
 
     AutomatonCell ***environment;
+    environment=new AutomatonCell**[width];
+    for(int i=0;i<width;i++) {
+        environment[i]=new AutomatonCell*[height];
+        for(int j=0;j<height;j++) {
+            environment[i][j]=new AutomatonCell[depth];
+            for(int k=0;k<depth;k++)
+            {
+                environment[i][j][k].setCount(0);
+                environment[i][j][k].setId(0);
+                environment[i][j][k].setType(0);
+            }
+        }
+    }
     cout<<"Check"<<endl;
-	ecm.setupECM(sim,environment);
+	env.setupECM(sim,environment);
 
 
-    cout<<"Works till here"<<endl;
-//    System sys;
-//
-//    Cell *cells = new Cell[cellCount];
-//    sys.createCells(cellCount,1,1,sim,cells,environment);
-//    Utilities util;
-//    /*******Generate Output file*********/
-//    cout<<"Works till here 2"<<endl;
-//    util.generateECMFile(sim, environment, util.COUNT);
-//    /*Testing for the System class*/
+    Cell *cells = new Cell[cellCount];
+    env.createCells(cellCount,1,1,sim,cells,environment);
+    Utilities util;
+    /*******Generate Output file*********/
+    util.generateECMFile(sim, environment, util.COUNT);
+    /*Testing for the System class*/
 
 	return 0;
 

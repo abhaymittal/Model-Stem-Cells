@@ -8,22 +8,15 @@
 #ifndef ECM_H_
 #define ECM_H_
 
-#include "SimulationParameters.h"
-#include "AutomatonCell.h"
-#include "Point.h"
-#include "Line.h"
-#include "Var.h"
 
 class ECM {
 private:
-    Line drawLine(Point p1, Point p2);
-    int drawRandomLine(SimulationParameters sim, Point box[8], int fiberLengthSqr, int zMaxSqr, int xMin, int xMax, int xRange, Line *outLine);
-    int generatePtFreqMap(Line* line, SimulationParameters sim,AutomatonCell ***cells);
+
 
 public:
 	ECM();
 
-	int setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap);
+
 };
 
 #endif /* ECM_H_ */
