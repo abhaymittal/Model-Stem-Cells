@@ -22,7 +22,6 @@ private:
 
 public:
 	ECM();
-	virtual ~ECM();
 
 	int setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap);
 };

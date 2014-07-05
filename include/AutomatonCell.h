@@ -16,7 +16,6 @@ private:
 
 public:
 	AutomatonCell();
-	virtual ~AutomatonCell();
 
 	short unsigned int getType() const {
 		return type;

@@ -38,21 +38,22 @@ int main() {
 
 
     int cellCount=30;
+
     AutomatonCell ***environment;
     cout<<"Check"<<endl;
 	ecm.setupECM(sim,environment);
 
 
     cout<<"Works till here"<<endl;
-    System sys;
-
-    Cell *cells = new Cell[cellCount];
-    sys.createCells(cellCount,1,1,sim,cells,environment);
-    Utilities util;
-    /*******Generate Output file*********/
-    cout<<"Works till here 2"<<endl;
-    util.generateECMFile(sim, environment, util.COUNT);
-    /*Testing for the System class*/
+//    System sys;
+//
+//    Cell *cells = new Cell[cellCount];
+//    sys.createCells(cellCount,1,1,sim,cells,environment);
+//    Utilities util;
+//    /*******Generate Output file*********/
+//    cout<<"Works till here 2"<<endl;
+//    util.generateECMFile(sim, environment, util.COUNT);
+//    /*Testing for the System class*/
 
 	return 0;
 

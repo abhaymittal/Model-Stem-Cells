@@ -19,9 +19,7 @@ ECM::ECM() {
 
 }
 
-ECM::~ECM() {
-	// TODO Auto-generated destructor stub
-}
+
 
 Line ECM::drawLine(Point p1, Point p2)
 {
@@ -124,89 +122,6 @@ Line ECM::drawLine(Point p1, Point p2)
     return outLine;
 }
 
-int ECM::drawRandomLine(SimulationParameters sim, Point box[8], int fiberLengthSqr, int zMaxSqr, int minRandomX, int maxRandomX, int rangeRandomX, Line *outLine)
-{
-    int xTranslate, yTranslate, zTranslate;
-    int minRandomY, maxRandomY, f2_x2, f2_x2_y2;
-    Point startPoint, endPoint;
-    int xMax=sim.getLatticeWidth()-1;
-    int yMax=sim.getLatticeHeight()-1;
-    int zMax=sim.getLatticeDepth()-1;
-
-    int randomIndex=rand()%8;
-    startPoint.setX(box[randomIndex].getX()); //random vertex of box
-    startPoint.setY(box[randomIndex].getY());
-    startPoint.setZ(box[randomIndex].getZ());
-
-    endPoint.setX(( rand() % rangeRandomX ) + minRandomX);
-
-    f2_x2 = fiberLengthSqr - (endPoint.getX() * endPoint.getX()); // currently origin is assumed as fixed point, so f2_x2 is calculated before adjustment
-
-    //adjustment
-    if(startPoint.getX() != 0)
-    {
-        endPoint.setX(xMax - endPoint.getX()); //startPoint.x - endPoint.x
-    }
-
-    minRandomY=(f2_x2 > zMaxSqr)?ceil(sqrt(f2_x2 - zMaxSqr)):0;
-
-    maxRandomY = floor(sqrt(f2_x2));
-    if(yMax<maxRandomY) maxRandomY = yMax;
-
-    endPoint.setY(( rand() % ((maxRandomY - minRandomY) + 1) ) + minRandomY);
-    f2_x2_y2 = f2_x2 - (endPoint.getY() * endPoint.getY());
-
-    if(startPoint.getY() != 0)
-    {
-        endPoint.setY(yMax - endPoint.getY());
-    }
-
-    endPoint.setZ(floor(sqrt(f2_x2_y2))); // floor => inside sphere of radius fiber_length, ceil => outside
-
-    if(startPoint.getZ() != 0)
-    {
-        endPoint.setZ(zMax - endPoint.getZ());
-    }
-
-
-    if(startPoint.getX() == 0)
-    {
-        xTranslate = rand()%((xMax - endPoint.getX()) + 1 );
-    }
-    else
-    {
-        xTranslate = -( rand() % (endPoint.getX() + 1) );
-    }
-
-    if(startPoint.getY() == 0)
-    {
-        yTranslate = rand()%((yMax - endPoint.getY()) + 1 );
-    }
-    else
-    {
-        yTranslate = -( rand() % (endPoint.getY() + 1) );
-    }
-
-    if(startPoint.getZ() == 0)
-    {
-        zTranslate = rand()%((zMax - endPoint.getZ()) + 1 );
-    }
-    else
-    {
-        zTranslate = -( rand() % (endPoint.getZ() + 1) );
-    }
-
-    startPoint.setX(startPoint.getX() + xTranslate);
-    startPoint.setY(startPoint.getY() + yTranslate);
-    startPoint.setZ(startPoint.getZ() + zTranslate);
-    endPoint.setX(endPoint.getX() + xTranslate);
-    endPoint.setY(endPoint.getY() + yTranslate);
-    endPoint.setZ(endPoint.getZ() + zTranslate);
-
-    drawLine(startPoint, endPoint);
-    return 0;
-}
-
 int ECM::generatePtFreqMap(Line* line, SimulationParameters sim,AutomatonCell ***cells)
 {
     cells=new AutomatonCell**[sim.getLatticeWidth()];
@@ -241,7 +156,9 @@ int ECM::generatePtFreqMap(Line* line, SimulationParameters sim,AutomatonCell **
 int ECM::setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap){
 
 	Point box[8];
-    Line *lines = new Line[sim.getFiberCount()];
+	cout<<sim.getFiberCount();
+    //Line *lines = new Line[sim.getFiberCount()];
+    Line lines[sim.getFiberCount()];
     long i;
     static long id=0L;
     int fiberLengthSqr, zMaxSqr, minRandomX, maxRandomX, rangeRandomX;
@@ -306,6 +223,8 @@ int ECM::setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap){
         Point p1(randX,randY,randZ);
         Point p2(x2,y2,z2);
         cout<<"Pt1 = "<<randX<<" "<<randY<<" "<<randZ<<" | Pt2 = "<<x2<<" "<<y2<<" "<<z2<<endl;
+
+
         lines[i]=drawLine(p1,p2);
         lines[i].setId(id);
         id++;

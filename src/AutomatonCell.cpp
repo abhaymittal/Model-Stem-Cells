@@ -14,9 +14,6 @@ AutomatonCell::AutomatonCell() {
     ID=0;
 }
 
-AutomatonCell::~AutomatonCell() {
-	// TODO Auto-generated destructor stub
-}
 
 void AutomatonCell::incrementCount() {
     cellCount+=1;

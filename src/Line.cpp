@@ -6,7 +6,7 @@ Line::Line() {
 }
 
 Line::~Line() {
-	delete point;
+
 }
 
 
