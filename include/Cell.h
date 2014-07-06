@@ -11,12 +11,17 @@
 
 class Cell
 {
+
     private:
-        long int id;
-        Point centroid;
-        int radius;
-        int senseRadius;
+        long int id;        /**<The id of cell*/
+        Point centroid;     /**<The centroid of the cell*/
+        int radius;         /**<The radius of the cell*/
+        int senseRadius;    /**<The sensing radius of the cell*/
+        float eCadherin;    /**<A protein named ECadherin*/
+        float EB;           /**<Denotes ECadherin-Beta Cadherin*/
+
     public:
+
         /** Default constructor */
         Cell();
 
@@ -24,11 +29,11 @@ class Cell
         /** Default destructor */
         virtual ~Cell();
 
-        long int getID() const {
+        long int getId() const {
             return id;
         }
 
-        int setID(long id_) {
+        int setId(long id_) {
             id=id_;
             return 0;
         }
@@ -57,6 +62,21 @@ class Cell
             centroid.setY(centroid_.getY());
             centroid.setZ(centroid_.getZ());
             return 0;
+        }
+
+        int setECadherin(float eCadherin_) {
+            eCadherin=eCadherin_;
+            return 0;
+        }
+        float getECadherin() const {
+            return eCadherin;
+        }
+
+        int setEB(float EB_) {
+            EB=EB_;
+        }
+        float getECadherin() const {
+            return EB;
         }
 
         // End of setter and getter functions
