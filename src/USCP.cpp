@@ -36,7 +36,7 @@ int main() {
     cout << "fiberLength = " << fiberLength << endl;
 
 
-    int cellCount=100;
+    int cellCount=3000;
 
     AutomatonCell ***environment;
     environment=new AutomatonCell**[width];
