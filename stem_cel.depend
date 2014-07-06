@@ -626,10 +626,10 @@
 1403636931 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Line.h
 	"Point.h"
 
-1404549778 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/AutomatonCell.cpp
+1404561553 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/AutomatonCell.cpp
 	"AutomatonCell.h"
 
-1404549778 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/AutomatonCell.h
+1404561552 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/AutomatonCell.h
 
 1404557371 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/ECM.cpp
 	"ECM.h"
@@ -645,54 +645,52 @@
 	"Line.h"
 	"Var.h"
 
-1404365191 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/SimulationParameters.h
+1404561552 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/SimulationParameters.h
 	<string>
 
-1404365191 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Point.h
+1404561552 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Point.h
 
-1404470351 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Line.h
+1404561552 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Line.h
 	"Point.h"
 
-1404366265 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Var.h
+1404561553 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Var.h
 
-1404550362 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Line.cpp
+1404561553 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Line.cpp
 	"Line.h"
 
-1404365191 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Point.cpp
+1404561553 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Point.cpp
 	"Point.h"
 
-1404457601 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/SimulationParameters.cpp
+1404561553 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/SimulationParameters.cpp
 	"SimulationParameters.h"
 	<iostream>
 	<config.h>
 	<libxml++/libxml++.h>
 
-1404559514 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/USCP.cpp
+1404575158 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/USCP.cpp
 	<iostream>
 	"SimulationParameters.h"
-	"ECM.h"
+	"Environment.h"
 	"AutomatonCell.h"
 	"Utilities.h"
-	"System.h"
 	<cstdlib>
 
-1404460754 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Utilities.h
+1404573629 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Utilities.h
 	"AutomatonCell.h"
 	"SimulationParameters.h"
-	"Pixel.h"
 
-1404559814 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Utilities.cpp
+1404574970 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Utilities.cpp
 	"Utilities.h"
 	<iostream>
 	<fstream>
 
-1404365191 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Var.cpp
+1404561553 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Var.cpp
 	"Var.h"
 
-1404369730 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Cell.cpp
+1404561553 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Cell.cpp
 	"Cell.h"
 
-1404376170 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Cell.h
+1404561552 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Cell.h
 	"Point.h"
 
 1404371113 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Pixel.cpp
@@ -715,18 +713,26 @@
 	"SimulationParameters.h"
 	"AutomatonCell.h"
 
-1404560830 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Environment.cpp
+1404573552 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Environment.cpp
 	"Environment.h"
 	<ctime>
 	<cstdlib>
 	<cmath>
 	<iostream>
 
-1404560814 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Environment.h
+1404561552 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Environment.h
 	"SimulationParameters.h"
 	"AutomatonCell.h"
 	"Point.h"
 	"Line.h"
 	"Var.h"
+	"Cell.h"
+
+1404573605 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/Simulation.cpp
+	"Simulation.h"
+
+1404573600 /mnt/Entertainment/education/Projects/major_proj/cellular-automata/include/Simulation.h
+	"SimulationParameters.h"
+	"AutomatonCell.h"
 	"Cell.h"
 
