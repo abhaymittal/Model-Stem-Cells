@@ -1,4 +1,4 @@
-#include "Environment.h"
+#include "Environment.h"
 
 #include <ctime>    //time
 #include <cstdlib>  //rand
@@ -227,6 +227,8 @@ int Environment::createCells(int cellCount, int radius, int senseRadius, Simulat
         cells[i].setID(i+1);
         cells[i].setSenseRadius(senseRadius);
         cells[i].setRadius(radius);
+        cells[i].setECadherin(1.0F);
+        cells[i].setEB(0.0F);
         environment[x][y][z].setId(i+1);
         environment[x][y][z].setType(2);
         environment[x][y][z].setCount(0);
