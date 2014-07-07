@@ -29,68 +29,20 @@ class Cell
         /** Default destructor */
         virtual ~Cell();
 
-        long int getId() const {
-            return id;
-        }
+        long int getId() const;
+        int setId(long id_);
+        int getRadius() const;
+        int setRadius(int radius_);
+        int getSenseRadius() const;
+        int setSenseRadius(int senseRadius_);
+        Point getCentroid() const;
+        int setCentroid(Point centroid_);
+        int setECadherin(float eCadherin_);
+        float getECadherin() const;
+        int setEB(float EB_);
+        float getEB() const;
 
-        int setId(long id_) {
-            id=id_;
-            return 0;
-        }
 
-        int getRadius() const {
-            return radius;
-        }
-        int setRadius(int radius_) {
-            radius=radius_;
-            return 0;
-        }
-
-        int getSenseRadius() const {
-            return senseRadius;
-        }
-        int setSenseRadius(int senseRadius_) {
-            senseRadius=senseRadius_;
-            return 0;
-        }
-
-        Point getCentroid() const {
-            return centroid;
-        }
-        int setCentroid(Point centroid_) {
-            centroid.setX(centroid_.getX());
-            centroid.setY(centroid_.getY());
-            centroid.setZ(centroid_.getZ());
-            return 0;
-        }
-
-        int setECadherin(float eCadherin_) {
-            eCadherin=eCadherin_;
-            return 0;
-        }
-        float getECadherin() const {
-            return eCadherin;
-        }
-
-        int setEB(float EB_) {
-            EB=EB_;
-        }
-        float getECadherin() const {
-            return EB;
-        }
-
-        // End of setter and getter functions
-
-        /**
-        *   This method creates ablah blahc blachsdjaihfi
-        *   @brief  Function for creating cells in the environment
-        *   @param  cellCount   The number of cells to create
-        *   @param  Radius  The radius of each cell
-        *   @param  SenseRad    The sensing radius of each cell
-        *   @param  *cell   An array of cells
-        *   @param  *pixels An array of pixels
-        */
-    protected:
 };
 
 #endif // CELL_H
