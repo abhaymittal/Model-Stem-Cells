@@ -12,6 +12,7 @@
 #include "AutomatonCell.h"
 #include "Utilities.h"
 #include <cstdlib>
+#include "Simulation.h"
 
 using namespace std;
 
@@ -52,13 +53,21 @@ int main() {
             }
         }
     }
-    cout<<"Check"<<endl;
 	env.setupECM(sim,environment);
 
 
     Cell *cells = new Cell[cellCount];
     env.createCells(cellCount,1,1,sim,cells,environment);
+    Simulation simul;
+    for(int itr=0;itr<10000;itr++)
+    {
+        int opId=simul.findOpId();
+        cout<<"Iteration - "<<itr<<endl;
+        simul.simulate(sim,environment,cells,opId);
+    }
+
     Utilities util;
+    cout<<"Going to generate file"<<endl;
     /*******Generate Output file*********/
     util.generateECMFile(sim, environment, util.COUNT);
     /*Testing for the System class*/
