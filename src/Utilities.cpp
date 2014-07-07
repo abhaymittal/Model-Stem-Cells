@@ -42,7 +42,7 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
                     {
                         for(int z=0;z<sim.getLatticeDepth();z++)
                         {
-                            if(environment[x][y][z].getType()!=0)
+                           // if(environment[x][y][z].getType()!=0)
                                 outputFile<<"\n"<<environment[x][y][z].getType()<<" "<<x<<" "<<y<<" "<<z<<" "<<environment[x][y][z].getCount();
                         }
                     }
