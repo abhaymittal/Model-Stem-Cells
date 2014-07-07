@@ -219,12 +219,12 @@ int Environment::createCells(int cellCount, int radius, int senseRadius, Simulat
     for(int i=0;i<cellCount;i++)
     {
         do {
-            x=rand()%(width);
-            y=rand()%(height);
-            z=rand()%(depth);
+            x=sim.getFiberLength()+(rand()%(width-2*sim.getFiberLength()));
+            y=sim.getFiberLength()+(rand()%(height-2*sim.getFiberLength()));
+            z=sim.getFiberLength()+(rand()%(depth-2*sim.getFiberLength()));
         } while(environment[x][y][z].getId()!=0);
         cells[i].setCentroid(*new Point(x,y,z));
-        cells[i].setID(i+1);
+        cells[i].setId(i+1);
         cells[i].setSenseRadius(senseRadius);
         cells[i].setRadius(radius);
         cells[i].setECadherin(1.0F);
@@ -234,6 +234,7 @@ int Environment::createCells(int cellCount, int radius, int senseRadius, Simulat
         environment[x][y][z].setCount(0);
 
     }
+    cout<<"Cells created\n";
 
     return 0;
 }
