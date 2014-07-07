@@ -1,14 +1,22 @@
 #include "Simulation.h"
+#include "AutomatonCell.h"
 #include "Cell.h"
 #include "Point.h""
 #include <cmath>
+#include <cstdlib>
+
+#define MOVE_CELLS 1
+#define UPDATE_EB 2
+
+#include <iostream>
+using namespace std;
 
 Simulation::Simulation()
 {
     //ctor
 }
 
-int Simulation::moveCell(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells)
+int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells)
 {
     int cellCount=100;
     int num=(2*cells[0].getSenseRadius()+1);
@@ -42,12 +50,12 @@ int Simulation::moveCell(SimulationParameters sim, AutomatonCell ***lattice, Cel
             {
                 for(int z=0;z<num;z++)
                 {
-                    if((x<sim.getFiberlength())||(x>(sim.getLatticeWidth()-sim.getFiberLength()))||(y<sim.getFiberlength())||(y>(sim.getLatticeWidth()-sim.getFiberLength())(z<sim.getFiberlength())||(z>(sim.getLatticeWidth()-sim.getFiberLength()))))
+                    if((x<sim.getFiberLength())||(x>(sim.getLatticeWidth()-sim.getFiberLength()))||(y<sim.getFiberLength())||(y>(sim.getLatticeWidth()-sim.getFiberLength()))||(z<sim.getFiberLength())||(z>(sim.getLatticeWidth()-sim.getFiberLength())))
                         continue;
                     double exponent=-1*(neighbourFiber[x][y][z]-mu)*(neighbourFiber[x][y][z]-mu)/(2*sigmaSqr);
                     probabMove=exp(exponent);
                     double r =(static_cast<double>(rand()%100))/100;
-                    if(r<probabMove[x][y][z])
+                    if(r<probabMove)
                     {
                         //Remove cell from current location (lattice DB)
                         lattice[cells[i].getCentroid().getX()][cells[i].getCentroid().getY()][cells[i].getCentroid().getZ()].setType(1);
@@ -68,17 +76,20 @@ int Simulation::moveCell(SimulationParameters sim, AutomatonCell ***lattice, Cel
                     }
                 }
             }
-            cellMoved:
+            cellMoved:;
         }
     }
-
+    return 0;
 }
 
-int updateECadherin(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells)
+int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells)
 {
     int k=14;
+    int cellCount=3000;
     int sumFiber=0;
-    float eCadherinNew;
+    float totalNeighbourEC=0;
+    float EBNew;
+    int totalNeighbours=(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1);
     for(int i=0;i<cellCount;i++)
     {
         sumFiber=0;
@@ -89,10 +100,41 @@ int updateECadherin(SimulationParameters sim, AutomatonCell ***lattice, Cell *ce
                 for(int z=cells[i].getCentroid().getZ()-cells[i].getSenseRadius();z<=cells[i].getCentroid().getZ()+cells[i].getSenseRadius();z++)
                 {
                     sumFiber+=lattice[x][y][z].getCount();
+                    if(lattice[x][y][z].getType()==2)
+                    {
+                        //Cell index in array = id -1 as id was created using index +1 in createCells (Environment.h)
+                        totalNeighbourEC+=cells[lattice[x][y][z].getId()-1].getECadherin();
+                    }
                 }
             }
         }
-        eCadherinNew=(static_cast<float>(sumFiber))/(sumFiber+k);
-        cells[i].setECadherin(eCadherinNew);
+        EBNew=((static_cast<float>(sumFiber))/(sumFiber+k))+(totalNeighbourEC/totalNeighbours);
+        cells[i].setEB(EBNew);
     }
+    return 0;
+}
+
+int Simulation::simulate(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells, int opId)
+{
+    cout<<"OPID => "<<opId<<endl;
+    switch(opId)
+    {
+        case MOVE_CELLS:
+            moveCells(sim,lattice,cells);
+            break;
+
+        case UPDATE_EB:
+            updateEB(sim,lattice,cells);
+            break;
+    }
+    return 0;
+}
+
+int Simulation::findOpId()
+{
+    double r=(static_cast<double>(rand()%100))/100;
+    if(r<0.5)
+        return MOVE_CELLS;
+    else
+        return UPDATE_EB;
 }
