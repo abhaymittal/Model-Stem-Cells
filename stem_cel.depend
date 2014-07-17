@@ -743,3 +743,42 @@
 	"AutomatonCell.h"
 	"Cell.h"
 
+1405622622 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/AutomatonCell.cpp
+	"AutomatonCell.h"
+
+1405616047 /mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/include/AutomatonCell.h
+
+1405616047 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/Cell.cpp
+	"Cell.h"
+
+1405616457 /mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/include/Cell.h
+	"Point.h"
+
+1405619705 /mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/include/Point.h
+
+1405616047 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/Environment.cpp
+	"Environment.h"
+	<ctime>
+	<cstdlib>
+	<cmath>
+	<iostream>
+
+1405617775 /mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/include/Environment.h
+	"SimulationParameters.h"
+	"AutomatonCell.h"
+	"Point.h"
+	"Line.h"
+	"Var.h"
+	"Cell.h"
+
+1405622016 /mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/include/SimulationParameters.h
+	<string>
+
+1405616047 /mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/include/Line.h
+	"Point.h"
+
+1405616047 /mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/include/Var.h
+
+1405616047 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/Line.cpp
+	"Line.h"
+
