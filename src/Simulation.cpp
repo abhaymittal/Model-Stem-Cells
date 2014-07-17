@@ -130,7 +130,7 @@ int Simulation::simulate(SimulationParameters sim, AutomatonCell ***lattice, Cel
     return 0;
 }
 
-int Simulation::findOpId()
+int Simulation::generateOpId()
 {
     double r=(static_cast<double>(rand()%100))/100;
     if(r<0.5)
