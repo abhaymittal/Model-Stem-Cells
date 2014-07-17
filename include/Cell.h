@@ -1,13 +1,15 @@
-#ifndef CELL_H
-#define CELL_H
-
-#include "Point.h"
 /**
 *   @class  Cell
 *   @brief  Class representing a cell
 *   @author Abhay Mittal
 *   @author Pratik Varshney
 */
+
+#ifndef CELL_H
+#define CELL_H
+
+#include "Point.h"
+
 
 class Cell
 {
