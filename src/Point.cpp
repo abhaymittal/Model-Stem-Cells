@@ -5,8 +5,37 @@ Point::Point() {
 
 }
 
-Point::~Point() {
-	// TODO Auto-generated destructor stub
+Point(int x_, int y_, int z_):x(x_), y(y_), z(z_)
+{}
+
+int Point::getX() const
+{
+    return x;
+}
+
+void Point::setX(int x_)
+{
+    this->x = x_;
+}
+
+int Point::getY() const
+{
+    return y;
+}
+
+void Point::setY(int y_)
+{
+    this->y = y_;
+}
+
+int Point::getZ() const
+{
+    return z;
+}
+
+void Point::setZ(int z_)
+{
+    this->z = z_;
 }
 
 int Point::getVar(char varName)

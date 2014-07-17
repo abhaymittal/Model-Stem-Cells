@@ -5,44 +5,77 @@
 class Point
 {
 private:
-    int x;
-    int y;
-    int z;
+    int x;  /**< @brief The x coordinate value*/
+    int y;  /**< @brief The y coordinate value*/
+    int z;  /**< @brief The z coordinate value*/
 
 public:
+
+    /**
+    *   @brief  Default Constructor
+    */
     Point();
-    Point(int _x, int _y, int _z):x(_x), y(_y), z(_z)
-    {}
-    virtual ~Point();
 
-    Point& operator=(const Point& other);
+    /**
+    *   @brief  A three argument constructor
+    *   @param  x_ : The x coordinate value
+    *   @param  y_ : The y coordinate value
+    *   @param  z_ : The z coordinate value
+    */
+    Point(int x_, int y_, int z_);
 
-    int getX() const {
-		return x;
-	}
+    /**
+    *   @brief  Getter function for the x coordinate value
+    *   @return The x coordinate value
+    */
+    int getX() const;
 
-	void setX(int x) {
-		this->x = x;
-	}
+    /**
+    *   @brief  Setter function for the x coordinate value
+    *   @param  x_ : The x coordinate value
+    *   @return Nothing
+    */
+	void setX(int x_);
 
-	int getY() const {
-		return y;
-	}
+    /**
+    *   @brief  Getter function for the y coordinate value
+    *   @return The y coordinate value
+    */
+	int getY() const;
 
-	void setY(int y) {
-		this->y = y;
-	}
+    /**
+    *   @brief  Setter function for the y coordinate value
+    *   @param  y_ : The y coordinate value
+    *   @return Nothing
+    */
+	void setY(int y_);
 
-	int getZ() const {
-		return z;
-	}
+	/**
+    *   @brief  Getter function for the z coordinate value
+    *   @return The z coordinate value
+    */
+	int getZ() const;
 
-	void setZ(int z) {
-		this->z = z;
-	}
+    /**
+    *   @brief  Setter function for the z coordinate value
+    *   @param  z_ : The z coordinate value
+    *   @return Nothing
+    */
+	void setZ(int z);
 
-
+    /**
+    *   @brief  Getter function for the varName coordinate value
+    *   @param  varName : The name of the coordinate whose value is to be retrieved
+    *   @return The value of the varName coordinate
+    */
     int getVar(char varName);
+
+    /**
+    *   @brief  Setter function for the varName coordinate value
+    *   @param  varName : The name of the coordinate whose value is to be set
+    *   @param  value : The value to be set
+    *   @return 0
+    */
     int setVar(char varName, int value);
 
 };
