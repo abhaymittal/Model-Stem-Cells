@@ -5,7 +5,7 @@ Point::Point() {
 
 }
 
-Point(int x_, int y_, int z_):x(x_), y(y_), z(z_)
+Point::Point(int x_, int y_, int z_):x(x_), y(y_), z(z_)
 {}
 
 int Point::getX() const
