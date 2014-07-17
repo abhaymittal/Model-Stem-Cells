@@ -61,7 +61,7 @@ int main() {
     Simulation simul;
     for(int itr=0;itr<10000;itr++)
     {
-        int opId=simul.findOpId();
+        int opId=simul.generateOpId();
         cout<<"Iteration - "<<itr<<endl;
         simul.simulate(sim,environment,cells,opId);
     }
