@@ -20,28 +20,28 @@ int AutomatonCell::incrementCount() {
     return 0;
 }
 
-short unsigned int getType() const {
+short unsigned int AutomatonCell::getType() const {
 		return type;
 }
 
-int setType(short unsigned int type) {
+int AutomatonCell::setType(short unsigned int type) {
 		this->type = type;
 		return 0;
 }
 
-short unsigned int getCount() const {
+short unsigned int AutomatonCell::getCount() const {
 		return cellCount;
 }
 
-int setCount(short unsigned int cellCount) {
+int AutomatonCell::setCount(short unsigned int cellCount) {
 		this->cellCount = cellCount;
 }
 
 
-long int getId() const {
+long int AutomatonCell::getId() const {
 		return ID;
 }
 
-int setId(long int ID) {
+int AutomatonCell::setId(long int ID) {
 		this->ID = ID;
 }
