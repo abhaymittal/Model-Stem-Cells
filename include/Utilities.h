@@ -8,17 +8,38 @@
 #ifndef UTILITIES_H_
 #define UTILITIES_H_
 
+/**
+*   @class  Utilities
+*   @brief  Class for generating the Output
+*/
+
 #include "AutomatonCell.h"
 #include "SimulationParameters.h"
 class Utilities {
 public:
+	
+	/**
+    *   @brief  Default no argument constructor
+    */
 	Utilities();
+	
+	/**
+    *   @brief  A virtual destructor
+    */
 	virtual ~Utilities();
 
+	/**
+    *   @brief  	Function for generating the Output file "ptMap.xyz"
+    *   @param[in]  sim 		: the simulation parameters
+    *   @param[in]  environment : the Automaton Cell
+    *   @param[in]  field 		: the field (TYPE | COUNT | ID) according to which the output points are listed
+    *   @return 	void
+    */
 	void generateECMFile(SimulationParameters sim, AutomatonCell ***environment, int field);
 
-	static const int TYPE = 1, COUNT = 2, ID = 3;
-
+	static const int 	TYPE = 1,	/**<The CONSTANT value to specify the listing of points according to their TYPE*/
+						COUNT = 2,	/**<The CONSTANT value to specify the listing of points according to their COUNT*/
+						ID = 3;		/**<The CONSTANT value to specify the listing of points according to their ID*/
 
 };
 

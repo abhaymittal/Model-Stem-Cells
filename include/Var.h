@@ -23,7 +23,7 @@ public:
 
     /**
     *   @brief  A three argument constructor for initializing the parameters of variable
-    *   @param  var_n the variable coordinate name
+    *   @param  varN the variable coordinate name
     *   @param  del the delta value of the variable coordinate
     *   @param  val the current value of the variable
     */
@@ -42,7 +42,7 @@ public:
 
     /**
     *   @brief  Setter function for variable coordinate name
-    *   @param  var_x  the new coordinate name of the variable
+    *   @param  varName  the new coordinate name of the variable
     *   @return 0
     */
     void setVarName(char varName) {
@@ -68,7 +68,7 @@ public:
 
     /**
     *   @brief  Setter function for the delta value of the variable coordinate
-    *   @param  del the new delta value of the coordinate
+    *   @param  delta the new delta value of the coordinate
     *   @return 0
     */
     void setDelta(int delta) {
@@ -85,7 +85,7 @@ public:
 
     /**
     *   @brief  Setter function for the current value of the variable
-    *   @param  val the new value of the variable
+    *   @param  value the new value of the variable
     *   @return 0
     */
     void setValue(int value) {
