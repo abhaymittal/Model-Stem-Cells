@@ -4,7 +4,7 @@
 #include <cstdlib>  //rand
 #include <cmath>    //sqrt, floor, ceil
 #include <iostream>
-
+#define PI 3.141592
 
 using namespace std;
 Environment::Environment()
@@ -138,7 +138,6 @@ int Environment::setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap){
     Line lines[sim.getFiberCount()];
     long i;
     static long id=0L;
-    int fiberLengthSqr, zMaxSqr, minRandomX, maxRandomX, rangeRandomX;
     int xMax=sim.getLatticeWidth()-1;
     int yMax=sim.getLatticeHeight()-1;
     int zMax=sim.getLatticeDepth()-1;
@@ -176,27 +175,18 @@ int Environment::setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap){
     box[7].setY(yMax);
     box[7].setZ(zMax);
 
-    //seed random number generator with current time
-    fiberLengthSqr = sim.getFiberLength() * sim.getFiberLength();
-    zMaxSqr = zMax * zMax;
-
-    minRandomX=( (fiberLengthSqr - zMaxSqr) > (yMax*yMax) )?ceil(sqrt( (fiberLengthSqr - zMaxSqr) - (yMax*yMax) )):0;
-
-    maxRandomX = (sim.getFiberLength()<xMax)?sim.getFiberLength():xMax;
-
-    rangeRandomX = (maxRandomX -minRandomX) + 1;
 
     for(i=0; i<sim.getFiberCount(); i++)
     {
         int randX=sim.getFiberLength()+(rand()%(sim.getLatticeWidth()-2*sim.getFiberLength()));
         int randY=sim.getFiberLength()+(rand()%(sim.getLatticeHeight()-2*sim.getFiberLength()));
         int randZ=sim.getFiberLength()+(rand()%(sim.getLatticeDepth()-2*sim.getFiberLength()));
-        int randTheta=rand()%360;
-        int randPhi=rand()%360;
+        double randTheta=(rand()%360)*PI/180;
+        double randPhi=(rand()%360)*PI/180;
 
         int x2=(int)(randX+sim.getFiberLength()*sin(randTheta)*cos(randPhi));
-        int y2=(int)(randX+sim.getFiberLength()*sin(randTheta)*sin(randPhi));
-        int z2=(int)(randX+sim.getFiberLength()*cos(randTheta));
+        int y2=(int)(randY+sim.getFiberLength()*sin(randTheta)*sin(randPhi));
+        int z2=(int)(randZ+sim.getFiberLength()*cos(randTheta));
         Point p1(randX,randY,randZ);
         Point p2(x2,y2,z2);
         cout<<"Line = "<<id<<"Pt1 = "<<randX<<" "<<randY<<" "<<randZ<<" | Pt2 = "<<x2<<" "<<y2<<" "<<z2<<endl;
