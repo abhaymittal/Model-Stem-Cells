@@ -1,6 +1,11 @@
 #ifndef POINT_H_
 #define POINT_H_
-
+/**
+*   @class  Point
+*   @brief  Class representing a 3 dimensional point
+*   @author Abhay Mittal
+*   @author Pratik Varshney
+*/
 
 class Point
 {
