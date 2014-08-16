@@ -37,6 +37,14 @@ private:
     *   @return         0
     */
     int updateEB(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells);
+
+    /**
+    *   @brief  Function to change the genetic code
+    *   @param  sim : The simulation parameters (cellCount required)
+    *   @param  cells : The cells in the simulation environment
+    *   @return 0
+    */
+    int evolveGeneticCode(SimulationParameters sim,Cell *cells);
 public:
 
     /**

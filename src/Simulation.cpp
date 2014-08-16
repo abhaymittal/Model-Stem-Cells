@@ -145,7 +145,7 @@ int Simulation::generateOpId()
     else
         return EVOLVE_GENETIC_CODE;
 }
-void Simulation::evolveGeneticCode(SimulationParameters sim,Cell *cells)
+int Simulation::evolveGeneticCode(SimulationParameters sim,Cell *cells)
 {
     int cellCount = 3000;
     for(int i=0;i<cellCount;i++)
@@ -154,4 +154,5 @@ void Simulation::evolveGeneticCode(SimulationParameters sim,Cell *cells)
         cells[i].setGeneticCode(1, cells[i].getGeneticCode(1) | cells[i].getGeneticCode(2) );
         cells[i].setGeneticCode(2, !(cells[i].getGeneticCode(2)) );
     }
+    return 0;
 }
