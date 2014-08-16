@@ -138,3 +138,13 @@ int Simulation::generateOpId()
     else
         return UPDATE_EB;
 }
+void Simulation::EvolveGeneticCode(Cell *cells)
+{
+    int cellCount = 3000;
+    for(int i=0;i<cellCount;i++)
+    {
+        cells[i].setGeneticCode(1, cells[i].getGeneticCode(0) & cells[i].getGeneticCode(1) );
+        cells[i].setGeneticCode(2, cells[i].getGeneticCode(1) | cells[i].getGeneticCode(2) );
+        cells[i].setGeneticCode(3, !(cells[i].getGeneticCode(2)) );
+    }
+}
