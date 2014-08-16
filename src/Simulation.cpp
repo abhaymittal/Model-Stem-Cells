@@ -7,6 +7,7 @@
 
 #define MOVE_CELLS 1
 #define UPDATE_EB 2
+#define EVOLVE_GENETIC_CODE 3
 
 #include <iostream>
 using namespace std;
@@ -126,6 +127,10 @@ int Simulation::simulate(SimulationParameters sim, AutomatonCell ***lattice, Cel
         case UPDATE_EB:
             updateEB(sim,lattice,cells);
             break;
+
+        case EVOLVE_GENETIC_CODE:
+            evolveGeneticCode(sim,cells);
+            break;
     }
     return 0;
 }
@@ -133,18 +138,20 @@ int Simulation::simulate(SimulationParameters sim, AutomatonCell ***lattice, Cel
 int Simulation::generateOpId()
 {
     double r=(static_cast<double>(rand()%100))/100;
-    if(r<0.5)
+    if(r<(1.0/3))
         return MOVE_CELLS;
-    else
+    else if ((r>=(1.0/3)&&(r<(2.0/3))
         return UPDATE_EB;
+    else
+        return EVOLVE_GENETIC_CODE;
 }
-void Simulation::EvolveGeneticCode(Cell *cells)
+void Simulation::evolveGeneticCode(SimulationParameters sim,Cell *cells)
 {
     int cellCount = 3000;
     for(int i=0;i<cellCount;i++)
     {
-        cells[i].setGeneticCode(1, cells[i].getGeneticCode(0) & cells[i].getGeneticCode(1) );
-        cells[i].setGeneticCode(2, cells[i].getGeneticCode(1) | cells[i].getGeneticCode(2) );
-        cells[i].setGeneticCode(3, !(cells[i].getGeneticCode(2)) );
+        cells[i].setGeneticCode(0, cells[i].getGeneticCode(0) & cells[i].getGeneticCode(1) );
+        cells[i].setGeneticCode(1, cells[i].getGeneticCode(1) | cells[i].getGeneticCode(2) );
+        cells[i].setGeneticCode(2, !(cells[i].getGeneticCode(2)) );
     }
 }
