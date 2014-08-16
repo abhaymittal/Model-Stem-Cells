@@ -140,7 +140,7 @@ int Simulation::generateOpId()
     double r=(static_cast<double>(rand()%100))/100;
     if(r<(1.0/3))
         return MOVE_CELLS;
-    else if ((r>=(1.0/3)&&(r<(2.0/3))
+    else if ((r>=(1.0/3))&&(r<(2.0/3)))
         return UPDATE_EB;
     else
         return EVOLVE_GENETIC_CODE;
