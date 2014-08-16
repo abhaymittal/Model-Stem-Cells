@@ -20,6 +20,7 @@ private:
     int senseRadius;    /**<The sensing radius of the cell*/
     float eCadherin;    /**<A protein named ECadherin*/
     float EB;           /**<Denotes ECadherin-Beta Cadherin*/
+    bool geneticCode[3];/**<An array of genetic code*/
 
 public:
 
@@ -108,6 +109,35 @@ public:
     */
     int setEB(float EB_);
 
+    /**
+    *   @brief  Getter function for genetic code array
+    *   @param[out] The genetic code array
+    *   @return 0
+    */
+    int getGeneticCode(bool *gCode) const;
+
+    /**
+    *   @brief  Getter function for genetic code value at particular index
+    *   @param  index : The index value of the genetic code to be retrieved
+    *   @return GeneticCode[index]
+    */
+    bool getGeneticCode(int index) const;
+
+
+    /**
+    *   @brief  Setter function for genetic code array
+    *   @param  The genetic code array
+    *   @return 0
+    */
+    int setGeneticCode(bool *gCode);
+
+    /**
+    *   @brief  Getter function for genetic code value at particular index
+    *   @param  index : The index of the genetic code to be set
+    *   @param  gC : The new value of genetic code
+    *   @return 0
+    */
+    int getGeneticCode(int index,bool gC);
 };
 
 #endif // CELL_H
