@@ -132,12 +132,13 @@ public:
     int setGeneticCode(bool *gCode);
 
     /**
-    *   @brief  Getter function for genetic code value at particular index
+    *   @brief  Setter function for genetic code value at particular index
     *   @param  index : The index of the genetic code to be set
     *   @param  gC : The new value of genetic code
     *   @return 0
     */
-    int getGeneticCode(int index,bool gC);
+    int setGeneticCode(int index,bool gC);
+
 };
 
 #endif // CELL_H

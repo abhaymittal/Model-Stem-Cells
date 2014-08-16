@@ -56,19 +56,25 @@ float Cell::getEB() const {
     return EB;
 }
 
-int getGeneticCode(bool *gCode) const {
+int Cell::getGeneticCode(bool *gCode) const {
     gCode[0]=geneticCode[0];
     gCode[1]=geneticCode[1];
     gCode[2]=geneticCode[2];
     return 0;
  }
 
- bool getGeneticCode(int index) const {
+ bool Cell::getGeneticCode(int index) const {
     return geneticCode[index];
  }
 
-int setGeneticCode(bool *gCode) {
+int Cell::setGeneticCode(bool *gCode) {
     geneticCode[0]=gCode[0];
     geneticCode[1]=gCode[1];
     geneticCode[2]=gCode[2];
+    return 0;
+}
+
+int Cell::setGeneticCode(int index,bool gCode) {
+    geneticCode[index]=gCode;
+    return 0;
 }
