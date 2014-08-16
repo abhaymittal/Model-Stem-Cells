@@ -1,7 +1,7 @@
 #include "Simulation.h"
 #include "AutomatonCell.h"
 #include "Cell.h"
-#include "Point.h""
+#include "Point.h"
 #include <cmath>
 #include <cstdlib>
 
