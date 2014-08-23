@@ -19,7 +19,6 @@ Simulation::Simulation()
 
 int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells)
 {
-    int cellCount=100;
     int num=(2*cells[0].getSenseRadius()+1);
     int neighbourFiber[num][num][num];
     int probabMove;
@@ -29,7 +28,7 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, Ce
     double sigma=1;
     double sigmaSqr=sigma*sigma;
 
-    for(int i=0;i<cellCount;i++)
+    for(int i=0;i<sim.getCellCount();i++)
     {
         sumFiber=0;
         for(int x=cells[i].getCentroid().getX()-cells[i].getSenseRadius();x<=cells[i].getCentroid().getX()+cells[i].getSenseRadius();x++)
@@ -86,12 +85,11 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, Ce
 int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells)
 {
     int k=14;
-    int cellCount=3000;
     int sumFiber=0;
     float totalNeighbourEC=0;
     float EBNew;
     int totalNeighbours=(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1);
-    for(int i=0;i<cellCount;i++)
+    for(int i=0;i<sim.getCellCount();i++)
     {
         sumFiber=0;
         for(int x=cells[i].getCentroid().getX()-cells[i].getSenseRadius();x<=cells[i].getCentroid().getX()+cells[i].getSenseRadius();x++)
@@ -147,8 +145,7 @@ int Simulation::generateOpId()
 }
 int Simulation::evolveGeneticCode(SimulationParameters sim,Cell *cells)
 {
-    int cellCount = 3000;
-    for(int i=0;i<cellCount;i++)
+    for(int i=0;i<sim.getCellCount();i++)
     {
         cells[i].setGeneticCode(0, cells[i].getGeneticCode(0) & cells[i].getGeneticCode(1) );
         cells[i].setGeneticCode(1, cells[i].getGeneticCode(1) | cells[i].getGeneticCode(2) );

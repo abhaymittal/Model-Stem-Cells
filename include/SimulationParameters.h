@@ -22,6 +22,7 @@ private:
 	int latticeDepth;		/**<The Depth of the lattice*/
 	int fiberLength;		/**<The Length of each fiber*/
 	long int fiberCount;	/**<The number of fibers in the lattice*/
+	int cellCount;          /**<The number of cells present at the beginning of simulation*/
 
 public:
 
@@ -29,7 +30,7 @@ public:
     *   @brief  Default no argument constructor
     */
 	SimulationParameters();
-	
+
 	/**
     *   @brief  A virtual destructor
     */
@@ -40,7 +41,7 @@ public:
     *   @return void
     */
 	void loadParameters();
-	
+
 	/**
     *   @brief  Function for loading Simulation Parameters from specified file
     *   @param  filename - Path to file containing simulation parameters
@@ -95,6 +96,14 @@ public:
     */
 	int getLatticeWidth() const {
 		return latticeWidth;
+	}
+
+	/**
+    *   @brief  Getter function for the cellCount
+    *   @return The number of cells present at the beginning of simulation
+    */
+	int getCellCount() const {
+		return cellCount;
 	}
 };
 

@@ -64,7 +64,7 @@ public:
     *   @param[out] cells : An array of generated cells
     *   @return 0
     */
-    int createCells(int cellCount, int radius, int senseRadius, SimulationParameters sim, Cell *cells, AutomatonCell ***environment);
+    int createCells(int radius, int senseRadius, SimulationParameters sim, Cell *cells, AutomatonCell ***environment);
 };
 
 #endif // ENVIRONMENT_H

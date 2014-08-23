@@ -37,7 +37,6 @@ int main() {
     cout << "fiberLength = " << fiberLength << endl;
 
 
-    int cellCount=3000;
 
     AutomatonCell ***environment;
     environment=new AutomatonCell**[width];
@@ -56,8 +55,8 @@ int main() {
 	env.setupECM(sim,environment);
 
 
-    Cell *cells = new Cell[cellCount];
-    env.createCells(cellCount,1,1,sim,cells,environment);
+    Cell *cells = new Cell[sim.getCellCount()];
+    env.createCells(1,1,sim,cells,environment);
     Simulation simul;
     for(int itr=0;itr<10000;itr++)
     {

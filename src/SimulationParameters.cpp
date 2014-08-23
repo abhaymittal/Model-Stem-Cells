@@ -54,6 +54,7 @@ void SimulationParameters::loadParametersFromFile(std::string filename)
             latticeDepth = rootNode->eval_to_number("//Parameters/Lattice/Depth");
             fiberLength = rootNode->eval_to_number("//Parameters/FiberLength");
             fiberCount = rootNode->eval_to_number("//Parameters/FiberCount");
+            cellCount = rootNode->eval_to_number("//Parameters/CellCount");
         }
     }
     catch(const std::exception& ex)

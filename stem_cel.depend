@@ -26,9 +26,9 @@
 	"Line_3d.h"
 	"Simulation_Parameters.h"
 
-1404404792 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Var.h
+1406986570 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Var.h
 
-1403543660 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Var.cpp
+1406986022 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Var.cpp
 	"Var.h"
 
 1402846693 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/main.cpp
@@ -572,10 +572,10 @@
 	<config.h>
 	<libxml++/libxml++.h>
 
-1403640310 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/AutomatonCell.cpp
+1406986022 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/AutomatonCell.cpp
 	"AutomatonCell.h"
 
-1403640165 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/AutomatonCell.h
+1406986022 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/AutomatonCell.h
 
 1403642312 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/ECM.cpp
 	"ECM.h"
@@ -591,7 +591,7 @@
 	"Line.h"
 	"Var.h"
 
-1403179539 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/SimulationParameters.h
+1408795909 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/SimulationParameters.h
 	<string>
 
 1404138136 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/USCP.cpp
@@ -601,12 +601,12 @@
 	"AutomatonCell.h"
 	"Utilities.h"
 
-1404138423 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Utilities.cpp
+1406986022 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Utilities.cpp
 	"Utilities.h"
 	<iostream>
 	<fstream>
 
-1404138405 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Utilities.h
+1406986570 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Utilities.h
 	"AutomatonCell.h"
 	"SimulationParameters.h"
 
@@ -616,15 +616,15 @@
 	<config.h>
 	<libxml++/libxml++.h>
 
-1403637746 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Point.cpp
+1406986022 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Point.cpp
 	"Point.h"
 
-1403367774 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Point.h
+1407076899 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Point.h
 
-1403637984 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Line.cpp
+1406986022 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Line.cpp
 	"Line.h"
 
-1403636931 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Line.h
+1406986022 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Line.h
 	"Point.h"
 
 1404561553 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/AutomatonCell.cpp
@@ -836,4 +836,10 @@
 
 1387150685 /usr/lib/libxml++-2.6/include/libxml++config.h
 	<glibmmconfig.h>
+
+1408705172 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Cell.cpp
+	"Cell.h"
+
+1408705172 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Cell.h
+	"Point.h"
 

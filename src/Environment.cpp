@@ -200,13 +200,13 @@ int Environment::setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap){
     return 0;
 }
 
-int Environment::createCells(int cellCount, int radius, int senseRadius, SimulationParameters sim, Cell *cells, AutomatonCell ***environment) {
+int Environment::createCells(int radius, int senseRadius, SimulationParameters sim, Cell *cells, AutomatonCell ***environment) {
     int width=sim.getLatticeWidth();
     int height=sim.getLatticeHeight();
     int depth=sim.getLatticeDepth();
      int x,y,z;
 
-    for(int i=0;i<cellCount;i++)
+    for(int i=0;i<sim.getCellCount();i++)
     {
         do {
             x=sim.getFiberLength()+(rand()%(width-2*sim.getFiberLength()));
