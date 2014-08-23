@@ -13,6 +13,7 @@
 #include "Utilities.h"
 #include <cstdlib>
 #include "Simulation.h"
+#include <deque>
 
 using namespace std;
 
@@ -54,8 +55,7 @@ int main() {
     }
 	env.setupECM(sim,environment);
 
-
-    Cell *cells = new Cell[sim.getCellCount()];
+    deque<Cell> cells(sim.getCellCount());
     env.createCells(1,1,sim,cells,environment);
     Simulation simul;
     for(int itr=0;itr<10000;itr++)

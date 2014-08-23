@@ -17,6 +17,8 @@
 #include "SimulationParameters.h"
 #include "AutomatonCell.h"
 #include "Cell.h"
+#include <deque>
+
 class Simulation
 {
 private:
@@ -27,7 +29,7 @@ private:
     *   @param[in, out] cells : The cells in the simulation environment
     *   @return         0
     */
-    int moveCells(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells);
+    int moveCells(SimulationParameters sim, AutomatonCell ***lattice, std::deque<Cell> &cells);
 
     /**
     *   @brief          Function to update ECadherin - &beta; Catenin value
@@ -36,7 +38,7 @@ private:
     *   @param[in, out] cells : The cells in the simulation environment
     *   @return         0
     */
-    int updateEB(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells);
+    int updateEB(SimulationParameters sim, AutomatonCell ***lattice, std::deque<Cell> &cells);
 
     /**
     *   @brief  Function to change the genetic code
@@ -44,7 +46,7 @@ private:
     *   @param  cells : The cells in the simulation environment
     *   @return 0
     */
-    int evolveGeneticCode(SimulationParameters sim,Cell *cells);
+    int evolveGeneticCode(SimulationParameters sim,std::deque<Cell> &cells);
 public:
 
     /**
@@ -67,7 +69,7 @@ public:
     *   @param[in, out] cells : The cells in the simulation environment
     *   @return         0
     */
-    int simulate(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells, int opId);
+    int simulate(SimulationParameters sim, AutomatonCell ***lattice, std::deque<Cell> &cells, int opId);
 
 };
 

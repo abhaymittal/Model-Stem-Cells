@@ -16,6 +16,7 @@
 #include "Line.h"
 #include "Var.h"
 #include "Cell.h"
+#include <deque>
 
 class Environment
 {
@@ -61,10 +62,10 @@ public:
     *   @param[in]  senseRadius : The sensing radius of each cell
     *   @param[in]  sim : The simulation parameters
     *   @param[in]  environment : A 3d array consisting of the number of fibers at each point
-    *   @param[out] cells : An array of generated cells
+    *   @param[out] cells : A deque of generated cells
     *   @return 0
     */
-    int createCells(int radius, int senseRadius, SimulationParameters sim, Cell *cells, AutomatonCell ***environment);
+    int createCells(int radius, int senseRadius, SimulationParameters sim, std::deque<Cell> &cells, AutomatonCell ***environment);
 };
 
 #endif // ENVIRONMENT_H

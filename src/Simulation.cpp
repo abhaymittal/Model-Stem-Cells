@@ -17,7 +17,7 @@ Simulation::Simulation()
     //ctor
 }
 
-int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells)
+int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, std::deque<Cell> &cells)
 {
     int num=(2*cells[0].getSenseRadius()+1);
     int neighbourFiber[num][num][num];
@@ -82,7 +82,7 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, Ce
     return 0;
 }
 
-int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells)
+int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std::deque<Cell> &cells)
 {
     int k=14;
     int sumFiber=0;
@@ -113,7 +113,7 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, Cel
     return 0;
 }
 
-int Simulation::simulate(SimulationParameters sim, AutomatonCell ***lattice, Cell *cells, int opId)
+int Simulation::simulate(SimulationParameters sim, AutomatonCell ***lattice, std::deque<Cell> &cells, int opId)
 {
     cout<<"OPID => "<<opId<<endl;
     switch(opId)
@@ -143,7 +143,7 @@ int Simulation::generateOpId()
     else
         return EVOLVE_GENETIC_CODE;
 }
-int Simulation::evolveGeneticCode(SimulationParameters sim,Cell *cells)
+int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<Cell> &cells)
 {
     for(int i=0;i<sim.getCellCount();i++)
     {

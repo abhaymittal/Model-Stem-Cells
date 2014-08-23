@@ -200,7 +200,7 @@ int Environment::setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap){
     return 0;
 }
 
-int Environment::createCells(int radius, int senseRadius, SimulationParameters sim, Cell *cells, AutomatonCell ***environment) {
+int Environment::createCells(int radius, int senseRadius, SimulationParameters sim, std::deque<Cell> &cells, AutomatonCell ***environment) {
     int width=sim.getLatticeWidth();
     int height=sim.getLatticeHeight();
     int depth=sim.getLatticeDepth();
