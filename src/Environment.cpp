@@ -205,23 +205,24 @@ int Environment::createCells(int radius, int senseRadius, SimulationParameters s
     int height=sim.getLatticeHeight();
     int depth=sim.getLatticeDepth();
      int x,y,z;
-
-    for(int i=0;i<sim.getCellCount();i++)
+    int i=0;
+    for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
         do {
             x=sim.getFiberLength()+(rand()%(width-2*sim.getFiberLength()));
             y=sim.getFiberLength()+(rand()%(height-2*sim.getFiberLength()));
             z=sim.getFiberLength()+(rand()%(depth-2*sim.getFiberLength()));
         } while(environment[x][y][z].getId()!=0);
-        cells[i].setCentroid(*new Point(x,y,z));
-        cells[i].setId(i+1);
-        cells[i].setSenseRadius(senseRadius);
-        cells[i].setRadius(radius);
-        cells[i].setECadherin(1.0F);
-        cells[i].setEB(0.0F);
+        it->setCentroid(*new Point(x,y,z));
+        it->setId(i+1);
+        it->setSenseRadius(senseRadius);
+        it->setRadius(radius);
+        it->setECadherin(1.0F);
+        it->setEB(0.0F);
         environment[x][y][z].setId(i+1);
         environment[x][y][z].setType(2);
         environment[x][y][z].setCount(0);
+        i++;
 
     }
     cout<<"Cells created\n";

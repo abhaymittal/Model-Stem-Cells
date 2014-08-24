@@ -28,16 +28,16 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, st
     double sigma=1;
     double sigmaSqr=sigma*sigma;
 
-    for(int i=0;i<sim.getCellCount();i++)
+    for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
         sumFiber=0;
-        for(int x=cells[i].getCentroid().getX()-cells[i].getSenseRadius();x<=cells[i].getCentroid().getX()+cells[i].getSenseRadius();x++)
+        for(int x=it->getCentroid().getX()-it->getSenseRadius();x<=it->getCentroid().getX()+it->getSenseRadius();x++)
         {
-            for(int y=cells[i].getCentroid().getY()-cells[i].getSenseRadius();y<=cells[i].getCentroid().getY()+cells[i].getSenseRadius();y++)
+            for(int y=it->getCentroid().getY()-it->getSenseRadius();y<=it->getCentroid().getY()+it->getSenseRadius();y++)
             {
-                for(int z=cells[i].getCentroid().getZ()-cells[i].getSenseRadius();z<=cells[i].getCentroid().getZ()+cells[i].getSenseRadius();z++)
+                for(int z=it->getCentroid().getZ()-it->getSenseRadius();z<=it->getCentroid().getZ()+it->getSenseRadius();z++)
                 {
-                    neighbourFiber[x-cells[i].getCentroid().getX()+cells[i].getSenseRadius()][y-cells[i].getCentroid().getY()+cells[i].getSenseRadius()][z-cells[i].getCentroid().getZ()+cells[i].getSenseRadius()]=lattice[x][y][z].getCount();
+                    neighbourFiber[x-it->getCentroid().getX()+it->getSenseRadius()][y-it->getCentroid().getY()+it->getSenseRadius()][z-it->getCentroid().getZ()+it->getSenseRadius()]=lattice[x][y][z].getCount();
                     sumFiber+=lattice[x][y][z].getCount();
                 }
             }
@@ -58,17 +58,17 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, st
                     if(r<probabMove)
                     {
                         //Remove cell from current location (lattice DB)
-                        lattice[cells[i].getCentroid().getX()][cells[i].getCentroid().getY()][cells[i].getCentroid().getZ()].setType(1);
-                        lattice[cells[i].getCentroid().getX()][cells[i].getCentroid().getY()][cells[i].getCentroid().getZ()].setId(0);
-                        lattice[cells[i].getCentroid().getX()][cells[i].getCentroid().getY()][cells[i].getCentroid().getZ()].setCount(0);
+                        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(1);
+                        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setId(0);
+                        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setCount(0);
 
                         //Reset cell centroid
-                        Point p(x+cells[i].getCentroid().getX()-cells[i].getSenseRadius(),y+cells[i].getCentroid().getY()-cells[i].getSenseRadius(),z+cells[i].getCentroid().getZ()-cells[i].getSenseRadius());
-                        cells[i].setCentroid(p);
+                        Point p(x+it->getCentroid().getX()-it->getSenseRadius(),y+it->getCentroid().getY()-it->getSenseRadius(),z+it->getCentroid().getZ()-it->getSenseRadius());
+                        it->setCentroid(p);
 
                         //Move cell to new location (lattice DB)
                         lattice[p.getX()][p.getY()][p.getZ()].setType(2);
-                        lattice[p.getX()][p.getY()][p.getZ()].setId(cells[i].getId());
+                        lattice[p.getX()][p.getY()][p.getZ()].setId(it->getId());
                         lattice[p.getX()][p.getY()][p.getZ()].setCount(0);
 
                         //exit the loop (goto used to avoid checking flags)
@@ -89,14 +89,14 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
     float totalNeighbourEC=0;
     float EBNew;
     int totalNeighbours=(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1);
-    for(int i=0;i<sim.getCellCount();i++)
+    for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
         sumFiber=0;
-        for(int x=cells[i].getCentroid().getX()-cells[i].getSenseRadius();x<=cells[i].getCentroid().getX()+cells[i].getSenseRadius();x++)
+        for(int x=it->getCentroid().getX()-it->getSenseRadius();x<=it->getCentroid().getX()+it->getSenseRadius();x++)
         {
-            for(int y=cells[i].getCentroid().getY()-cells[i].getSenseRadius();y<=cells[i].getCentroid().getY()+cells[i].getSenseRadius();y++)
+            for(int y=it->getCentroid().getY()-it->getSenseRadius();y<=it->getCentroid().getY()+it->getSenseRadius();y++)
             {
-                for(int z=cells[i].getCentroid().getZ()-cells[i].getSenseRadius();z<=cells[i].getCentroid().getZ()+cells[i].getSenseRadius();z++)
+                for(int z=it->getCentroid().getZ()-it->getSenseRadius();z<=it->getCentroid().getZ()+it->getSenseRadius();z++)
                 {
                     sumFiber+=lattice[x][y][z].getCount();
                     if(lattice[x][y][z].getType()==2)
@@ -108,7 +108,7 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
             }
         }
         EBNew=((static_cast<float>(sumFiber))/(sumFiber+k))+(totalNeighbourEC/totalNeighbours);
-        cells[i].setEB(EBNew);
+        it->setEB(EBNew);
     }
     return 0;
 }
@@ -145,11 +145,11 @@ int Simulation::generateOpId()
 }
 int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<Cell> &cells)
 {
-    for(int i=0;i<sim.getCellCount();i++)
+    for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
-        cells[i].setGeneticCode(0, cells[i].getGeneticCode(0) & cells[i].getGeneticCode(1) );
-        cells[i].setGeneticCode(1, cells[i].getGeneticCode(1) | cells[i].getGeneticCode(2) );
-        cells[i].setGeneticCode(2, !(cells[i].getGeneticCode(2)) );
+        it->setGeneticCode(0, it->getGeneticCode(0) & it->getGeneticCode(1) );
+        it->setGeneticCode(1, it->getGeneticCode(1) | it->getGeneticCode(2) );
+        it->setGeneticCode(2, !(it->getGeneticCode(2)) );
     }
     return 0;
 }
