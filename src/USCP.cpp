@@ -58,11 +58,12 @@ int main() {
     deque<Cell> cells(sim.getCellCount());
     env.createCells(1,1,sim,cells,environment);
     Simulation simul;
-    for(int itr=0;itr<10000;itr++)
+    for(int itr=0;itr<1000;itr++)
     {
         int opId=simul.generateOpId();
         cout<<"Iteration - "<<itr<<endl;
         simul.simulate(sim,environment,cells,opId);
+        simul.increaseAge(cells,1,1,sim,environment);
     }
 
     Utilities util;
