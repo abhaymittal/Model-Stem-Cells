@@ -78,7 +78,7 @@ public:
     *   @param  senseRadius : The sensing radius of new cells
     *   @param  sim : The simulation parameters
     */
-    int increaseAge(std::deque& cells, int radius, int senseRadius, SimulationParameters sim);
+    int increaseAge(std::deque<Cell>& cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment);
 
     /**
     *   @brief  Function to split a cell into two cells
