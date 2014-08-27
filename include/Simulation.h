@@ -71,6 +71,26 @@ public:
     */
     int simulate(SimulationParameters sim, AutomatonCell ***lattice, std::deque<Cell> &cells, int opId);
 
+    /**
+    *   @brief  Function to increase age of all cells and multiply cells
+    *   @param cells : the deque of cells
+    *   @param  radius : the radius of the new cells
+    *   @param  senseRadius : The sensing radius of new cells
+    *   @param  sim : The simulation parameters
+    */
+    int increaseAge(std::deque& cells, int radius, int senseRadius, SimulationParameters sim);
+
+    /**
+    *   @brief  Function to split a cell into two cells
+    *   @param agedCell : The cell which has to be split
+    *   @param  cells :  The deque of cells
+    *   @param  environment : The lattice
+    *   @param  radius : The radius of new cell
+    *   @param  senseRadius : The sensing radius of new cell
+    *   @param  sim : The simulation parameters
+    */
+    int splitCell(Cell& agedCell, std::deque<Cell>& cells, AutomatonCell ***environment, int radius, int senseRadius, SimulationParameters sim);
+
 };
 
 #endif // SIMULATION_H
