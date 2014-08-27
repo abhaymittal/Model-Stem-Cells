@@ -1,9 +1,10 @@
 #include "Cell.h"
+#include<cstdlib>
 
 Cell::Cell():id(0),radius(0),senseRadius(0),eCadherin(0.0),centroid(*new Point(0,0,0)),EB(0.0),age(0)
 {
     int i=0;
-    for(i=0;i<3;i=++) {
+    for(i=0;i<3;i++) {
         geneticCode[i]=((rand()%2)==0)?false:true;
     }
 }
@@ -56,6 +57,7 @@ float Cell::getECadherin() const {
 
 int Cell::setEB(float EB_) {
     EB=EB_;
+    return 0;
 }
 float Cell::getEB() const {
     return EB;
@@ -84,15 +86,15 @@ int Cell::setGeneticCode(int index,bool gCode) {
     return 0;
 }
 
- int getAge() {
+ int Cell::getAge() {
     return age;
 }
 
-int setAge(int age_) {
+int Cell::setAge(int age_) {
     age=age_;
 }
 
-    int incrementAge() {
+int Cell::incrementAge() {
     age++;
     return age;
 }
