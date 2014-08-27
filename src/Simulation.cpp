@@ -155,9 +155,9 @@ int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<Cell> &cel
 }
 
 
-int Simulation::increaseAge(std::deque& cells, int radius, int senseRadius, SimulationParameters sim) {
-     Cell *lastCell=cells.end();
-    for(std::deque<Cell>::iterator it = cells.begin(); it!=lastCell; it++) {
+int Simulation::increaseAge(std::deque<Cell>& cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment) {
+    long int lastId = cells.back().getId();
+    for(std::deque<Cell>::iterator it = cells.begin(); it->getId()!=lastId; it++) {
             if(it->incrementAge()>30) {
                 it->setAge(0);
                 splitCell(*it,cells,environment,radius,senseRadius,sim);
@@ -182,8 +182,8 @@ int Simulation::splitCell(Cell& agedCell, std::deque<Cell>& cells, AutomatonCell
         {
             for(int z=agedCell.getCentroid().getZ()-agedCell.getSenseRadius();z<=agedCell.getCentroid().getZ()+agedCell.getSenseRadius();z++)
             {
-                neighbourFiber[x-agedCell.getCentroid().getX()+agedCell.getSenseRadius()][y-agedCell.getCentroid().getY()+agedCell.getSenseRadius()][z-agedCell.getCentroid().getZ()+agedCell.getSenseRadius()]=lattice[x][y][z].getCount();
-                sumFiber+=lattice[x][y][z].getCount();
+                neighbourFiber[x-agedCell.getCentroid().getX()+agedCell.getSenseRadius()][y-agedCell.getCentroid().getY()+agedCell.getSenseRadius()][z-agedCell.getCentroid().getZ()+agedCell.getSenseRadius()]=environment[x][y][z].getCount();
+                sumFiber+=environment[x][y][z].getCount();
             }
         }
     }
@@ -205,9 +205,9 @@ int Simulation::splitCell(Cell& agedCell, std::deque<Cell>& cells, AutomatonCell
                 double r =(static_cast<double>(rand()%100))/100;
                 if(r<probabNew)
                 {
-                    Cell newCell();
+                    Cell newCell;
                     newCell.setCentroid(Point(x,y,z));
-                    newCell.setId(cells.back()->getId()+1);
+                    newCell.setId(cells.back().getId()+1);
                     newCell.setSenseRadius(senseRadius);
                     newCell.setRadius(radius);
                     newCell.setECadherin(1.0F);
