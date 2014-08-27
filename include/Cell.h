@@ -21,6 +21,7 @@ private:
     float eCadherin;    /**<A protein named ECadherin*/
     float EB;           /**<Denotes ECadherin-Beta Cadherin*/
     bool geneticCode[3];/**<An array of genetic code*/
+    int age;
 
 public:
 
@@ -138,6 +139,25 @@ public:
     *   @return 0
     */
     int setGeneticCode(int index,bool gC);
+
+    /**
+    *   @brief  Getter function for age of cell
+    *   @return  the age of cell
+    */
+    int getAge();
+
+    /**
+    *   @brief  Setter function for age of cell
+    *   @param  age_ : The new age of cell
+    *   @return 0
+    */
+    int setAge(int age_);
+
+    /**
+    *   @brief  Age incrementer of cell.
+    *   @return  New age
+    */
+    int incrementAge();
 
 };
 

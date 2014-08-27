@@ -1,7 +1,12 @@
 #include "Cell.h"
 
-Cell::Cell():id(0),radius(0),senseRadius(0),eCadherin(0.0),centroid(*new Point(0,0,0)),EB(0.0)
-{}
+Cell::Cell():id(0),radius(0),senseRadius(0),eCadherin(0.0),centroid(*new Point(0,0,0)),EB(0.0),age(0)
+{
+    int i=0;
+    for(i=0;i<3;i=++) {
+        geneticCode[i]=((rand()%2)==0)?false:true;
+    }
+}
 
 Cell::~Cell()
 {}
@@ -77,4 +82,17 @@ int Cell::setGeneticCode(bool *gCode) {
 int Cell::setGeneticCode(int index,bool gCode) {
     geneticCode[index]=gCode;
     return 0;
+}
+
+ int getAge() {
+    return age;
+}
+
+int setAge(int age_) {
+    age=age_;
+}
+
+    int incrementAge() {
+    age++;
+    return age;
 }
