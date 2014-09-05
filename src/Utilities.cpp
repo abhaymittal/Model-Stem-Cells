@@ -60,7 +60,7 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
     }
 }
 
-int Utilities::writeIteration(SimulationParameters sim, AutomatonCell ***environment, int iterationNumber)
+int Utilities::writeIteration(SimulationParameters sim, AutomatonCell ***environment, std::deque<Cell> &cells, int iterationNumber)
 {
     string filename;
     stringstream ss;
@@ -80,7 +80,17 @@ int Utilities::writeIteration(SimulationParameters sim, AutomatonCell ***environ
                     outputFile << x << "," << y << "," << z <<"," << environment[x][y][z].getType() << "," << environment[x][y][z].getId() << ",";
                     if(environment[x][y][z].getType()==2)
                     {
-                        outputFile << "0" << "\n";
+                        int cellID=environment[x][y][z].getId();
+                        int cellAge=0;
+                        for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
+                        {
+                            if(it->getId()==cellID)
+                            {
+                                 cellAge=it->getAge();
+                                 break;
+                            }
+                        }
+                        outputFile << cellAge << "\n";
                     }
                     else
                     {

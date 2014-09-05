@@ -61,7 +61,7 @@ int main() {
     Utilities util;
     int maxIteration = 100;
 
-    util.writeIteration(sim, environment, 0);
+    util.writeIteration(sim, environment, cells, 0);
 
     for(int itr=1; itr<=maxIteration; itr++)
     {
@@ -69,7 +69,7 @@ int main() {
         cout<<"Iteration - "<<itr<<endl;
         simul.simulate(sim,environment,cells,opId);
         simul.increaseAge(cells,1,1,sim,environment);
-        util.writeIteration(sim, environment, itr);
+        util.writeIteration(sim, environment, cells, itr);
     }
 
     cout<<"Going to generate file"<<endl;

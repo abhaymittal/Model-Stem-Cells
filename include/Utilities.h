@@ -15,6 +15,9 @@
 
 #include "AutomatonCell.h"
 #include "SimulationParameters.h"
+#include "Cell.h"
+#include <deque>
+
 class Utilities {
 public:
 
@@ -49,7 +52,7 @@ public:
     *   @param[in]  iterationNumber : the output file will be saved with name "iterationNumber.txt"
     *   @return 	int             : 0 for success, -1 for failure
     */
-    int writeIteration(SimulationParameters sim, AutomatonCell ***environment, int iterationNumber);
+    int writeIteration(SimulationParameters sim, AutomatonCell ***environment, std::deque<Cell> &cells, int iterationNumber);
 
 };
 
