@@ -8,6 +8,8 @@
 #include "Utilities.h"
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <sstream>
 
 Utilities::Utilities() {
 	// TODO Auto-generated constructor stub
@@ -56,4 +58,45 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
             }
         break;
     }
+}
+
+int Utilities::writeIteration(SimulationParameters sim, AutomatonCell ***environment, int iterationNumber)
+{
+    string filename;
+    stringstream ss;
+    ss << "iterations/" << iterationNumber << ".txt";
+    filename = ss.str();
+    ofstream outputFile(filename.c_str());
+
+    if(outputFile.is_open())
+    {
+
+        for(int x=0;x<sim.getLatticeWidth();x++)
+        {
+            for(int y=0;y<sim.getLatticeHeight();y++)
+            {
+                for(int z=0;z<sim.getLatticeDepth();z++)
+                {
+                    outputFile << x << "," << y << "," << z <<"," << environment[x][y][z].getType() << "," << environment[x][y][z].getId() << ",";
+                    if(environment[x][y][z].getType()==2)
+                    {
+                        outputFile << "0" << "\n";
+                    }
+                    else
+                    {
+                        outputFile << "-1" << "\n";
+                    }
+                }
+            }
+        }
+        outputFile.close();
+        cout << "\n" << filename << " saved\n";
+    }
+    else
+    {
+        cout << "Error in saving " << filename << "\n";
+        return -1;
+    }
+
+    return 0;
 }

@@ -58,15 +58,20 @@ int main() {
     deque<Cell> cells(sim.getCellCount());
     env.createCells(1,1,sim,cells,environment);
     Simulation simul;
-    for(int itr=0;itr<1000;itr++)
+    Utilities util;
+    int maxIteration = 100;
+
+    util.writeIteration(sim, environment, 0);
+
+    for(int itr=1; itr<=maxIteration; itr++)
     {
         int opId=simul.generateOpId();
         cout<<"Iteration - "<<itr<<endl;
         simul.simulate(sim,environment,cells,opId);
         simul.increaseAge(cells,1,1,sim,environment);
+        util.writeIteration(sim, environment, itr);
     }
 
-    Utilities util;
     cout<<"Going to generate file"<<endl;
     /*******Generate Output file*********/
     util.generateECMFile(sim, environment, util.COUNT);
