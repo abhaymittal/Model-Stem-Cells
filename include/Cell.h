@@ -21,7 +21,7 @@ private:
     float eCadherin;    /**<A protein named ECadherin*/
     float EB;           /**<Denotes ECadherin-Beta Cadherin*/
     bool geneticCode[3];/**<An array of genetic code*/
-    int age;
+    int age;            /**<The age of cell*/
 
 public:
 
