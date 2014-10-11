@@ -1,0 +1,48 @@
+digraph tree
+{
+    nodesep=0.5;
+   
+    rankdir=LR;    
+    fixedsize=true;          
+    node [style="filled", width=0, height=0, shape=box, fillcolor="#E5E5E5", concentrate=true]
+ 
+    param [label="Parameters" shape=box, width=3]
+
+    param_lattice [shape=point]
+    lattice [label="Lattice", width=3]
+    param_lattice -> lattice
+
+    lattice_lheight [shape=point]
+    lheight [label="Height", width=3]
+    lattice_lheight -> lheight
+
+    lattice_lwidth [shape=point]
+    lwidth [label="Width", width=3]
+    lattice_lwidth -> lwidth
+
+    lattice_ldepth [shape=point]
+    ldepth [label="Depth", width=3]
+    lattice_ldepth -> ldepth
+
+    {
+        rank=same;
+        lattice -> lattice_lheight -> lattice_lwidth -> lattice_ldepth [arrowhead=none]
+    }
+
+    param_fibcount [shape=point]
+    fibcount [label="FiberCount", width=3]
+    param_fibcount -> fibcount
+
+    param_fiblength [shape=point]
+    fiblength [label="FiberLength", width=3]
+    param_fiblength -> fiblength
+
+    param_cellcount [shape=point]
+    cellcount [label="CellCount", width=3]
+    param_cellcount -> cellcount
+ 
+    {
+        rank=same;
+        param -> param_lattice -> param_fibcount -> param_fiblength -> param_cellcount [arrowhead=none]
+    }
+}
