@@ -27,15 +27,15 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, st
     double mu=0;
     double sigma=1;
     double sigmaSqr=sigma*sigma;
-
+    int i,j,k,x,y,z;
     for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
         sumFiber=0;
-        for(int x=it->getCentroid().getX()-it->getSenseRadius();x<=it->getCentroid().getX()+it->getSenseRadius();x++)
+        for(x=it->getCentroid().getX()-it->getSenseRadius();x<=it->getCentroid().getX()+it->getSenseRadius();x++)
         {
-            for(int y=it->getCentroid().getY()-it->getSenseRadius();y<=it->getCentroid().getY()+it->getSenseRadius();y++)
+            for(y=it->getCentroid().getY()-it->getSenseRadius();y<=it->getCentroid().getY()+it->getSenseRadius();y++)
             {
-                for(int z=it->getCentroid().getZ()-it->getSenseRadius();z<=it->getCentroid().getZ()+it->getSenseRadius();z++)
+                for(z=it->getCentroid().getZ()-it->getSenseRadius();z<=it->getCentroid().getZ()+it->getSenseRadius();z++)
                 {
                     neighbourFiber[x-it->getCentroid().getX()+it->getSenseRadius()][y-it->getCentroid().getY()+it->getSenseRadius()][z-it->getCentroid().getZ()+it->getSenseRadius()]=lattice[x][y][z].getCount();
                     sumFiber+=lattice[x][y][z].getCount();
@@ -44,17 +44,21 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, st
         }
         mean=(static_cast<int>(sumFiber))/(num*num*num);
         mu=mean;
-        for(int x=0;x<num;x++)
+        for(i=0;i<num;i++)
         {
-            for(int y=0;y<num;y++)
+            for(j=0;j<num;j++)
             {
-                for(int z=0;z<num;z++)
+                for(k=0;k<num;k++)
                 {
+                    x=i+it->getCentroid().getX()-it->getSenseRadius();
+                    y=j+it->getCentroid().getY()-it->getSenseRadius();
+                    z=k+it->getCentroid().getZ()-it->getSenseRadius();
+
                     if((x<sim.getFiberLength())||(x>(sim.getLatticeWidth()-sim.getFiberLength()))||(y<sim.getFiberLength())||(y>(sim.getLatticeWidth()-sim.getFiberLength()))||(z<sim.getFiberLength())||(z>(sim.getLatticeWidth()-sim.getFiberLength())))
                         continue;
-                    double exponent=-1*(neighbourFiber[x][y][z]-mu)*(neighbourFiber[x][y][z]-mu)/(2*sigmaSqr);
+                    double exponent=-1*(neighbourFiber[i][j][k]-mu)*(neighbourFiber[i][j][k]-mu)/(2*sigmaSqr);
                     probabMove=exp(exponent);
-                    double r =(static_cast<double>(rand()%100))/100;
+                    double r =(static_cast<double>(rand()%100))/100; //Generate a normalized random number
                     if(r<probabMove)
                     {
                         //Remove cell from current location (lattice DB)
@@ -63,7 +67,7 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, st
                         lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setCount(0);
 
                         //Reset cell centroid
-                        Point p(x+it->getCentroid().getX()-it->getSenseRadius(),y+it->getCentroid().getY()-it->getSenseRadius(),z+it->getCentroid().getZ()-it->getSenseRadius());
+                        Point p(x,y,z);
                         it->setCentroid(p);
 
                         //Move cell to new location (lattice DB)
@@ -175,12 +179,13 @@ int Simulation::splitCell(Cell& agedCell, std::deque<Cell>& cells, AutomatonCell
     double mu=0;
     double sigma=1;
     double sigmaSqr=sigma*sigma;
+    int i,j,k,x,y,z;
 
-    for(int x=agedCell.getCentroid().getX()-agedCell.getSenseRadius();x<=agedCell.getCentroid().getX()+agedCell.getSenseRadius();x++)
+    for(x=agedCell.getCentroid().getX()-agedCell.getSenseRadius();x<=agedCell.getCentroid().getX()+agedCell.getSenseRadius();x++)
     {
-        for(int y=agedCell.getCentroid().getY()-agedCell.getSenseRadius();y<=agedCell.getCentroid().getY()+agedCell.getSenseRadius();y++)
+        for(y=agedCell.getCentroid().getY()-agedCell.getSenseRadius();y<=agedCell.getCentroid().getY()+agedCell.getSenseRadius();y++)
         {
-            for(int z=agedCell.getCentroid().getZ()-agedCell.getSenseRadius();z<=agedCell.getCentroid().getZ()+agedCell.getSenseRadius();z++)
+            for(z=agedCell.getCentroid().getZ()-agedCell.getSenseRadius();z<=agedCell.getCentroid().getZ()+agedCell.getSenseRadius();z++)
             {
                 neighbourFiber[x-agedCell.getCentroid().getX()+agedCell.getSenseRadius()][y-agedCell.getCentroid().getY()+agedCell.getSenseRadius()][z-agedCell.getCentroid().getZ()+agedCell.getSenseRadius()]=environment[x][y][z].getCount();
                 sumFiber+=environment[x][y][z].getCount();
@@ -190,17 +195,20 @@ int Simulation::splitCell(Cell& agedCell, std::deque<Cell>& cells, AutomatonCell
 
     mean=(static_cast<int>(sumFiber))/(num*num*num);
     mu=mean;
-    for(int x=0;x<num;x++)
+    for(i=0;i<num;i++)
     {
-        for(int y=0;y<num;y++)
+        for(j=0;j<num;j++)
         {
-            for(int z=0;z<num;z++)
+            for(k=0;k<num;k++)
             {
+                x=i+agedCell.getCentroid().getX()-agedCell.getSenseRadius();
+                y=j+agedCell.getCentroid().getY()-agedCell.getSenseRadius();
+                z=k+agedCell.getCentroid().getZ()-agedCell.getSenseRadius();
                 if((x<sim.getFiberLength())||(x>(sim.getLatticeWidth()-sim.getFiberLength()))||(y<sim.getFiberLength())||(y>(sim.getLatticeWidth()-sim.getFiberLength()))||(z<sim.getFiberLength())||(z>(sim.getLatticeWidth()-sim.getFiberLength())))
                     continue;
                 if((environment[x][y][z].getType()==2))
                         continue;
-                double exponent=-1*(neighbourFiber[x][y][z]-mu)*(neighbourFiber[x][y][z]-mu)/(2*sigmaSqr);
+                double exponent=-1*(neighbourFiber[i][j][k]-mu)*(neighbourFiber[i][j][k]-mu)/(2*sigmaSqr);
                 probabNew=exp(exponent);
                 double r =(static_cast<double>(rand()%100))/100;
                 if(r<probabNew)
