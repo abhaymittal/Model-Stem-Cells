@@ -163,6 +163,7 @@ int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<Cell> &cel
 int Simulation::increaseAge(std::deque<Cell>& cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment) {
     long int lastId = cells.back().getId();
     queue<Cell> q;
+    cout<<"Got last id"<<endl;
     for(std::deque<Cell>::iterator it = cells.begin(); it->getId()!=lastId; it++) {
             if(it->incrementAge()>30) {
                 it->setAge(0);
