@@ -4,6 +4,7 @@
 #include "Point.h"
 #include <cmath>
 #include <cstdlib>
+#include <queue>
 
 #define MOVE_CELLS 1
 #define UPDATE_EB 2
@@ -161,13 +162,19 @@ int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<Cell> &cel
 
 int Simulation::increaseAge(std::deque<Cell>& cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment) {
     long int lastId = cells.back().getId();
+    queue<Cell> q;
     for(std::deque<Cell>::iterator it = cells.begin(); it->getId()!=lastId; it++) {
             if(it->incrementAge()>30) {
                 it->setAge(0);
-                splitCell(*it,cells,environment,radius,senseRadius,sim);
-
+                q.push(*it);
             }
     }
+    while(!q.empty())
+    {
+        splitCell(q.front(),cells,environment,radius,senseRadius,sim);
+        q.pop();
+    }
+    return 0;
 }
 
 int Simulation::splitCell(Cell& agedCell, std::deque<Cell>& cells, AutomatonCell ***environment, int radius, int senseRadius, SimulationParameters sim) {
