@@ -116,10 +116,8 @@ Line Environment::drawLine(Point p1, Point p2)
 
 int Environment::generatePtFreqMap(Line* line, SimulationParameters sim,AutomatonCell ***cells)
 {
-    cout<<"Enter generate PT Freq MAP"<<endl;
     for(long i=0;i<sim.getFiberCount();i++)
     {
-        cout<<"Line "<<i+1<<endl;
         for(int j=0;j<line[i].getNumberOfPoints();j++)
         {
            // cout<<" Line ==> "<<line[i].getPoint(j).getX()<<" "<<line[i].getPoint(j).getY()<<" "<<line[i].getPoint(j).getZ()<<endl;
@@ -127,7 +125,6 @@ int Environment::generatePtFreqMap(Line* line, SimulationParameters sim,Automato
             cells[line[i].getPoint(j).getX()][line[i].getPoint(j).getY()][line[i].getPoint(j).getZ()].incrementCount();
         }
     }
-    cout<<"Working\n";
     return 0;
 }
 
