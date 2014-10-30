@@ -9,7 +9,8 @@
 #define CELL_H
 
 #include "Point.h"
-
+#include "AutomatonCell.h"
+#include "SimulationParameters.h"
 
 class Cell
 {
@@ -158,6 +159,15 @@ public:
     *   @return  New age
     */
     int incrementAge();
+
+     /**
+    *   @brief  Function for getting favorable location for new cell
+    *   @param[out] location : favorable location for new cell
+    *   @param[in] environment : The lattice
+    *   @param[in] sim : The simulation parameters
+    *   @return 0 : OK, -1 : ERROR
+    */
+    int getFavorableLocation(Point& location, AutomatonCell ***environment, SimulationParameters sim);
 
 };
 
