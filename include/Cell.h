@@ -13,7 +13,7 @@
 
 class Cell
 {
-private:
+protected:
     long int id;        /**<The id of cell*/
     Point centroid;     /**<The centroid of the cell*/
     int radius;         /**<The radius of the cell*/
