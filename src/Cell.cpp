@@ -1,4 +1,5 @@
 #include "Cell.h"
+#include <cmath>
 #include<cstdlib>
 
 Cell::Cell():id(0),radius(0),senseRadius(0),eCadherin(0.0),centroid(*new Point(0,0,0)),EB(0.0),age(0)
@@ -97,4 +98,71 @@ int Cell::setAge(int age_) {
 int Cell::incrementAge() {
     age++;
     return age;
+}
+
+int Cell::getFavorableLocation(Point& location, AutomatonCell ***environment, SimulationParameters sim) {
+    int num=(2*senseRadius+1);
+    int neighbourFiber[num][num][num];
+    int probabNew;
+    int sumFiber=0;
+    double mean;
+    double mu=0;
+    double sigma=1;
+    double sigmaSqr=sigma*sigma;
+    int i,j,k,x,y,z;
+
+    int xMin = centroid.getX()-senseRadius;
+    int xMax = centroid.getX()+senseRadius;
+
+    int yMin = centroid.getY()-senseRadius;
+    int yMax = centroid.getY()+senseRadius;
+
+    int zMin = centroid.getZ()-senseRadius;
+    int zMax = centroid.getZ()+senseRadius;
+
+    for(x=xMin;x<=xMax;x++)
+    {
+        for(y=yMin;y<=yMax;y++)
+        {
+            for(z=zMin;z<=zMax;z++)
+            {
+                neighbourFiber[x-xMin][y-yMin][z-zMin]=environment[x][y][z].getCount();
+                sumFiber+=environment[x][y][z].getCount();
+            }
+        }
+    }
+
+    mean=(static_cast<int>(sumFiber))/(num*num*num);
+    mu=mean;
+    for(i=0;i<num;i++)
+    {
+        for(j=0;j<num;j++)
+        {
+            for(k=0;k<num;k++)
+            {
+                x=i+xMin;
+                y=j+yMin;
+                z=k+zMin;
+                if((x<sim.getFiberLength())||(x>(sim.getLatticeWidth()-sim.getFiberLength()))||(y<sim.getFiberLength())||(y>(sim.getLatticeWidth()-sim.getFiberLength()))||(z<sim.getFiberLength())||(z>(sim.getLatticeWidth()-sim.getFiberLength())))
+                    continue;
+                if((environment[x][y][z].getType()==2))
+                        continue;
+                double exponent=-1*(neighbourFiber[i][j][k]-mu)*(neighbourFiber[i][j][k]-mu)/(2*sigmaSqr);
+                probabNew=exp(exponent);
+                double r =(static_cast<double>(rand()%100))/100;
+                if(r<probabNew)
+                {
+
+                    location.setX(x);
+                    location.setY(y);
+                    location.setZ(z);
+
+                    return 0;
+                }
+            }
+        }
+    }
+
+    return -1;
+
 }

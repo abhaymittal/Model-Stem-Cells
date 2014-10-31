@@ -77,6 +77,7 @@ public:
     *   @param  radius : the radius of the new cells
     *   @param  senseRadius : The sensing radius of new cells
     *   @param  sim : The simulation parameters
+    *   @param  environment : The lattice
     */
     int increaseAge(std::deque<Cell>& cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment);
 

@@ -20,69 +20,25 @@ Simulation::Simulation()
 
 int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, std::deque<Cell> &cells)
 {
-    int num=(2*cells[0].getSenseRadius()+1);
-    int neighbourFiber[num][num][num];
-    int probabMove;
-    int sumFiber=0;
-    double mean;
-    double mu=0;
-    double sigma=1;
-    double sigmaSqr=sigma*sigma;
-    int i,j,k,x,y,z;
     for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
-        sumFiber=0;
-        for(x=it->getCentroid().getX()-it->getSenseRadius();x<=it->getCentroid().getX()+it->getSenseRadius();x++)
-        {
-            for(y=it->getCentroid().getY()-it->getSenseRadius();y<=it->getCentroid().getY()+it->getSenseRadius();y++)
-            {
-                for(z=it->getCentroid().getZ()-it->getSenseRadius();z<=it->getCentroid().getZ()+it->getSenseRadius();z++)
-                {
-                    neighbourFiber[x-it->getCentroid().getX()+it->getSenseRadius()][y-it->getCentroid().getY()+it->getSenseRadius()][z-it->getCentroid().getZ()+it->getSenseRadius()]=lattice[x][y][z].getCount();
-                    sumFiber+=lattice[x][y][z].getCount();
-                }
-            }
-        }
-        mean=(static_cast<int>(sumFiber))/(num*num*num);
-        mu=mean;
-        for(i=0;i<num;i++)
-        {
-            for(j=0;j<num;j++)
-            {
-                for(k=0;k<num;k++)
-                {
-                    x=i+it->getCentroid().getX()-it->getSenseRadius();
-                    y=j+it->getCentroid().getY()-it->getSenseRadius();
-                    z=k+it->getCentroid().getZ()-it->getSenseRadius();
+        Point p;
+        int status = it->getFavorableLocation(p, lattice, sim);
 
-                    if((x<sim.getFiberLength())||(x>(sim.getLatticeWidth()-sim.getFiberLength()))||(y<sim.getFiberLength())||(y>(sim.getLatticeWidth()-sim.getFiberLength()))||(z<sim.getFiberLength())||(z>(sim.getLatticeWidth()-sim.getFiberLength())))
-                        continue;
-                    double exponent=-1*(neighbourFiber[i][j][k]-mu)*(neighbourFiber[i][j][k]-mu)/(2*sigmaSqr);
-                    probabMove=exp(exponent);
-                    double r =(static_cast<double>(rand()%100))/100; //Generate a normalized random number
-                    if(r<probabMove)
-                    {
-                        //Remove cell from current location (lattice DB)
-                        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(1);
-                        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setId(0);
-                        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setCount(0);
+        if(status!=0) continue;
 
-                        //Reset cell centroid
-                        Point p(x,y,z);
-                        it->setCentroid(p);
+        //Remove cell from current location (lattice DB)
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(1);
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setId(0);
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setCount(0);
 
-                        //Move cell to new location (lattice DB)
-                        lattice[p.getX()][p.getY()][p.getZ()].setType(2);
-                        lattice[p.getX()][p.getY()][p.getZ()].setId(it->getId());
-                        lattice[p.getX()][p.getY()][p.getZ()].setCount(0);
+        //Reset cell centroid
+        it->setCentroid(p);
 
-                        //exit the loop (goto used to avoid checking flags)
-                        goto cellMoved;
-                    }
-                }
-            }
-            cellMoved:;
-        }
+        //Move cell to new location (lattice DB)
+        lattice[p.getX()][p.getY()][p.getZ()].setType(2);
+        lattice[p.getX()][p.getY()][p.getZ()].setId(it->getId());
+        lattice[p.getX()][p.getY()][p.getZ()].setCount(0);
     }
     return 0;
 }
@@ -179,65 +135,23 @@ int Simulation::increaseAge(std::deque<Cell>& cells, int radius, int senseRadius
 }
 
 int Simulation::splitCell(Cell& agedCell, std::deque<Cell>& cells, AutomatonCell ***environment, int radius, int senseRadius, SimulationParameters sim) {
-    int num=(2*cells[0].getSenseRadius()+1);
-    int neighbourFiber[num][num][num];
-    int probabNew;
-    int sumFiber=0;
-    double mean;
-    double mu=0;
-    double sigma=1;
-    double sigmaSqr=sigma*sigma;
-    int i,j,k,x,y,z;
 
-    for(x=agedCell.getCentroid().getX()-agedCell.getSenseRadius();x<=agedCell.getCentroid().getX()+agedCell.getSenseRadius();x++)
-    {
-        for(y=agedCell.getCentroid().getY()-agedCell.getSenseRadius();y<=agedCell.getCentroid().getY()+agedCell.getSenseRadius();y++)
-        {
-            for(z=agedCell.getCentroid().getZ()-agedCell.getSenseRadius();z<=agedCell.getCentroid().getZ()+agedCell.getSenseRadius();z++)
-            {
-                neighbourFiber[x-agedCell.getCentroid().getX()+agedCell.getSenseRadius()][y-agedCell.getCentroid().getY()+agedCell.getSenseRadius()][z-agedCell.getCentroid().getZ()+agedCell.getSenseRadius()]=environment[x][y][z].getCount();
-                sumFiber+=environment[x][y][z].getCount();
-            }
-        }
-    }
+    Point loc;
+    int status = agedCell.getFavorableLocation(loc, environment, sim);
 
-    mean=(static_cast<int>(sumFiber))/(num*num*num);
-    mu=mean;
-    for(i=0;i<num;i++)
-    {
-        for(j=0;j<num;j++)
-        {
-            for(k=0;k<num;k++)
-            {
-                x=i+agedCell.getCentroid().getX()-agedCell.getSenseRadius();
-                y=j+agedCell.getCentroid().getY()-agedCell.getSenseRadius();
-                z=k+agedCell.getCentroid().getZ()-agedCell.getSenseRadius();
-                if((x<sim.getFiberLength())||(x>(sim.getLatticeWidth()-sim.getFiberLength()))||(y<sim.getFiberLength())||(y>(sim.getLatticeWidth()-sim.getFiberLength()))||(z<sim.getFiberLength())||(z>(sim.getLatticeWidth()-sim.getFiberLength())))
-                    continue;
-                if((environment[x][y][z].getType()==2))
-                        continue;
-                double exponent=-1*(neighbourFiber[i][j][k]-mu)*(neighbourFiber[i][j][k]-mu)/(2*sigmaSqr);
-                probabNew=exp(exponent);
-                double r =(static_cast<double>(rand()%100))/100;
-                if(r<probabNew)
-                {
-                    Cell newCell;
-                    newCell.setCentroid(Point(x,y,z));
-                    newCell.setId(cells.back().getId()+1);
-                    newCell.setSenseRadius(senseRadius);
-                    newCell.setRadius(radius);
-                    newCell.setECadherin(1.0F);
-                    newCell.setEB(0.0F);
-                    newCell.setAge(0);
+    if(status!=0) return status;
 
-                    cells.push_back(newCell);
-                    //exit the loop (goto used to avoid checking flags)
-                    goto cellGenerated;
-                }
-            }
-        }
-        cellGenerated:;
-    }
+    Cell newCell;
+    newCell.setCentroid(loc);
+    newCell.setId(cells.back().getId()+1);
+    newCell.setSenseRadius(senseRadius);
+    newCell.setRadius(radius);
+    newCell.setECadherin(1.0F);
+    newCell.setEB(0.0F);
+    newCell.setAge(0);
+
+    cells.push_back(newCell);
+
 
     return 0;
 
