@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="`pkg-config --cflags --libs libxml++-2.6`" />
@@ -25,6 +26,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -43,6 +45,8 @@
 		<Unit filename="include/Point.h" />
 		<Unit filename="include/Simulation.h" />
 		<Unit filename="include/SimulationParameters.h" />
+		<Unit filename="include/StemCell.h" />
+		<Unit filename="include/TACell.h" />
 		<Unit filename="include/Utilities.h" />
 		<Unit filename="include/Var.h" />
 		<Unit filename="src/AutomatonCell.cpp" />
@@ -52,6 +56,8 @@
 		<Unit filename="src/Point.cpp" />
 		<Unit filename="src/Simulation.cpp" />
 		<Unit filename="src/SimulationParameters.cpp" />
+		<Unit filename="src/StemCell.cpp" />
+		<Unit filename="src/TACell.cpp" />
 		<Unit filename="src/USCP.cpp" />
 		<Unit filename="src/Utilities.cpp" />
 		<Unit filename="src/Var.cpp" />

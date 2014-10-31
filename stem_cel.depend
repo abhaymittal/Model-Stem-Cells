@@ -760,12 +760,12 @@
 	"Cell.h"
 	<cstdlib>
 
-1412948537 /mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/include/Cell.h
+1414673625 /mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/include/Cell.h
 	"Point.h"
 
 1407075718 /mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/include/Point.h
 
-1408945038 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/Environment.cpp
+1414501498 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/Environment.cpp
 	"Environment.h"
 	<ctime>
 	<cstdlib>
@@ -795,22 +795,23 @@
 1405622641 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/Point.cpp
 	"Point.h"
 
-1408217906 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/Simulation.cpp
+1414673625 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/Simulation.cpp
 	"Simulation.h"
 	"AutomatonCell.h"
 	"Cell.h"
 	"Point.h"
 	<cmath>
 	<cstdlib>
+	<queue>
 	<iostream>
 
-1409130226 /mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/include/Simulation.h
+1414673909 /mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/include/Simulation.h
 	"SimulationParameters.h"
 	"AutomatonCell.h"
 	"Cell.h"
 	<deque>
 
-1409130248 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/USCP.cpp
+1414501430 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/USCP.cpp
 	<iostream>
 	"SimulationParameters.h"
 	"Environment.h"
