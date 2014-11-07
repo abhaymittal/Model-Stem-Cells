@@ -77,6 +77,15 @@ int main() {
     util.generateECMFile(sim, environment, util.COUNT);
     /*Testing for the System class*/
 
+    /*Free dynamic memory*/
+
+    for(int i=0;i<width;i++) {
+        for(int j=0;j<height;j++) {
+            delete[] environment[i][j];
+        }
+        delete[] environment[i];
+    }
+    delete[] environment;
 	return 0;
 
 }
