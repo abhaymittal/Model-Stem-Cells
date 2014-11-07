@@ -40,7 +40,13 @@ public:
     /**
     *   @brief  A virtual destructor
     */
-    virtual ~Line();
+    ~Line();
+    /**
+    *   @brief  Overloaded assignment operator
+    *   @param  obj: The source object of Line class
+    *   @return A new copy of the source object
+    */
+    Line operator=(const Line& obj);
 
     /**
     *   @brief  Getter function for the id
