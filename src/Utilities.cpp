@@ -70,7 +70,14 @@ int Utilities::writeIteration(SimulationParameters sim, AutomatonCell ***environ
 
     if(outputFile.is_open())
     {
+        //Map cellId to corresponding cellAge
+        int* cellAge = new int[(cells.back()).getId()+1](); // array of zeroes
+        for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
+        {
+            cellAge[it->getId()]=it->getAge();
+        }
 
+        //write to file
         for(int x=0;x<sim.getLatticeWidth();x++)
         {
             for(int y=0;y<sim.getLatticeHeight();y++)
@@ -80,17 +87,7 @@ int Utilities::writeIteration(SimulationParameters sim, AutomatonCell ***environ
                     outputFile << x << "," << y << "," << z <<"," << environment[x][y][z].getType() << "," << environment[x][y][z].getId() << ",";
                     if(environment[x][y][z].getType()==2)
                     {
-                        int cellID=environment[x][y][z].getId();
-                        int cellAge=0;
-                        for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
-                        {
-                            if(it->getId()==cellID)
-                            {
-                                 cellAge=it->getAge();
-                                 break;
-                            }
-                        }
-                        outputFile << cellAge << "\n";
+                        outputFile << cellAge[environment[x][y][z].getId()] << "\n";
                     }
                     else
                     {
@@ -101,6 +98,7 @@ int Utilities::writeIteration(SimulationParameters sim, AutomatonCell ***environ
         }
         outputFile.close();
         cout << "\n" << filename << " saved\n";
+        delete[] cellAge;
     }
     else
     {
