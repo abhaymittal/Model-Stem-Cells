@@ -93,6 +93,7 @@ int Cell::setGeneticCode(int index,bool gCode) {
 
 int Cell::setAge(int age_) {
     age=age_;
+    return 0;
 }
 
 int Cell::incrementAge() {
