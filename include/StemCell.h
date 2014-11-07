@@ -9,6 +9,7 @@
 #define STEMCELL_H
 
 #include "Cell.h"
+#include "TACell.h"
 
 
 class StemCell : public Cell
