@@ -210,7 +210,7 @@ int Environment::createCells(int radius, int senseRadius, SimulationParameters s
             y=sim.getFiberLength()+(rand()%(height-2*sim.getFiberLength()));
             z=sim.getFiberLength()+(rand()%(depth-2*sim.getFiberLength()));
         } while(environment[x][y][z].getId()!=0);
-        it->setCentroid(*new Point(x,y,z));
+        it->setCentroid(Point(x,y,z));
         it->setId(i+1);
         it->setSenseRadius(senseRadius);
         it->setRadius(radius);
