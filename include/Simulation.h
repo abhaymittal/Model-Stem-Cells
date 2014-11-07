@@ -1,4 +1,5 @@
 /**
+*   @class Simulation
 *   @brief  This class provides necessary functions for performing the simulation.
 
 *   It performs two operations: (i) Moving cells and (ii) updating the ECadherin -&beta; Catenin value.
