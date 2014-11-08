@@ -55,6 +55,9 @@ void SimulationParameters::loadParametersFromFile(std::string filename)
             fiberLength = rootNode->eval_to_number("//Parameters/FiberLength");
             fiberCount = rootNode->eval_to_number("//Parameters/FiberCount");
             cellCount = rootNode->eval_to_number("//Parameters/CellCount");
+            cellDivisionAge = rootNode->eval_to_number("//Parameters/CellDivisionAge");
+            maxIteration = rootNode->eval_to_number("//Parameters/MaxIteration");
+            alpha = rootNode->eval_to_number("//Parameters/Alpha");
         }
     }
     catch(const std::exception& ex)
