@@ -24,7 +24,7 @@ private:
 	long int fiberCount;	/**<The number of fibers in the lattice*/
 	int cellCount;          /**<The number of cells present at the beginning of simulation*/
 	int cellDivisionAge;    /**<The age after which the cell divides*/
-    int alpha;              /**<The probability of asymmetric division*/
+    double alpha;           /**<The probability of asymmetric division*/
     int maxIteration;       /**<The maximum number of simulation iteration*/
 
 public:
@@ -121,7 +121,7 @@ public:
     *   @brief  Getter function for the alpha value
     *   @return The probability of asymmetric division
     */
-	int getAlpha() const {
+	double getAlpha() const {
 		return alpha;
 	}
 
