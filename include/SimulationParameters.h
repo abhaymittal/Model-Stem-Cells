@@ -108,6 +108,30 @@ public:
 	int getCellCount() const {
 		return cellCount;
 	}
+
+	/**
+    *   @brief  Getter function for the cellDivisionAge
+    *   @return The age after which the cell divides
+    */
+	int getCellDivisionAge() const {
+		return cellDivisionAge;
+	}
+
+	/**
+    *   @brief  Getter function for the alpha value
+    *   @return The probability of asymmetric division
+    */
+	int getAlpha() const {
+		return alpha;
+	}
+
+	/**
+    *   @brief  Getter function for the maximum number of iterations
+    *   @return The maximum number of simulation iteration
+    */
+	int getMaxIteration() const {
+		return maxIteration;
+	}
 };
 
 #endif /* SIMULATIONPARAMETERS_H_ */
