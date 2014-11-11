@@ -23,24 +23,24 @@ Line Environment::drawLine(Point p1, Point p2)
     {
         if(abs(p2.getZ()-p1.getZ())>abs(p2.getY()-p1.getY()))
         {
-            indVal=*(new Var('z',2,abs(p2.getZ()-p1.getZ()),p1.getZ()));
+            indVal=Var('z',2,abs(p2.getZ()-p1.getZ()),p1.getZ());
             signInd=((p2.getZ()-p1.getZ())<0)?'-':'+';
 
-            depVal1=*(new Var('x',0,abs(p2.getX()-p1.getX()),p1.getX()));
+            depVal1=Var('x',0,abs(p2.getX()-p1.getX()),p1.getX());
             signDep1=((p2.getX()-p1.getX())<0)?'-':'+';
 
-            depVal2=*(new Var('y',1,abs(p2.getY()-p1.getY()),p1.getY()));
+            depVal2=Var('y',1,abs(p2.getY()-p1.getY()),p1.getY());
             signDep2=((p2.getY()-p1.getY())<0)?'-':'+';
         }
         else
         {
-            indVal=*(new Var('y',1,abs(p2.getY()-p1.getY()),p1.getY()));
+            indVal=Var('y',1,abs(p2.getY()-p1.getY()),p1.getY());
             signInd=((p2.getY()-p1.getY())<0)?'-':'+';
 
-            depVal1=*(new Var('z',2,abs(p2.getZ()-p1.getZ()),p1.getZ()));
+            depVal1=Var('z',2,abs(p2.getZ()-p1.getZ()),p1.getZ());
             signDep1=((p2.getZ()-p1.getZ())<0)?'-':'+';
 
-            depVal2=*(new Var('x',0,abs(p2.getX()-p1.getX()),p1.getX()));
+            depVal2=Var('x',0,abs(p2.getX()-p1.getX()),p1.getX());
             signDep2=((p2.getX()-p1.getX())<0)?'-':'+';
         }
     }
@@ -48,24 +48,24 @@ Line Environment::drawLine(Point p1, Point p2)
     {
         if (abs(p2.getZ()-p1.getZ())>abs(p2.getX()-p1.getX()))
         {
-            indVal=*(new Var('z',2,abs(p2.getZ()-p1.getZ()),p1.getZ()));
+            indVal=Var('z',2,abs(p2.getZ()-p1.getZ()),p1.getZ());
             signInd=((p2.getZ()-p1.getZ())<0)?'-':'+';
 
-            depVal1=*(new Var('x',0,abs(p2.getX()-p1.getX()),p1.getX()));
+            depVal1=Var('x',0,abs(p2.getX()-p1.getX()),p1.getX());
             signDep1=((p2.getX()-p1.getX())<0)?'-':'+';
 
-            depVal2=*(new Var('y',1,abs(p2.getY()-p1.getY()),p1.getY()));
+            depVal2=Var('y',1,abs(p2.getY()-p1.getY()),p1.getY());
             signDep2=((p2.getY()-p1.getY())<0)?'-':'+';
         }
         else
         {
-            indVal=*(new Var('x',0,abs(p2.getX()-p1.getX()),p1.getX()));
+            indVal=Var('x',0,abs(p2.getX()-p1.getX()),p1.getX());
             signInd=((p2.getX()-p1.getX())<0)?'-':'+';
 
-            depVal1=*(new Var('y',1,abs(p2.getY()-p1.getY()),p1.getY()));
+            depVal1=Var('y',1,abs(p2.getY()-p1.getY()),p1.getY());
             signDep1=((p2.getY()-p1.getY())<0)?'-':'+';
 
-            depVal2=*(new Var('z',2,abs(p2.getZ()-p1.getZ()),p1.getZ()));
+            depVal2=Var('z',2,abs(p2.getZ()-p1.getZ()),p1.getZ());
             signDep2=((p2.getZ()-p1.getZ())<0)?'-':'+';
         }
     }
@@ -210,7 +210,7 @@ int Environment::createCells(int radius, int senseRadius, SimulationParameters s
             y=sim.getFiberLength()+(rand()%(height-2*sim.getFiberLength()));
             z=sim.getFiberLength()+(rand()%(depth-2*sim.getFiberLength()));
         } while(environment[x][y][z].getId()!=0);
-        it->setCentroid(*new Point(x,y,z));
+        it->setCentroid(Point(x,y,z));
         it->setId(i+1);
         it->setSenseRadius(senseRadius);
         it->setRadius(radius);

@@ -2,7 +2,7 @@
 #include <cmath>
 #include<cstdlib>
 
-Cell::Cell():id(0),radius(0),senseRadius(0),eCadherin(0.0),centroid(*new Point(0,0,0)),EB(0.0),age(0)
+Cell::Cell():id(0),radius(0),senseRadius(0),eCadherin(0.0),centroid(Point(0,0,0)),EB(0.0),age(0)
 {
     int i=0;
     for(i=0;i<3;i++) {

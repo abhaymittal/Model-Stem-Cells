@@ -1,34 +1,36 @@
 #include "Line.h"
+#include<iostream>
 
-Line::Line() {
-	// TODO Auto-generated constructor stub
-
+Line::Line():id(0),numberOfPoints(0),point(NULL) {
 }
 
 Line::~Line() {
-
+    delete[] point;
 }
 
 
-Line::Line(int numberOfPoints)
-{
-    this->numberOfPoints=numberOfPoints;
-    this->point=new Point[numberOfPoints];
+Line::Line(int numberOfPoints_):id(0),numberOfPoints(numberOfPoints_),point(NULL) {
+    this->point=new Point[numberOfPoints_];
 }
 
-Line::Line(int id, int numberOfPoints)
-{
-    this->id=id;
-    this->numberOfPoints=numberOfPoints;
-    this->point=new Point[numberOfPoints];
+Line::Line(int id_, int numberOfPoints_):id(id_),numberOfPoints(numberOfPoints_),point(NULL) {
+    this->point=new Point[numberOfPoints_];
+}
+
+Line Line::operator=(const Line& obj) {
+    Line line(obj.getId(),obj.getNumberOfPoints());
+    for(int i=0;i<obj.getNumberOfPoints();i++){
+        line.setPoint(i,obj.getPoint(i));
+    }
+    return line;
 }
 
 long int Line::getId() const {
 		return id;
 	}
 
-int Line::setId(long int id) {
-    this->id = id;
+int Line::setId(long int id_) {
+    this->id = id_;
     return 0;
 }
 
