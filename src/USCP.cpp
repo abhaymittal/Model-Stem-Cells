@@ -29,6 +29,7 @@ int main() {
 	int depth = sim.getLatticeDepth();
 	long int fiberCount = sim.getFiberCount();
 	int fiberLength = sim.getFiberLength();
+	int maxIteration = sim.getMaxIteration();
     /*****Display Parameters' Value******/
 
 	cout << "height = " << height << endl;
@@ -59,7 +60,6 @@ int main() {
     env.createCells(1,1,sim,cells,environment);
     Simulation simul;
     Utilities util;
-    int maxIteration = 100;
 
     util.writeIteration(sim, environment, cells, 0);
 
