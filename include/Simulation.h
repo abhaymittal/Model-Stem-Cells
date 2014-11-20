@@ -18,6 +18,7 @@
 #include "SimulationParameters.h"
 #include "AutomatonCell.h"
 #include "Cell.h"
+#include "global.h"
 #include <deque>
 
 class Simulation
@@ -74,13 +75,13 @@ public:
 
     /**
     *   @brief  Function to increase age of all cells and multiply cells
-    *   @param cells : the deque of cells
+    *   @param cells : the group of cells
     *   @param  radius : the radius of the new cells
     *   @param  senseRadius : The sensing radius of new cells
     *   @param  sim : The simulation parameters
     *   @param  environment : The lattice
     */
-    int increaseAge(std::deque<Cell>& cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment);
+    int increaseAge(cellGroup &cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment);
 
     /**
     *   @brief  Function to split a cell into two cells

@@ -116,21 +116,58 @@ int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<Cell> &cel
 }
 
 
-int Simulation::increaseAge(std::deque<Cell>& cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment) {
-    long int lastId = cells.back().getId();
+int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment) {
     queue<Cell> q;
-    cout<<"Got last id"<<endl;
-    for(std::deque<Cell>::iterator it = cells.begin(); it->getId()!=lastId; it++) {
+    queue<StemCell> stemQ;
+    for(std::deque<Cell>::iterator it = cells.normalCell.begin(); it!=cells.normalCell.end(); it++) {
             if(it->incrementAge()>30) {
                 it->setAge(0);
                 q.push(*it);
             }
     }
+
+    for(std::deque<StemCell>::iterator it = cells.stemCell.begin(); it!=cells.stemCell.end(); it++) {
+            if(it->incrementAge()>30) {
+                it->setAge(0);
+                stemQ.push(*it);
+            }
+    }
+
     while(!q.empty())
     {
-        splitCell(q.front(),cells,environment,radius,senseRadius,sim);
+        splitCell(q.front(),cells.normalCell,environment,radius,senseRadius,sim);
         q.pop();
     }
+
+    double alpha = sim.getAlpha();
+    while(!stemQ.empty())
+    {
+        double r =(static_cast<double>(rand()%100))/100;
+        if(r < alpha) //asymmetric division
+        {
+            TACell newTACell;
+            int status = stemQ.front().divide(newTACell, environment, sim);
+            if(status==0) //new cell is successfully created
+            {
+                int newId = (cells.taCell.size()>0) ? cells.taCell.back().getId()+1 : 0;
+                newTACell.setId(newId);
+                cells.taCell.push_back(newTACell);
+            }
+        }
+        else
+        {
+            StemCell newStemCell;
+            int status = stemQ.front().divide(newStemCell, environment, sim);
+            if(status==0) //new cell is successfully created
+            {
+                int newId = (cells.stemCell.size()>0) ? cells.stemCell.back().getId()+1 : 0;
+                newStemCell.setId(newId);
+                cells.stemCell.push_back(newStemCell);
+            }
+        }
+        stemQ.pop();
+    }
+
     return 0;
 }
 
