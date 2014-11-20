@@ -13,18 +13,12 @@
 #include "Utilities.h"
 #include "StemCell.h"
 #include "TACell.h"
+#include "global.h"
 #include <cstdlib>
 #include "Simulation.h"
 #include <deque>
 
 using namespace std;
-
-struct cellGroup
-{
-    deque<Cell> normalCell;
-    deque<StemCell> stemCell;
-    deque<TACell> taCell;
-};
 
 int main() {
 
@@ -65,7 +59,7 @@ int main() {
     }
 	env.setupECM(sim,environment);
 
-	struct cellGroup cells;
+	cellGroup cells;
 	cells.normalCell.resize(sim.getCellCount());
 
     env.createCells(1,1,sim,cells.normalCell,environment);
@@ -79,7 +73,7 @@ int main() {
         int opId=simul.generateOpId();
         cout<<"Iteration - "<<itr<<endl;
         simul.simulate(sim,environment,cells.normalCell,opId);
-        simul.increaseAge(cells.normalCell,1,1,sim,environment);
+        simul.increaseAge(cells,1,1,sim,environment);
         util.writeIteration(sim, environment, cells.normalCell, itr);
     }
 
