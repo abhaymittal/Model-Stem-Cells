@@ -11,11 +11,20 @@
 #include "Environment.h"
 #include "AutomatonCell.h"
 #include "Utilities.h"
+#include "StemCell.h"
+#include "TACell.h"
 #include <cstdlib>
 #include "Simulation.h"
 #include <deque>
 
 using namespace std;
+
+struct cellGroup
+{
+    deque<Cell> normalCell;
+    deque<StemCell> stemCell;
+    deque<TACell> taCell;
+};
 
 int main() {
 
@@ -56,20 +65,22 @@ int main() {
     }
 	env.setupECM(sim,environment);
 
-    deque<Cell> cells(sim.getCellCount());
-    env.createCells(1,1,sim,cells,environment);
+	struct cellGroup cells;
+	cells.normalCell.resize(sim.getCellCount());
+
+    env.createCells(1,1,sim,cells.normalCell,environment);
     Simulation simul;
     Utilities util;
 
-    util.writeIteration(sim, environment, cells, 0);
+    util.writeIteration(sim, environment, cells.normalCell, 0);
 
     for(int itr=1; itr<=maxIteration; itr++)
     {
         int opId=simul.generateOpId();
         cout<<"Iteration - "<<itr<<endl;
-        simul.simulate(sim,environment,cells,opId);
-        simul.increaseAge(cells,1,1,sim,environment);
-        util.writeIteration(sim, environment, cells, itr);
+        simul.simulate(sim,environment,cells.normalCell,opId);
+        simul.increaseAge(cells.normalCell,1,1,sim,environment);
+        util.writeIteration(sim, environment, cells.normalCell, itr);
     }
 
     cout<<"Going to generate file"<<endl;
