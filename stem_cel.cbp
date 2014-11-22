@@ -49,6 +49,7 @@
 		<Unit filename="include/TACell.h" />
 		<Unit filename="include/Utilities.h" />
 		<Unit filename="include/Var.h" />
+		<Unit filename="include/global.h" />
 		<Unit filename="src/AutomatonCell.cpp" />
 		<Unit filename="src/Cell.cpp" />
 		<Unit filename="src/Environment.cpp" />

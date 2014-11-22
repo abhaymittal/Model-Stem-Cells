@@ -591,20 +591,23 @@
 	"Line.h"
 	"Var.h"
 
-1408795909 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/SimulationParameters.h
+1416388591 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/SimulationParameters.h
 	<string>
 
-1412948662 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/USCP.cpp
+1416496473 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/USCP.cpp
 	<iostream>
 	"SimulationParameters.h"
 	"Environment.h"
 	"AutomatonCell.h"
 	"Utilities.h"
+	"StemCell.h"
+	"TACell.h"
+	"global.h"
 	<cstdlib>
 	"Simulation.h"
 	<deque>
 
-1412948662 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Utilities.cpp
+1415340726 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Utilities.cpp
 	"Utilities.h"
 	<iostream>
 	<fstream>
@@ -617,7 +620,7 @@
 	"Cell.h"
 	<deque>
 
-1408795162 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/SimulationParameters.cpp
+1416388591 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/SimulationParameters.cpp
 	"SimulationParameters.h"
 	<iostream>
 	<config.h>
@@ -628,10 +631,11 @@
 
 1407076899 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Point.h
 
-1406986022 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Line.cpp
+1416388591 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Line.cpp
 	"Line.h"
+	<iostream>
 
-1406986022 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Line.h
+1416388591 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Line.h
 	"Point.h"
 
 1404561553 source:/mnt/Entertainment/education/Projects/major_proj/cellular-automata/src/AutomatonCell.cpp
@@ -856,14 +860,17 @@
 1387150685 /usr/lib/libxml++-2.6/include/libxml++config.h
 	<glibmmconfig.h>
 
-1409821330 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Cell.cpp
+1416392327 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Cell.cpp
 	"Cell.h"
+	<cmath>
 	<cstdlib>
 
-1412948662 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Cell.h
+1416392327 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Cell.h
 	"Point.h"
+	"AutomatonCell.h"
+	"SimulationParameters.h"
 
-1408898003 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Environment.cpp
+1416388591 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Environment.cpp
 	"Environment.h"
 	<ctime>
 	<cstdlib>
@@ -879,19 +886,21 @@
 	"Cell.h"
 	<deque>
 
-1414465956 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Simulation.cpp
+1416499646 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/Simulation.cpp
 	"Simulation.h"
 	"AutomatonCell.h"
 	"Cell.h"
 	"Point.h"
 	<cmath>
 	<cstdlib>
+	<queue>
 	<iostream>
 
-1409821330 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Simulation.h
+1416497117 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/Simulation.h
 	"SimulationParameters.h"
 	"AutomatonCell.h"
 	"Cell.h"
+	"global.h"
 	<deque>
 
 1415358644 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/StemCell.cpp
@@ -905,5 +914,24 @@
 	"Cell.h"
 
 1415355401 source:/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/src/TACell.cpp
+	"TACell.h"
+
+1416388591 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/StemCell.cpp
+	"StemCell.h"
+
+1416388591 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/StemCell.h
+	"Cell.h"
+	"TACell.h"
+
+1416388591 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/TACell.h
+	"Cell.h"
+
+1416388591 source:/mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/src/TACell.cpp
+	"TACell.h"
+
+1416496368 /mnt/Softwares_n_Games/Pratik/PROJECT/cellular_automata/cellular-automata/include/global.h
+	<deque>
+	"Cell.h"
+	"StemCell.h"
 	"TACell.h"
 
