@@ -30,7 +30,7 @@ simulation [label="{Simulation\n||+ Simulation()\l+ generateOpId()\l+ simulate()
 simulation_param [label="{SimulationParameters\n|- latticeHeight\l- latticeWidth\l- latticeDepth\l- fiberLength\l- fiberCount\l- cellCount\l- cellDivisionAge\l- alpha\l- maxIteration\l|+ SimulationParameters()\l+ ~SimulationParameters()\l+ loadParameters()\l+ loadParametersFromFile()\l+ getFiberCount()\l+ setFiberCount()\l+ getFiberLength()\l+ getLatticeDepth()\l+ getLatticeHeight()\l+ getLatticeWidth()\l+ getCellCount()\l+ getCellDivisonAge()\l+ getAlpha()\l+ getMaxIteration()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-utilities [label="{Utilities\n|+ TYPE\l+ COUNT\l+ ID\l|+ Utilities()\l+ ~Utilities()\l+ generateECMFile()\l+ writeIteration()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+utilities [label=<<TABLE ALIGN="LEFT" CELLBORDER="0" CELLSPACING="0" ><TR><TD>Utilities</TD></TR><HR/><TR><TD ALIGN="LEFT">+ <u>TYPE</u></TD></TR><TR><TD ALIGN="LEFT">+ <U>COUNT</U></TD></TR><TR><TD ALIGN="LEFT">+ <U>ID</U></TD></TR><HR/><TR><TD ALIGN="LEFT">+ Utilities()</TD></TR><TR><TD ALIGN="LEFT">+ ~Utilities()</TD></TR><TR><TD ALIGN="LEFT">+ generateECMFile()</TD></TR><TR><TD ALIGN="LEFT">+ writeIteration()</TD></TR></TABLE>>,shape=plaintext,height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
 var [label="{Var\n|- varName\l- index\l- delta\l- value\l|+ Var()\l+ Var()\l+ ~Var()\l+ getVarName()\l+ setVarName()\l+ getIndex()\l+ setIndex()\l+ getDelta()\l+ setDelta()\l+ getValue()\l+ setValue()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
@@ -41,32 +41,46 @@ stem_cell [label="{StemCell\n||+ StemCell()\l+ divide()\l}",height=0.2,width=0.4
 //----------------------------------------------------------------------------------------------
 ta_cell [label="{TACell\n||+ TACell()\l+ differentiate()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
+
 //----------------------------------------------------------------------------------------------
-uscp -> automaton_cell
- [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-uscp -> cell [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-uscp -> environment [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-uscp -> simulation [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-uscp -> simulation_param [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-uscp -> utilities [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
+uscp -> automaton_cell [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+uscp -> cell [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+uscp -> environment [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+uscp -> simulation [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+uscp -> simulation_param [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+uscp -> utilities [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
 
-cell -> point [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
+cell -> point [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica" arrowhead=vee];
+cell -> automaton_cell [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+cell -> simulation_param [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+cell -> stem_cell [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica" dir="back" arrowtail=empty];
+cell -> ta_cell [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica" dir="back" arrowtail=empty];
 
-environment -> automaton_cell [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-environment -> cell [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-environment -> line [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-environment -> point [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-environment -> simulation_param [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-environment -> var [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
+environment -> automaton_cell [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+environment -> cell [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+environment -> line [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+environment -> point [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+environment -> simulation_param [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+environment -> var [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
 
-line -> point [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
+line -> point [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica" dir="back" arrowtail=ediamond];
 
-simulation -> automaton_cell [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-simulation -> cell [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-simulation -> point [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-simulation -> simulation_param [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
+simulation -> automaton_cell [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+simulation -> cell [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+simulation -> point [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+simulation -> simulation_param [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+simulation -> stem_cell [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+simulation -> ta_cell [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
 
-utilities -> automaton_cell [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
-utilities -> simulation_param [color="grey25",fontsize="10",style="solid" ,fontname="Helvetica"];
+utilities -> automaton_cell [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+utilities -> simulation_param [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+utilities -> cell [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+
+stem_cell -> automaton_cell [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
+stem_cell -> simulation_param [color="grey25",fontsize="10",style="dashed" ,fontname="Helvetica",arrowhead=vee];
 
 }
+
+
+
+
