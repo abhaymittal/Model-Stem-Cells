@@ -1,5 +1,5 @@
 digraph "Class_Diagram" {
-	
+//	size="5.5,9"
 	//----------------------------------------------------------------------------------------------
 	edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
 

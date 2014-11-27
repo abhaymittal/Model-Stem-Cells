@@ -1,1 +1,1 @@
-dot -T svg -o class_diag.svg class_diag.dot
+dot -Tpng -o class_diag.png class_diag.dot
