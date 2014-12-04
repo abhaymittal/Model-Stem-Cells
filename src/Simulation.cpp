@@ -187,6 +187,9 @@ int Simulation::splitCell(Cell& agedCell, std::deque<Cell>& cells, AutomatonCell
     newCell.setEB(0.0F);
     newCell.setAge(0);
 
+    environment[loc.getX()][loc.getY()][loc.getZ()].setType(2);
+    environment[loc.getX()][loc.getY()][loc.getZ()].setCount(0);
+    environment[loc.getX()][loc.getY()][loc.getZ()].setId(newCell.getId());
     cells.push_back(newCell);
 
 
