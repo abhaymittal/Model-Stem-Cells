@@ -18,6 +18,8 @@
 #include "Simulation.h"
 #include <deque>
 
+#include <fstream>
+
 using namespace std;
 
 int main() {
@@ -66,7 +68,59 @@ int main() {
     Simulation simul;
     Utilities util;
 
-    util.writeIteration(sim, environment, cells.normalCell, 0);
+    //util.writeIteration(sim, environment, cells.normalCell, 0);
+
+    int numcells = cells.normalCell.size();
+
+    int kval = 20;
+    int arr[kval];
+    int tmp_val;
+    int found;
+    for(int i=0; i<kval; )
+    {
+        tmp_val = rand() % numcells;
+        found=0;
+        for(int j=0; j<i; j++)
+        {
+            if(arr[j]==tmp_val)
+            {
+                found=1;
+                break;
+            }
+        }
+        if(found)
+        {
+            continue;
+        }
+        else
+        {
+            arr[i]=tmp_val;
+            i++;
+        }
+    }
+    cout << "RANDOM : ";
+    for(int i=0; i<kval; i++)
+        cout << arr[i] << ',';
+    cout << endl;
+    maxIteration = 1600;
+
+    ofstream cell_vs_time("cell_vs_time.csv");
+    ofstream evt("avg_eb_vs_time.csv");
+    ofstream avg_k("avg_k.csv");
+    cell_vs_time << 0 << "," << cells.normalCell.size() << endl;
+
+    double sumEB = 0.0;
+    for(std::deque<Cell>::iterator it = cells.normalCell.begin(); it!=cells.normalCell.end(); it++)
+        sumEB += (it->getEB());
+
+    evt << 0 << "," << sumEB/cells.normalCell.size() << endl;
+
+    avg_k << 0;
+    for(int i=0; i<kval; i++)
+    {
+        avg_k << ',' << cells.normalCell[i].getEB();
+    }
+    avg_k << endl;
 
     for(int itr=1; itr<=maxIteration; itr++)
     {
@@ -74,8 +128,23 @@ int main() {
         cout<<"Iteration - "<<itr<<endl;
         simul.simulate(sim,environment,cells.normalCell,opId);
         simul.increaseAge(cells,1,1,sim,environment);
-        util.writeIteration(sim, environment, cells.normalCell, itr);
+        //util.writeIteration(sim, environment, cells.normalCell, itr);
+        cell_vs_time << itr << "," << cells.normalCell.size() << endl;
+
+        sumEB = 0.0;
+        for(std::deque<Cell>::iterator it = cells.normalCell.begin(); it!=cells.normalCell.end(); it++)
+            sumEB += (it->getEB());
+
+        evt << itr << "," << sumEB/cells.normalCell.size() << endl;
+
+        avg_k << itr;
+        for(int i=0; i<kval; i++)
+        {
+            avg_k << ',' << cells.normalCell[i].getEB();
+        }
+        avg_k << endl;
     }
+    cell_vs_time.close();
 
     cout<<"Going to generate file"<<endl;
     /*******Generate Output file*********/
