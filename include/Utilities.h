@@ -1,16 +1,11 @@
-/*
- * Utilities.h
- *
- *  Created on: Jun 18, 2014
- *      Author: sandeep
- */
-
 #ifndef UTILITIES_H_
 #define UTILITIES_H_
 
 /**
 *   @class  Utilities
 *   @brief  Class for generating the Output
+*   @author Pratik Varshney
+*   @author Abhay Mittal
 */
 
 #include "AutomatonCell.h"

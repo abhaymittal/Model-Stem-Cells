@@ -1,16 +1,11 @@
-/*
- * SimulationParameters.h
- *
- *  Created on: Jun 17, 2014
- *      Author: sandeep
- */
-
 #ifndef SIMULATIONPARAMETERS_H_
 #define SIMULATIONPARAMETERS_H_
 
 /**
 *   @class  SimulationParameters
 *   @brief  Class for loading simulation parameters
+*   @author Pratik Varshney
+*   @author Abhay Mittal
 */
 
 #include <string>

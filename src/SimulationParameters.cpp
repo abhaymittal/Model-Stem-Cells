@@ -1,10 +1,3 @@
-/*
- * SimulationParameters.cpp
- *
- *  Created on: Jun 17, 2014
- *      Author: sandeep
- */
-
 #include "SimulationParameters.h"
 #include <iostream>
 

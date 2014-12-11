@@ -1,10 +1,3 @@
-/*
- * Utilities.cpp
- *
- *  Created on: Jun 18, 2014
- *      Author: sandeep
- */
-
 #include "Utilities.h"
 #include <iostream>
 #include <fstream>
