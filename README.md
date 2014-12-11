@@ -1,4 +1,4 @@
-#Computational modelling to explore the adaptability of stem cells
+#Computational modelling of decision making in stem cells
 
 ##Authors: Abhay Mittal and Pratik Varshney
 
