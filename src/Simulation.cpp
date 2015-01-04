@@ -28,7 +28,7 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, st
         if(status!=0) continue;
 
         //Remove cell from current location (lattice DB)
-        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(1);
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(AutomatonCell::ECM);
         lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setId(0);
         lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setCount(0);
 
@@ -36,7 +36,7 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, st
         it->setCentroid(p);
 
         //Move cell to new location (lattice DB)
-        lattice[p.getX()][p.getY()][p.getZ()].setType(2);
+        lattice[p.getX()][p.getY()][p.getZ()].setType(AutomatonCell::CELL);
         lattice[p.getX()][p.getY()][p.getZ()].setId(it->getId());
         lattice[p.getX()][p.getY()][p.getZ()].setCount(0);
     }
@@ -60,7 +60,7 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
                 for(int z=it->getCentroid().getZ()-it->getSenseRadius();z<=it->getCentroid().getZ()+it->getSenseRadius();z++)
                 {
                     sumFiber+=lattice[x][y][z].getCount();
-                    if(lattice[x][y][z].getType()==2)
+                    if(lattice[x][y][z].getType()==AutomatonCell::CELL)
                     {
                         //Cell index in array = id -1 as id was created using index +1 in createCells (Environment.h)
                         totalNeighbourEC+=cells[lattice[x][y][z].getId()-1].getECadherin();
@@ -187,7 +187,7 @@ int Simulation::splitCell(Cell& agedCell, std::deque<Cell>& cells, AutomatonCell
     newCell.setEB(0.0F);
     newCell.setAge(0);
 
-    environment[loc.getX()][loc.getY()][loc.getZ()].setType(2);
+    environment[loc.getX()][loc.getY()][loc.getZ()].setType(AutomatonCell::CELL);
     environment[loc.getX()][loc.getY()][loc.getZ()].setCount(0);
     environment[loc.getX()][loc.getY()][loc.getZ()].setId(newCell.getId());
     cells.push_back(newCell);

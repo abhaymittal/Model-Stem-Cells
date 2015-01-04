@@ -47,7 +47,7 @@ int main() {
             {
                 environment[i][j][k].setCount(0);
                 environment[i][j][k].setId(0);
-                environment[i][j][k].setType(0);
+                environment[i][j][k].setType(AutomatonCell::EMPTY);
             }
         }
     }

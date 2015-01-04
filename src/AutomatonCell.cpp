@@ -2,7 +2,7 @@
 
 AutomatonCell::AutomatonCell() {
 
-	type=0;
+	type=AutomatonCell::EMPTY;
 	cellCount=0;
     ID=0;
 }
