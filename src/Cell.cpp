@@ -144,7 +144,7 @@ int Cell::getFavorableLocation(Point& location, AutomatonCell ***environment, Si
                 x=i+xMin;
                 y=j+yMin;
                 z=k+zMin;
-                if((x<sim.getFiberLength())||(x>(sim.getLatticeWidth()-sim.getFiberLength()))||(y<sim.getFiberLength())||(y>(sim.getLatticeWidth()-sim.getFiberLength()))||(z<sim.getFiberLength())||(z>(sim.getLatticeWidth()-sim.getFiberLength())))
+                if((x<sim.getFiberLength())||(x>(sim.getLatticeWidth()-sim.getFiberLength()))||(y<sim.getFiberLength())||(y>(sim.getLatticeHeight()-sim.getFiberLength()))||(z<sim.getFiberLength())||(z>(sim.getLatticeDepth()-sim.getFiberLength())))
                     continue;
                 if((environment[x][y][z].getType()==2))
                         continue;
