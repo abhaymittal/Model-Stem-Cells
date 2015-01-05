@@ -146,7 +146,7 @@ int Cell::getFavorableLocation(Point& location, AutomatonCell ***environment, Si
                 z=k+zMin;
                 if((x<sim.getFiberLength())||(x>(sim.getLatticeWidth()-sim.getFiberLength()))||(y<sim.getFiberLength())||(y>(sim.getLatticeHeight()-sim.getFiberLength()))||(z<sim.getFiberLength())||(z>(sim.getLatticeDepth()-sim.getFiberLength())))
                     continue;
-                if((environment[x][y][z].getType()==2))
+                if((environment[x][y][z].getType()==AutomatonCell::CELL))
                         continue;
                 double exponent=-1*(neighbourFiber[i][j][k]-mu)*(neighbourFiber[i][j][k]-mu)/(2*sigmaSqr);
                 probabNew=exp(exponent);

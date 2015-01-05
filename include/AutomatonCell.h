@@ -28,6 +28,9 @@ private:
 	long int ID;                    /**< The cell id if a cell is present, else 0*/
 
 public:
+    static const int    EMPTY = 0,  /**< Nothing present*/
+                        ECM = 1,    /**< ECM present*/
+                        CELL = 2;   /**< CELL present*/
 
     /**
     *   @brief  Default no argument constructor

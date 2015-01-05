@@ -78,7 +78,7 @@ int Utilities::writeIteration(SimulationParameters sim, AutomatonCell ***environ
                 for(int z=0;z<sim.getLatticeDepth();z++)
                 {
                     outputFile << x << "," << y << "," << z <<"," << environment[x][y][z].getType() << "," << environment[x][y][z].getId() << ",";
-                    if(environment[x][y][z].getType()==2)
+                    if(environment[x][y][z].getType()==AutomatonCell::CELL)
                     {
                         outputFile << cellAge[environment[x][y][z].getId()] << "\n";
                     }

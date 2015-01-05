@@ -121,7 +121,7 @@ int Environment::generatePtFreqMap(Line* line, SimulationParameters sim,Automato
         for(int j=0;j<line[i].getNumberOfPoints();j++)
         {
            // cout<<" Line ==> "<<line[i].getPoint(j).getX()<<" "<<line[i].getPoint(j).getY()<<" "<<line[i].getPoint(j).getZ()<<endl;
-            cells[line[i].getPoint(j).getX()][line[i].getPoint(j).getY()][line[i].getPoint(j).getZ()].setType(1);
+            cells[line[i].getPoint(j).getX()][line[i].getPoint(j).getY()][line[i].getPoint(j).getZ()].setType(AutomatonCell::ECM);
             cells[line[i].getPoint(j).getX()][line[i].getPoint(j).getY()][line[i].getPoint(j).getZ()].incrementCount();
         }
     }
@@ -217,7 +217,7 @@ int Environment::createCells(int radius, int senseRadius, SimulationParameters s
         it->setECadherin(1.0F);
         it->setEB(0.0F);
         environment[x][y][z].setId(i+1);
-        environment[x][y][z].setType(2);
+        environment[x][y][z].setType(AutomatonCell::CELL);
         environment[x][y][z].setCount(0);
         i++;
 
