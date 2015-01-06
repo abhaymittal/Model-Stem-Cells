@@ -8,6 +8,8 @@
 *   0       |    Nothing present
 *   1       |    ECM
 *   2       |    Cell
+*   3       |    Transit Amplifying Cell
+*   4       |    Stem Cell
 
 *   The following are the legal values for cellID
 *   Cell ID |   Denotes
@@ -30,7 +32,9 @@ private:
 public:
     static const int    EMPTY = 0,  /**< Nothing present*/
                         ECM = 1,    /**< ECM present*/
-                        CELL = 2;   /**< CELL present*/
+                        CELL = 2,  /**< Normal Cell present*/
+                        TA_CELL=3,  /**< Transit Amplifying cell*/
+                        STEM_CELL=4; /**< Stem cell*/
 
     /**
     *   @brief  Default no argument constructor
