@@ -140,7 +140,7 @@ int main() {
 
     cout<<"Going to generate file"<<endl;
     /*******Generate Output file*********/
-    util.generateECMFile(sim, environment, util.COUNT);
+    util.generateECMFile(sim, environment, Utilities::COUNT);
     /*Testing for the System class*/
 
     /*Free dynamic memory*/
