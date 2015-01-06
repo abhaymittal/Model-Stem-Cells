@@ -149,7 +149,7 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
             int status = stemQ.front().divide(newTACell, environment, sim);
             if(status==0) //new cell is successfully created
             {
-                int newId = (cells.taCell.size()>0) ? cells.taCell.back().getId()+1 : 0;
+                int newId = (cells.taCell.size()>0) ? cells.taCell.back().getId()+1 : 1;
                 newTACell.setId(newId);
                 cells.taCell.push_back(newTACell);
             }
@@ -160,7 +160,7 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
             int status = stemQ.front().divide(newStemCell, environment, sim);
             if(status==0) //new cell is successfully created
             {
-                int newId = (cells.stemCell.size()>0) ? cells.stemCell.back().getId()+1 : 0;
+                int newId = (cells.stemCell.size()>0) ? cells.stemCell.back().getId()+1 : 1;
                 newStemCell.setId(newId);
                 cells.stemCell.push_back(newStemCell);
             }
