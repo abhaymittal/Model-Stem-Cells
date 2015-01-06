@@ -19,6 +19,9 @@ int StemCell::divide(StemCell& daughter, AutomatonCell ***environment, Simulatio
     daughter.setEB(0);
     daughter.setECadherin(1.0F);
     this->setAge(0);
+    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setType(AutomatonCell::STEM_CELL);
+    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setCount(0);
+    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setId(newCell.getId());
     return 0;
 }
 
@@ -35,5 +38,8 @@ int StemCell::divide(TACell& daughter, AutomatonCell*** environment,SimulationPa
     daughter.setEB(0);
     daughter.setECadherin(1.0F);
     this->setAge(0);
+    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setType(AutomatonCell::TA_CELL);
+    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setCount(0);
+    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setId(newCell.getId());
     return 0;
 }
