@@ -309,3 +309,137 @@ int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<TACell> &c
     }
     return 0;
 }
+
+/* Operations for Stemcells */
+int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, std::deque<StemCell> &cells)
+{
+    for(std::deque<StemCell>::iterator it = cells.begin(); it!=cells.end(); it++)
+    {
+        Point p;
+        int status = it->getFavorableLocation(p, lattice, sim);
+
+        if(status!=0) continue;
+
+        //Remove cell from current location (lattice DB)
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(AutomatonCell::ECM);
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setId(0);
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setCount(0);
+
+        //Reset cell centroid
+        it->setCentroid(p);
+
+        //Move cell to new location (lattice DB)
+        lattice[p.getX()][p.getY()][p.getZ()].setType(AutomatonCell::STEM_CELL);
+        lattice[p.getX()][p.getY()][p.getZ()].setId(it->getId());
+        lattice[p.getX()][p.getY()][p.getZ()].setCount(0);
+    }
+    return 0;
+}
+
+int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std::deque<StemCell> &cells)
+{
+    int k=14;
+    int sumFiber=0;
+    float totalNeighbourEC=0;
+    float EBNew;
+    int totalNeighbours=(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1);
+    for(std::deque<StemCell>::iterator it = cells.begin(); it!=cells.end(); it++)
+    {
+        sumFiber=0;
+        for(int x=it->getCentroid().getX()-it->getSenseRadius();x<=it->getCentroid().getX()+it->getSenseRadius();x++)
+        {
+            for(int y=it->getCentroid().getY()-it->getSenseRadius();y<=it->getCentroid().getY()+it->getSenseRadius();y++)
+            {
+                for(int z=it->getCentroid().getZ()-it->getSenseRadius();z<=it->getCentroid().getZ()+it->getSenseRadius();z++)
+                {
+                    sumFiber+=lattice[x][y][z].getCount();
+                    if(lattice[x][y][z].getType()==AutomatonCell::STEM_CELL)
+                    {
+                        //Cell index in array = id -1 as id was created using index +1 in createCells (Environment.h)
+                        totalNeighbourEC+=cells[lattice[x][y][z].getId()-1].getECadherin();
+                    }
+                }
+            }
+        }
+        EBNew=((static_cast<float>(sumFiber))/(sumFiber+k))+(totalNeighbourEC/totalNeighbours);
+        it->setEB(EBNew);
+    }
+    return 0;
+}
+int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<StemCell> &cells)
+{
+    for(std::deque<StemCell>::iterator it = cells.begin(); it!=cells.end(); it++)
+    {
+        it->setGeneticCode(0, it->getGeneticCode(0) & it->getGeneticCode(1) );
+        it->setGeneticCode(1, it->getGeneticCode(1) | it->getGeneticCode(2) );
+        it->setGeneticCode(2, !(it->getGeneticCode(2)) );
+    }
+    return 0;
+}
+
+/* Operations for TAcells */
+int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, std::deque<TACell> &cells)
+{
+    for(std::deque<TACell>::iterator it = cells.begin(); it!=cells.end(); it++)
+    {
+        Point p;
+        int status = it->getFavorableLocation(p, lattice, sim);
+
+        if(status!=0) continue;
+
+        //Remove cell from current location (lattice DB)
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(AutomatonCell::ECM);
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setId(0);
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setCount(0);
+
+        //Reset cell centroid
+        it->setCentroid(p);
+
+        //Move cell to new location (lattice DB)
+        lattice[p.getX()][p.getY()][p.getZ()].setType(AutomatonCell::TA_CELL);
+        lattice[p.getX()][p.getY()][p.getZ()].setId(it->getId());
+        lattice[p.getX()][p.getY()][p.getZ()].setCount(0);
+    }
+    return 0;
+}
+
+int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std::deque<TACell> &cells)
+{
+    int k=14;
+    int sumFiber=0;
+    float totalNeighbourEC=0;
+    float EBNew;
+    int totalNeighbours=(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1);
+    for(std::deque<TACell>::iterator it = cells.begin(); it!=cells.end(); it++)
+    {
+        sumFiber=0;
+        for(int x=it->getCentroid().getX()-it->getSenseRadius();x<=it->getCentroid().getX()+it->getSenseRadius();x++)
+        {
+            for(int y=it->getCentroid().getY()-it->getSenseRadius();y<=it->getCentroid().getY()+it->getSenseRadius();y++)
+            {
+                for(int z=it->getCentroid().getZ()-it->getSenseRadius();z<=it->getCentroid().getZ()+it->getSenseRadius();z++)
+                {
+                    sumFiber+=lattice[x][y][z].getCount();
+                    if(lattice[x][y][z].getType()==AutomatonCell::TA_CELL)
+                    {
+                        //Cell index in array = id -1 as id was created using index +1 in createCells (Environment.h)
+                        totalNeighbourEC+=cells[lattice[x][y][z].getId()-1].getECadherin();
+                    }
+                }
+            }
+        }
+        EBNew=((static_cast<float>(sumFiber))/(sumFiber+k))+(totalNeighbourEC/totalNeighbours);
+        it->setEB(EBNew);
+    }
+    return 0;
+}
+int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<TACell> &cells)
+{
+    for(std::deque<TACell>::iterator it = cells.begin(); it!=cells.end(); it++)
+    {
+        it->setGeneticCode(0, it->getGeneticCode(0) & it->getGeneticCode(1) );
+        it->setGeneticCode(1, it->getGeneticCode(1) | it->getGeneticCode(2) );
+        it->setGeneticCode(2, !(it->getGeneticCode(2)) );
+    }
+    return 0;
+}
