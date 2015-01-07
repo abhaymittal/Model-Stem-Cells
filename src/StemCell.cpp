@@ -6,40 +6,42 @@ StemCell::StemCell() : Cell()
 }
 
 
-int StemCell::divide(StemCell& daughter, AutomatonCell ***environment, SimulationParameters sim) {
-    int temp;
+int StemCell::divide(StemCell& daughter, int id_, AutomatonCell ***environment, SimulationParameters sim) {
+    int status;
     Point childPoint;
-    temp= getFavorableLocation(childPoint,environment, sim);
-    if(temp!=0)
-        return temp;
-    daughter.setAge(0);
+    status= getFavorableLocation(childPoint,environment, sim);
+    if(status!=0)
+        return status;
     daughter.setCentroid(childPoint);
+    daughter.setId(id_);
     daughter.setRadius(this->getRadius());
     daughter.setSenseRadius(this->getSenseRadius());
-    daughter.setEB(0);
     daughter.setECadherin(1.0F);
+    daughter.setEB(0.0F);
+    daughter.setAge(0);
     this->setAge(0);
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setType(AutomatonCell::STEM_CELL);
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setCount(0);
-    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setId(newCell.getId());
+    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setId(daughter.getId());
     return 0;
 }
 
-int StemCell::divide(TACell& daughter, AutomatonCell*** environment,SimulationParameters sim) {
-    int temp;
+int StemCell::divide(TACell& daughter, int id_, AutomatonCell*** environment, SimulationParameters sim) {
+    int status;
     Point childPoint;
-    temp= getFavorableLocation(childPoint,environment, sim);
-    if(temp!=0)
-        return temp;
-    daughter.setAge(0);
+    status= getFavorableLocation(childPoint,environment, sim);
+    if(status!=0)
+        return status;
     daughter.setCentroid(childPoint);
+    daughter.setId(id_);
     daughter.setRadius(this->getRadius());
     daughter.setSenseRadius(this->getSenseRadius());
-    daughter.setEB(0);
     daughter.setECadherin(1.0F);
+    daughter.setEB(0.0F);
+    daughter.setAge(0);
     this->setAge(0);
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setType(AutomatonCell::TA_CELL);
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setCount(0);
-    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setId(newCell.getId());
+    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setId(daughter.getId());
     return 0;
 }

@@ -83,16 +83,6 @@ public:
     */
     int increaseAge(cellGroup &cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment);
 
-    /**
-    *   @brief  Function to split a cell into two cells
-    *   @param agedCell : The cell which has to be split
-    *   @param  cells :  The deque of cells
-    *   @param  environment : The lattice
-    *   @param  radius : The radius of new cell
-    *   @param  senseRadius : The sensing radius of new cell
-    *   @param  sim : The simulation parameters
-    */
-    int splitCell(Cell& agedCell, std::deque<Cell>& cells, AutomatonCell ***environment, int radius, int senseRadius, SimulationParameters sim);
 
 };
 

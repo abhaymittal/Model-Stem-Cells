@@ -169,6 +169,20 @@ public:
     */
     int getFavorableLocation(Point& location, AutomatonCell ***environment, SimulationParameters sim);
 
+
+    /**
+    *   @brief               Method for division of normal cells
+    *   @param[out]  daughter: The new daughter cell generated
+    *   @pram[in]        environment: The lattice
+    *   @pram[in]        sim: The simulation parameters
+    *   @return            The function returns the following values
+    *                               Return Value | Meaning
+    *                               -------------------|-------------
+    *                               0              | A daughter was created
+    *                               -1            | No suitable location was found
+    */
+    int divide(Cell& daughter, int id_, AutomatonCell ***environment, SimulationParameters sim);
+
 };
 
 #endif // CELL_H

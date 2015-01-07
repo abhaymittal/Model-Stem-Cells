@@ -135,7 +135,13 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
 
     while(!q.empty())
     {
-        splitCell(q.front(),cells.normalCell,environment,radius,senseRadius,sim);
+        Cell newCell;
+        int newId = (cells.normalCell.size()>0) ? cells.normalCell.back().getId()+1 : 1;
+        int status=q.front().divide(newCell,newId,environment,sim);
+         if(status==0) //new cell is successfully created
+        {
+            cells.normalCell.push_back(newCell);
+        }
         q.pop();
     }
 
@@ -146,22 +152,20 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
         if(r < alpha) //asymmetric division
         {
             TACell newTACell;
-            int status = stemQ.front().divide(newTACell, environment, sim);
+            int newId = (cells.taCell.size()>0) ? cells.taCell.back().getId()+1 : 1;
+            int status = stemQ.front().divide(newTACell, newId, environment, sim);
             if(status==0) //new cell is successfully created
             {
-                int newId = (cells.taCell.size()>0) ? cells.taCell.back().getId()+1 : 1;
-                newTACell.setId(newId);
                 cells.taCell.push_back(newTACell);
             }
         }
         else
         {
             StemCell newStemCell;
-            int status = stemQ.front().divide(newStemCell, environment, sim);
+            int newId = (cells.stemCell.size()>0) ? cells.stemCell.back().getId()+1 : 1;
+            int status = stemQ.front().divide(newStemCell, newId, environment, sim);
             if(status==0) //new cell is successfully created
             {
-                int newId = (cells.stemCell.size()>0) ? cells.stemCell.back().getId()+1 : 1;
-                newStemCell.setId(newId);
                 cells.stemCell.push_back(newStemCell);
             }
         }
@@ -171,28 +175,3 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
     return 0;
 }
 
-int Simulation::splitCell(Cell& agedCell, std::deque<Cell>& cells, AutomatonCell ***environment, int radius, int senseRadius, SimulationParameters sim) {
-
-    Point loc;
-    int status = agedCell.getFavorableLocation(loc, environment, sim);
-
-    if(status!=0) return status;
-
-    Cell newCell;
-    newCell.setCentroid(loc);
-    newCell.setId(cells.back().getId()+1);
-    newCell.setSenseRadius(senseRadius);
-    newCell.setRadius(radius);
-    newCell.setECadherin(1.0F);
-    newCell.setEB(0.0F);
-    newCell.setAge(0);
-
-    environment[loc.getX()][loc.getY()][loc.getZ()].setType(AutomatonCell::CELL);
-    environment[loc.getX()][loc.getY()][loc.getZ()].setCount(0);
-    environment[loc.getX()][loc.getY()][loc.getZ()].setId(newCell.getId());
-    cells.push_back(newCell);
-
-
-    return 0;
-
-}

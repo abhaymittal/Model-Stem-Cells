@@ -167,3 +167,27 @@ int Cell::getFavorableLocation(Point& location, AutomatonCell ***environment, Si
     return -1;
 
 }
+
+int Cell::divide(Cell& daughter, int id_, AutomatonCell ***environment, SimulationParameters sim) {
+
+    Point childPoint;
+    int status =getFavorableLocation(childPoint, environment, sim);
+
+    if(status!=0) return status;
+
+    daughter.setCentroid(childPoint);
+    daughter.setId(id_);
+    daughter.setRadius(this->getRadius());
+    daughter.setSenseRadius(this->getSenseRadius());
+    daughter.setECadherin(1.0F);
+    daughter.setEB(0.0F);
+    daughter.setAge(0);
+    this->setAge(0);
+    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setType(AutomatonCell::CELL);
+    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setCount(0);
+    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setId(daughter.getId());
+
+
+    return 0;
+
+}

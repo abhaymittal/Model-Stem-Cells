@@ -20,7 +20,7 @@ class StemCell : public Cell
 
         /**
         *   @brief               Method for symmetric division of Stem Cell
-        *   @param[out]  daughterCell: The new daughter cell generated
+        *   @param[out]  daughter: The new daughter cell generated
         *   @pram[in]        environment: The lattice
         *   @pram[in]        sim: The simulation parameters
         *   @return            The function returns the following values
@@ -29,11 +29,11 @@ class StemCell : public Cell
         *                               0              | A daughter was created
         *                               -1            | No suitable location was found
         */
-        int divide(StemCell& daughterCell, AutomatonCell ***environment, SimulationParameters sim);
+        int divide(StemCell& daughter, int id_, AutomatonCell ***environment, SimulationParameters sim);
 
          /**
         *   @brief               Method for asymmetric division of Stem Cell
-        *   @param[out]  daughterCell: The new daughter cell generated. It will be a Transit Amplifying Cell.
+        *   @param[out]  daughter: The new daughter cell generated. It will be a Transit Amplifying Cell.
         *   @pram[in]        environment: The lattice
         *   @pram[in]        sim: The simulation parameters
         *   @return            The function returns the following values
@@ -42,7 +42,7 @@ class StemCell : public Cell
         *                               0              | A daughter was created
         *                               -1            | No suitable location was found
         */
-        int divide(TACell& daughterCell, AutomatonCell*** environment,SimulationParameters sim);
+        int divide(TACell& daughter, int id_, AutomatonCell*** environment, SimulationParameters sim);
 };
 
 #endif // STEMCELL_H
