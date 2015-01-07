@@ -49,6 +49,62 @@ private:
     *   @return 0
     */
     int evolveGeneticCode(SimulationParameters sim,std::deque<Cell> &cells);
+
+    /* Operations for stemcells */
+
+     /**
+    *   @brief          Function to move stemcells
+    *   @param[in]      sim : the simulation parameters
+    *   @param[in, out] lattice : An array containing of all the points along with the number of fibers at each point
+    *   @param[in, out] cells : The stemcells in the simulation environment
+    *   @return         0
+    */
+    int moveCells(SimulationParameters sim, AutomatonCell ***lattice, std::deque<StemCell> &cells);
+
+    /**
+    *   @brief          Function to update ECadherin - &beta; Catenin value
+    *   @param[in]      sim : the simulation parameters
+    *   @param[in, out] lattice : An array containing of all the points along with the number of fibers at each point
+    *   @param[in, out] cells : The stemcells in the simulation environment
+    *   @return         0
+    */
+    int updateEB(SimulationParameters sim, AutomatonCell ***lattice, std::deque<StemCell> &cells);
+
+    /**
+    *   @brief  Function to change the genetic code
+    *   @param  sim : The simulation parameters (cellCount required)
+    *   @param  cells : The stemcells in the simulation environment
+    *   @return 0
+    */
+    int evolveGeneticCode(SimulationParameters sim,std::deque<StemCell> &cells);
+
+    /* Operations for TAcells */
+
+     /**
+    *   @brief          Function to move TAcells
+    *   @param[in]      sim : the simulation parameters
+    *   @param[in, out] lattice : An array containing of all the points along with the number of fibers at each point
+    *   @param[in, out] cells : The TAcells in the simulation environment
+    *   @return         0
+    */
+    int moveCells(SimulationParameters sim, AutomatonCell ***lattice, std::deque<TACell> &cells);
+
+    /**
+    *   @brief          Function to update ECadherin - &beta; Catenin value
+    *   @param[in]      sim : the simulation parameters
+    *   @param[in, out] lattice : An array containing of all the points along with the number of fibers at each point
+    *   @param[in, out] cells : The TAcells in the simulation environment
+    *   @return         0
+    */
+    int updateEB(SimulationParameters sim, AutomatonCell ***lattice, std::deque<TACell> &cells);
+
+    /**
+    *   @brief  Function to change the genetic code
+    *   @param  sim : The simulation parameters (cellCount required)
+    *   @param  cells : The TAcells in the simulation environment
+    *   @return 0
+    */
+    int evolveGeneticCode(SimulationParameters sim,std::deque<TACell> &cells);
 public:
 
     /**
