@@ -9,10 +9,32 @@ node [fontname="Helvetica",fontsize="10",shape=record];
 uscp [label="USCP",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-automaton_cell [label="{AutomatonCell\n|- type\l- cellCount\l- ID\l|+ AutomatonCell()\l+ getType()\l+ setType()\l+ getCount()\l+ setCount()\l+ getId()\l+ setId()\l+ incrementCount()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+automaton_cell [label=<
+<TABLE ALIGN="LEFT" CELLBORDER="0" CELLSPACING="0" >
+<TR><TD>AutomatonCell</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT">- type</TD></TR>
+<TR><TD ALIGN="LEFT">- cellCount</TD></TR>
+<TR><TD ALIGN="LEFT">- ID</TD></TR>
+<TR><TD ALIGN="LEFT">+ <u>EMPTY</u></TD></TR>
+<TR><TD ALIGN="LEFT">+ <U>ECM</U></TD></TR>
+<TR><TD ALIGN="LEFT">+ <U>CELL</U></TD></TR>
+<TR><TD ALIGN="LEFT">+ <U>TA_CELL</U></TD></TR>
+<TR><TD ALIGN="LEFT">+ <U>STEM_CELL</U></TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT">+ AutomatonCell()</TD></TR>
+<TR><TD ALIGN="LEFT">+ getType()</TD></TR>
+<TR><TD ALIGN="LEFT">+ setType()</TD></TR>
+<TR><TD ALIGN="LEFT">+ getCount()</TD></TR>
+<TR><TD ALIGN="LEFT">+ setCount()</TD></TR>
+<TR><TD ALIGN="LEFT">+ getId()</TD></TR>
+<TR><TD ALIGN="LEFT">+ setId()</TD></TR>
+<TR><TD ALIGN="LEFT">+ incrementCount()</TD></TR>
+</TABLE>
+>,shape=plaintext,height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-cell [label="{Cell\n|- id\l- radius\l- senseRadius\l- eCadherin\l- EB\l- geneticCode[3]\l- age\l|+ Cell()\l+ ~Cell()\l+ getId()\l+ setId()\l+ getRadius()\l+ setRadius()\l+ getSenseRadius()\l+ setSenseRadius()\l+ getCentroid()\l+ setCentroid()\l+ getECadherin()\l+ setECadherin()\l+ getEB()\l+ setEB()\l+ getGeneticCode()\l+ setGeneticCode()\l+ getAge()\l+ setAge()\l+ incrementAge()\l+ getFavorableLocation()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+cell [label="{Cell\n|- id\l- radius\l- senseRadius\l- eCadherin\l- EB\l- geneticCode[3]\l- age\l|+ Cell()\l+ ~Cell()\l+ getId()\l+ setId()\l+ getRadius()\l+ setRadius()\l+ getSenseRadius()\l+ setSenseRadius()\l+ getCentroid()\l+ setCentroid()\l+ getECadherin()\l+ setECadherin()\l+ getEB()\l+ setEB()\l+ getGeneticCode()\l+ setGeneticCode()\l+ getAge()\l+ setAge()\l+ incrementAge()\l+ getFavorableLocation()\l+ divide()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
 environment [label="{Environment\n||+ Environment()\l+ setupECM()\l+ createCells()\l- generatePtFreqMap()\l- drawLine()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
@@ -24,7 +46,7 @@ line [label="{Line\n|- id\l- numberOfPoints\l- point[]\l|+ Line()\l+ Line()\l+ L
 point [label="{Point\n|- x\l- y\l- z\l|+ Point()\l+ Point()\l+ getX()\l+ setX()\l+ getY()\l+ setY()\l+ getZ()\l+ setZ()\l+ getVar()\l+ setVar()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-simulation [label="{Simulation\n||+ Simulation()\l+ generateOpId()\l+ simulate()\l- moveCells()\l- updateEB()\l- evolveGeneticCode()\l+ increaseAge()\l+ splitCell()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+simulation [label="{Simulation\n||+ Simulation()\l+ generateOpId()\l+ simulate()\l- moveCells()\l- updateEB()\l- evolveGeneticCode()\l+ increaseAge()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
 simulation_param [label="{SimulationParameters\n|- latticeHeight\l- latticeWidth\l- latticeDepth\l- fiberLength\l- fiberCount\l- cellCount\l- cellDivisionAge\l- alpha\l- maxIteration\l|+ SimulationParameters()\l+ ~SimulationParameters()\l+ loadParameters()\l+ loadParametersFromFile()\l+ getFiberCount()\l+ setFiberCount()\l+ getFiberLength()\l+ getLatticeDepth()\l+ getLatticeHeight()\l+ getLatticeWidth()\l+ getCellCount()\l+ getCellDivisonAge()\l+ getAlpha()\l+ getMaxIteration()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];

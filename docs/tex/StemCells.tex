@@ -108,10 +108,12 @@ Following are the various levels of signal processing :
   
   \chapter{Code structure}
    \section{\color{red} Components of a System}
-  The simulation environment consists of the following components:
+  The simulation environment consist of the following components:
   \begin{itemize}
    \item Stem Cells
-   \item ECM fiber
+   \item Transit Amplifying Cells
+   \item Normal Cells
+   \item ECM fibers
   \end{itemize}
   
   \section{\color{red} Operations done by simulation class}
@@ -151,6 +153,12 @@ Following are the various levels of signal processing :
   The following operations are supported
   \subsection{\color{blue}Increase cell age}
   This function increases the age of cell by 1.
+  \subsection{\color{blue}Determination of favorable location}
+  This function identifies a location in the neighbourhood of the given cell(i.e. within its sensing radius)  where that cell can be moved or a new daughter cell can be added. The probability of selecting a location is defined by the Gaussian probability distribution.
+  Thus, it is called before adding a new daughter cell or moving the given cell.
+  For this operation we have assumed that every cell has a centroid associated with it. So, while initializing the cell, we select a random lattice point (where no cell or ECM fiber is present) as the centroid of that cell.
+  \subsection{\color{blue}Cell Division}
+  This function divide the cells (normal cells) and position the new cells at favourable location.
   
   \section{\color{red} Operations done by AutomatonCell class}
   The following operations are supported
@@ -174,6 +182,26 @@ Following are the various levels of signal processing :
     $<x Dimension>,<y Dimension>,<z Dimension>,<cell Type>,<cell Id>,<cell Age>$ \\ \\
     Note : cell age is -1 for empty (free) points 
    \end{itemize}
+   
+  \section{\color{red} Operations done by Environment class}
+  The following operations are supported
+  \subsection{\color{blue}Setting up Extra Cellular Matrix}
+  This function initializes the simulation environment with the given number of ECM (Extra-Cellular Matrix) fibers (as specified in the configuration file), position them at random locations with random orientations in the environment (lattice).
+  For each point within the environment, it also calculates the number of fibers intersecting at that point.
+  \subsection{\color{blue}Initialization of cells}
+  This function initializes the attributes of every cell with default values and assign a unique ID to each cell.
+  
+  \section{\color{red} Operations done by SimulationParameters class}
+  The following operations are supported
+  \subsection{\color{blue}Loading Simulation Parameters}
+  This function loads the simulation parameters from the configuration file (uscp.conf).
+  
+  \section{\color{red} Operations done by StemCell class}
+  The following operations are supported
+  \subsection{\color{blue}Symmetric Division}
+  This function divides the stem cell symmetrically, i.e. the parent stem cell is divided into two stem cells.
+  \subsection{\color{blue}Asymmetric Division}
+  This function divides the stem cell asymmetrically, i.e. the parent stem cell is divided into a stem cell and a transit-amplifying cell.
   
   \chapter{Implementation}
   \section{\color{red}Classes}
