@@ -138,11 +138,20 @@ Following are the various levels of signal processing :
     \end{description}
    \end{itemize}
    \subsection{\color{blue}Evolve genetic code}
-   Changes the genetic code array as
+   Performs following computations: 
    \begin{itemize}
-    \item geneticCode[0]=geneticCode[0] AND geneticCode[1]
-    \item geneticCode[1]=geneticCode[1] OR geneticCode[2]
-    \item geneticCode[2]=NOT geneticCode[2]
+    \item STAT3 	= 	LIF
+    \item TCF3 		= 	CH' . MEK{\_}ERK'
+    \item MEK{\_}ERK 	= 	PD'
+    \item GBX2		=	STAT3
+    \item KLF4		=	STAT3 . GBX2
+    \item TFCP2L1	=	ESMB . TCF3' . STAT3 . KLF4 . OCT4'
+    \item ESMB		=	TFCP2L1 . TCF3' . NANOG
+    \item OCT4		=	SOX2 . KLF2 . ESMB'
+    \item SOX2		=	SALL4 . NANOG
+    \item NANOG		=	MEK{\_}ERK' . OCT4 . KLF2
+    \item KLF2		=	KLF4 . SALL4
+    \item SALL4		=	TFCP2L1
    \end{itemize}
 
   \subsection{\color{blue}Increase age of cells}
