@@ -21,8 +21,30 @@ protected:
     int senseRadius;    /**<The sensing radius of the cell*/
     float eCadherin;    /**<A protein named ECadherin*/
     float EB;           /**<Denotes ECadherin-Beta Cadherin*/
-    bool geneticCode[3];/**<An array of genetic code*/
     int age;            /**<The age of cell*/
+
+    /**
+     *
+     * Gene		| 	ID
+     * -------------------
+     * LIF 		| 	0
+     * CH 		| 	1
+     * PD 		| 	2
+     * STAT3 	| 	3
+     * TCF3 	| 	4
+     * MEK_ERK 	| 	5
+     * GBX2		| 	6
+     * KLF4		| 	7
+     * TFCP2L1	| 	8
+     * ESMB		| 	9
+     * OCT4		| 	10
+     * SOX2		| 	11
+     * NANOG	| 	12
+     * KLF2		| 	13
+     * SALL4	| 	14
+     *
+     */
+    bool geneticCode[15];
 
 public:
 

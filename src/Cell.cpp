@@ -5,7 +5,7 @@
 Cell::Cell():id(0),radius(0),senseRadius(0),eCadherin(0.0),centroid(Point(0,0,0)),EB(0.0),age(0)
 {
     int i=0;
-    for(i=0;i<3;i++) {
+    for(i=0;i<15;i++) {
         geneticCode[i]=((rand()%2)==0)?false:true;
     }
 }
@@ -65,9 +65,9 @@ float Cell::getEB() const {
 }
 
 int Cell::getGeneticCode(bool *gCode) const {
-    gCode[0]=geneticCode[0];
-    gCode[1]=geneticCode[1];
-    gCode[2]=geneticCode[2];
+    for(int i=0; i<15; i++){
+        gCode[i]=geneticCode[i];
+    }
     return 0;
  }
 
@@ -76,9 +76,9 @@ int Cell::getGeneticCode(bool *gCode) const {
  }
 
 int Cell::setGeneticCode(bool *gCode) {
-    geneticCode[0]=gCode[0];
-    geneticCode[1]=gCode[1];
-    geneticCode[2]=gCode[2];
+    for(int i=0; i<15; i++){
+        geneticCode[i]=gCode[i];
+    }
     return 0;
 }
 
