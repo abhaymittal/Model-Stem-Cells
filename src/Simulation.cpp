@@ -106,11 +106,27 @@ int Simulation::generateOpId()
 }
 int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<Cell> &cells)
 {
+    int numGenes = 15;
+    bool prevGeneCode[numGenes];
+
     for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
-        it->setGeneticCode(0, it->getGeneticCode(0) & it->getGeneticCode(1) );
-        it->setGeneticCode(1, it->getGeneticCode(1) | it->getGeneticCode(2) );
-        it->setGeneticCode(2, !(it->getGeneticCode(2)) );
+        for(int i=0; i<numGenes; i++){
+            prevGeneCode[i] = it->getGeneticCode(i);
+        }
+
+        it->setGeneticCode(3, prevGeneCode[0] );
+        it->setGeneticCode(4, !(prevGeneCode[1]) & !(prevGeneCode[5]) );
+        it->setGeneticCode(5, !(prevGeneCode[2]) );
+        it->setGeneticCode(6, prevGeneCode[3] );
+        it->setGeneticCode(7, prevGeneCode[3] & prevGeneCode[6] );
+        it->setGeneticCode(8, prevGeneCode[9] & !(prevGeneCode[4]) & prevGeneCode[3] & prevGeneCode[7] & !(prevGeneCode[10]) );
+        it->setGeneticCode(9, prevGeneCode[8] & !(prevGeneCode[4]) & prevGeneCode[12] );
+        it->setGeneticCode(10, prevGeneCode[11] & prevGeneCode[13] & !(prevGeneCode[9]) );
+        it->setGeneticCode(11, prevGeneCode[14] & prevGeneCode[12] );
+        it->setGeneticCode(12, !(prevGeneCode[5]) & prevGeneCode[10] & prevGeneCode[13] );
+        it->setGeneticCode(13, prevGeneCode[7] & prevGeneCode[14] );
+        it->setGeneticCode(14, prevGeneCode[8] );
     }
     return 0;
 }
@@ -234,11 +250,27 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
 }
 int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<StemCell> &cells)
 {
+    int numGenes = 15;
+    bool prevGeneCode[numGenes];
+
     for(std::deque<StemCell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
-        it->setGeneticCode(0, it->getGeneticCode(0) & it->getGeneticCode(1) );
-        it->setGeneticCode(1, it->getGeneticCode(1) | it->getGeneticCode(2) );
-        it->setGeneticCode(2, !(it->getGeneticCode(2)) );
+        for(int i=0; i<numGenes; i++){
+            prevGeneCode[i] = it->getGeneticCode(i);
+        }
+
+        it->setGeneticCode(3, prevGeneCode[0] );
+        it->setGeneticCode(4, !(prevGeneCode[1]) & !(prevGeneCode[5]) );
+        it->setGeneticCode(5, !(prevGeneCode[2]) );
+        it->setGeneticCode(6, prevGeneCode[3] );
+        it->setGeneticCode(7, prevGeneCode[3] & prevGeneCode[6] );
+        it->setGeneticCode(8, prevGeneCode[9] & !(prevGeneCode[4]) & prevGeneCode[3] & prevGeneCode[7] & !(prevGeneCode[10]) );
+        it->setGeneticCode(9, prevGeneCode[8] & !(prevGeneCode[4]) & prevGeneCode[12] );
+        it->setGeneticCode(10, prevGeneCode[11] & prevGeneCode[13] & !(prevGeneCode[9]) );
+        it->setGeneticCode(11, prevGeneCode[14] & prevGeneCode[12] );
+        it->setGeneticCode(12, !(prevGeneCode[5]) & prevGeneCode[10] & prevGeneCode[13] );
+        it->setGeneticCode(13, prevGeneCode[7] & prevGeneCode[14] );
+        it->setGeneticCode(14, prevGeneCode[8] );
     }
     return 0;
 }
@@ -301,11 +333,27 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
 }
 int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<TACell> &cells)
 {
+    int numGenes = 15;
+    bool prevGeneCode[numGenes];
+
     for(std::deque<TACell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
-        it->setGeneticCode(0, it->getGeneticCode(0) & it->getGeneticCode(1) );
-        it->setGeneticCode(1, it->getGeneticCode(1) | it->getGeneticCode(2) );
-        it->setGeneticCode(2, !(it->getGeneticCode(2)) );
+        for(int i=0; i<numGenes; i++){
+            prevGeneCode[i] = it->getGeneticCode(i);
+        }
+
+        it->setGeneticCode(3, prevGeneCode[0] );
+        it->setGeneticCode(4, !(prevGeneCode[1]) & !(prevGeneCode[5]) );
+        it->setGeneticCode(5, !(prevGeneCode[2]) );
+        it->setGeneticCode(6, prevGeneCode[3] );
+        it->setGeneticCode(7, prevGeneCode[3] & prevGeneCode[6] );
+        it->setGeneticCode(8, prevGeneCode[9] & !(prevGeneCode[4]) & prevGeneCode[3] & prevGeneCode[7] & !(prevGeneCode[10]) );
+        it->setGeneticCode(9, prevGeneCode[8] & !(prevGeneCode[4]) & prevGeneCode[12] );
+        it->setGeneticCode(10, prevGeneCode[11] & prevGeneCode[13] & !(prevGeneCode[9]) );
+        it->setGeneticCode(11, prevGeneCode[14] & prevGeneCode[12] );
+        it->setGeneticCode(12, !(prevGeneCode[5]) & prevGeneCode[10] & prevGeneCode[13] );
+        it->setGeneticCode(13, prevGeneCode[7] & prevGeneCode[14] );
+        it->setGeneticCode(14, prevGeneCode[8] );
     }
     return 0;
 }
