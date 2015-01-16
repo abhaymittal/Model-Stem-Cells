@@ -281,7 +281,56 @@ Following are the various levels of signal processing :
   \lstinputlisting{../../uscp.conf}
 
 
-  
+  \chapter{Boolean Networks}
+  \section{\color{red} Introduction to boolean networks}
+    The concept of boolean networks was introduced by Kauffman to model genetic regulatory networks \cite{Goles2010,Kauffman1969}.
+    There are two possible states a gene can be in: expressed(1) and not expressed(0). At a particular instant of time, a gene can
+    be in one state only. The next state of a gene is a function of the current state of the gene and its immediate neighbors
+    in the boolean network \cite{Dimitrova2011}. Genes represent nodes in the network. If there are n genes in the network, then we represent the state of the network using a binary vector
+    of length n. Thus there can be be $2^n$ possible states in the network.
+    
+    A boolean network N characterized by \cite{Goles2010}:
+    \begin{enumerate}
+     \item a finite set of variable states $\{x_{1},x_{2},...,x_{n}\}$ where $x_{i} \in \{0,1\}$
+     \item a global transition function F:$\{0,1\}^{n} \to \{0,1\}^{n}$, where F(x)=$(f_{1}(x),f_{2}(x),...,f_{n}(x))$ and
+     x=$(x_{1},x_{2},...,x_{n})$, $x_{i} \in \{0,1\}$
+    \end{enumerate}
+    
+    Two types of directed graphs are associated with a boolean network:
+    \begin {enumerate}
+     \item \textbf{Wiring diagram}: In a wiring diagram, the variables of the boolean network are represented in the form of nodes.
+     A directed edge i $\to$ j is positive if $x_{i}$ is an argument of $f_{j}$ \cite{Dimitrova2011}. An edge i$\to$j is positive if 
+     $f_{j}(x_{1},...,x_{i-1},0,x_{i+1},...,x_{n}) \leq f_{j}(x_{1},...,x_{i-1},1,x_{i+1},...,x_{n})$; else the edge is negative \cite{Veliz-Cuba2011}.
+     In other words, an edge i $\to$ j is positive if $f_{j}$ is increasing monotic \cite{Goles2010} on input i, otherwise the edge is negative.
+     \item \textbf{State space graph}: A state space graph consists of all the $2^{n}$ possible states in the network. Each state 
+     represents a node in the graph. There is a directed edge a$\to$b if f(a)=b \cite{Dimitrova2011}.
+    \end {enumerate}
+    
+    The boolean network model introduced by Kauffman is known as the N-K model. An N-K boolean network consists of N nodes and each node has K inputs (assigned at random). Thus it is a directed
+    graph consisting of N vertices and N.K edges. The state space of N-K networks is of finite size \cite{Greil2012}.
+    
+    Compared to quantitative models such as systems of ordinary differential equations, boolean models need lesser information about the sytem to be modeled. Also, for reasonably
+    small models, it is easier to explore their dynamics \cite{Dimitrova2011}.
+    \section{\color{red} Evolution of boolean network with time}
+    The dynamics of a boolean network (i.e. how the network evolves with time) are given by considering discrete time steps and finding F at each time step.
+    Thus we iterate F over the time steps. The state space graph is used to represent the dynamics of a boolean network \cite{Veliz-Cuba2011}.
+    The following are the common methods for updating a Boolean network:
+    \begin{enumerate}
+     \item \textbf{Parallel}: In parallel update, all the nodes are updated at the same time \cite{Goles2010}.Thus
+     \begin{center} $x^{r+1}=F(x^{r})$\end{center}
+     where $x^{0}=\{0,1\}^{n}$
+     \item \textbf{sequential}: The mechanism of sequential update is defined as \cite{Goles2010}:
+     \begin{center}
+      $x_{1}^{r+1}=f_{1}(x_{1}^{r},...,x_{n}^{r})$
+     \end{center} 
+     \begin{center}
+      $x_{i}^{r+1}=f_{i}(x_{1}^{r+1},...,x_{i-1}^{r+1},x_{i}^{r},...,x_{n}^{r}) \forall i=2,...,n$
+     \end{center}
+     \item \textbf{asynchronous}: In this mechanism, the nodes are updated at different instances of time.
+     {\color{red}CHECK IT later. I think sequential should be asynchronous. I have added it from an article.}
+    \end{enumerate}
+
+
  \bibliographystyle{plain}
  \bibliography{StemCellsReferences}
 \end{document}
