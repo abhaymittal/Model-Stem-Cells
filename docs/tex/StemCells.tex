@@ -330,6 +330,43 @@ Following are the various levels of signal processing :
      {\color{red}CHECK IT later. I think sequential should be asynchronous. I have added it from an article.}
     \end{enumerate}
 
+    \section{Areas of applications}
+    The Boolean Networks have been applied in many areas.
+    Its areas of application includes computer science, biological systems and circuit theory \cite{Goles2010}.
+    
+    \textbf{Biological systems : } Boolean networks as models of gene regulatory networks have received much attention since they were first introduced \cite{Shmulevich2002}.
+    Here, gene expression is quantized to only two levels and the expression level (state) of each gene is functionally related to the expression states of some other genes using logical rules.
+    
+    \textbf{Computer Science : } Boolean networks are used in various fields of computer science including robotics.
+    Boolean Network is a topic of interest, because it can exhibit rich and complex behaviours, in-spite of the compactness of its description.
+    Andrea Roli et. al. \cite{Roli2011} proposed the use of boolean networks to control robots' behaviour, which facilitated the design of a network which enables the robot to accomplish complex navigation tasks easily, as well as the use of an internal memory.
+    
+    \textbf{Circuit Theory : } Circuit theory also involves the use of boolean networks \cite{Goles2010}.
+    
+    \section{Tools used to implement Boolean Network}
+    There are many tools available for implementing or simulationg the boolean networks.
+    Some of them are:
+    \begin{enumerate}
+     \item \textbf{Boolean Network Modeling : } It is freely accessible from \emph{http://booleannet.googlecode.com} and is distributed via a liberal Open Source license \cite{Albert2008}.
+     It takes simple text based input describing the interactions and regulatory relationships in the system to simulate a Boolean model.
+     Rather than focusing on a larger scale network inference, analysis or modeling based on high throughput data, it focuses on the modeling of dynamic behavior of biological sub-systems.
+    \item \textbf{Discrete Dynamics Lab (DDLab) : } DDLab is interactive graphics software.\cite{Wuensche2008}
+    It can be used to create, visualize and analyze various aspects of Random Boolean Networks, Cellular Automata, and Discrete Dynamical Networks.
+    It is helpful in studying their behavior, both from the time-series perspective – space-time patterns, and from the state-space perspective – attractor basins.
+    It can be used for research and education in various fields including neural networks, genetic regulatory networks, dynamical encryption, and studying the abstract mathematical/physical/dynamical phenomena in their own right.
+    \item \textbf{BoolNet : } The package BoolNet is freely available from the R project at http://cran.r-project.org/ or http://www.informatik.uni- ulm.de/ni/mitarbeiter/HKestler/boolnet/ under Artistic License 2.0. \cite{Mussel2010}
+    It efficiently integrates the methods for synchronous, asynchronous and probabilistic boolean networks.
+    It can reconstruct networks from time series, generate random networks, and is helpful for identification and visualization of attractors.
+    \item \textbf{BooleSim (Boolean Network Simulator) : } BooleSim is an open source, in-browser tool capable of simulating and manipulating the Boolean networks\cite{Bock2013}.
+    It is available at GitHub (\emph{https://github.com/matthiasbock/BooleSim}).
+    Its online version is available at \emph{http://rumo.biologie.hu-berlin.de/boolesim/}.
+    Modeling of gene regulatory or signal transduction networks can be done using this tool.
+    \item \textbf{lnet : } lnet can detect the fixed states of Boolean Networks with upto 150 nodes in fully asynchronous updating mode and without any network reduction \cite{Berntenis2013}.
+    Thus, it facilitates the analysis of large Boolean networks.
+    it also provides standard Boolean analysis features such as node loop detection.
+    
+    \end{enumerate}
+
 
  \bibliographystyle{plain}
  \bibliography{StemCellsReferences}
