@@ -127,7 +127,7 @@ Following are the various levels of signal processing :
    \item Calculate the total ECadherin value by summing the ECadherin value of all the neighbours.
    \item Use the following formula to update the ECadherin- $\beta$ Catenin value:\\
    \begin{equation}
-    EB = \frac{sumFiber}{sumFiber+k} + \frac{totalNeigbourEC}{N}
+    EB = \frac{1}{2}\bigg(\frac{k}{sumFiber+k}*EB + \frac{totalNeigbourEC}{N}\bigg)
    \end{equation}
    where
    \begin{description}[labelindent=2cm]
@@ -303,7 +303,7 @@ Following are the various levels of signal processing :
      $f_{j}(x_{1},...,x_{i-1},0,x_{i+1},...,x_{n}) \leq f_{j}(x_{1},...,x_{i-1},1,x_{i+1},...,x_{n})$; else the edge is negative \cite{Veliz-Cuba2011}.
      In other words, an edge i $\to$ j is positive if $f_{j}$ is increasing monotic \cite{Goles2010} on input i, otherwise the edge is negative.
      \item \textbf{State space graph}: A state space graph consists of all the $2^{n}$ possible states in the network. Each state 
-     represents a node in the graph. There is a directed edge a$\to$b if f(a)=b \cite{Dimitrova2011}.
+     represents a node in the graph. There is a directed edge a$\to$b if F(a)=b \cite{Dimitrova2011}.
     \end {enumerate}
     
     The boolean network model introduced by Kauffman is known as the N-K model. An N-K boolean network consists of N nodes and each node has K inputs (assigned at random). Thus it is a directed
@@ -324,7 +324,7 @@ Following are the various levels of signal processing :
       $x_{1}^{r+1}=f_{1}(x_{1}^{r},...,x_{n}^{r})$
      \end{center} 
      \begin{center}
-      $x_{i}^{r+1}=f_{i}(x_{1}^{r+1},...,x_{i-1}^{r+1},x_{i}^{r},...,x_{n}^{r}) \forall i=2,...,n$
+%       $x_{i}^{r+1}=f_{i}(x_{1}^{r+1},...,x_{i-1}^{r+1},x_{i}^{r},...,x_{n}^{r}) \forall i=2,...,n$
      \end{center}
      \item \textbf{asynchronous}: In this mechanism, the nodes are updated at different instances of time.
      {\color{red}CHECK IT later. I think sequential should be asynchronous. I have added it from an article.}
