@@ -227,7 +227,7 @@ int Environment::createCells(int radius, int senseRadius, SimulationParameters s
     return 0;
 }
 
-int Environment::insertCell(int radius,int senseRadius, Point centroid, SimulationParameters sim,int type , AutomatonCell ***environment,cellGroup cells) {
+int Environment::insertCell(int radius,int senseRadius, Point centroid, SimulationParameters sim,int type , AutomatonCell ***environment,cellGroup& cells) {
     switch(type) {
     case AutomatonCell::CELL: {
         Cell newCell;

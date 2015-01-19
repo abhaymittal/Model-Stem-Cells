@@ -62,13 +62,25 @@ public:
     *   @param[in]  radius : The radius of each cell
     *   @param[in]  senseRadius : The sensing radius of each cell
     *   @param[in]  sim : The simulation parameters
-    *   @param[in]  environment : A 3d array consisting of the number of fibers at each point
+    *   @param[in]  environment :  The simulation environment lattice.
     *   @param[out] cells : A deque of generated cells
     *   @return 0
     */
     int createCells(int radius, int senseRadius, SimulationParameters sim, std::deque<Cell> &cells, AutomatonCell ***environment);
 
-    int insertCell(int radius,int senseRadius, Point centroid, SimulationParameters sim,int type , AutomatonCell ***environment,cellGroup cells);
+    /**
+    *   @brief  Function to insert a new cell at a location in the Environment
+    *   This function creates a new normal, stem or transit amplifying cell and places it at a  particular location.
+    *   @param[in]  radius : The radius of the new cell
+    *   @param[in]  senseRadius : The sensing radius of the new cell
+    *   @param[in]  centroid : The location of the centroid of the new cell
+    *   @param[in]  sim : The simulation parameters
+    *   @param[in]  type : The type of cell to put (normal, transit or stem)
+    *   @param[in]  environment :  The simulation environment lattice.
+    *   @param[out] cellGroup : All the cells in the environment
+    *   @return 0
+    */
+    int insertCell(int radius,int senseRadius, Point centroid, SimulationParameters sim,int type , AutomatonCell ***environment,cellGroup& cells);
 };
 
 #endif // ENVIRONMENT_H
