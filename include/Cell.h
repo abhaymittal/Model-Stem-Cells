@@ -187,7 +187,11 @@ public:
     *   @param[out] location : favorable location for new cell
     *   @param[in] environment : The lattice
     *   @param[in] sim : The simulation parameters
-    *   @return 0 : OK, -1 : ERROR
+    *   @return The function returns the following values
+    *                               Return Value | Meaning
+    *                               -------------------|-------------
+    *                               0              | The function was able to find a location
+    *                               -1            | No suitable location was found
     */
     int getFavorableLocation(Point& location, AutomatonCell ***environment, SimulationParameters sim);
 

@@ -8,7 +8,7 @@
 *   ----------------|------------
 *   1               |   Move cells
 *   2               |   Update ECadherin - &beta; Catenin value
-
+*   3               |   Evolve the genetic code of the cells
 *   @author Abhay Mittal
 *   @author Pratik Varshney
 */
@@ -25,7 +25,7 @@ class Simulation
 {
 private:
     /**
-    *   @brief          Function to move cells
+    *   @brief          Function to move normal cells
     *   @param[in]      sim : the simulation parameters
     *   @param[in, out] lattice : An array containing of all the points along with the number of fibers at each point
     *   @param[in, out] cells : The cells in the simulation environment
@@ -34,16 +34,20 @@ private:
     int moveCells(SimulationParameters sim, AutomatonCell ***lattice, std::deque<Cell> &cells);
 
     /**
-    *   @brief          Function to update ECadherin - &beta; Catenin value
+    *   @brief          Function to update ECadherin - &beta; Catenin value of normal cells
     *   @param[in]      sim : the simulation parameters
     *   @param[in, out] lattice : An array containing of all the points along with the number of fibers at each point
     *   @param[in, out] cells : The cells in the simulation environment
-    *   @return         0
+    *   @return         The function returns the following values
+    *   Return Value | Meaning
+    *   -------------------|------------
+    *   0                          | Function updated the EB value of the cells
+    *   -1                        | There were no normal cells in the environment
     */
     int updateEB(SimulationParameters sim, AutomatonCell ***lattice, std::deque<Cell> &cells);
 
     /**
-    *   @brief  Function to change the genetic code
+    *   @brief  Function to change the genetic code of normal cells
     *   @param  sim : The simulation parameters (cellCount required)
     *   @param  cells : The cells in the simulation environment
     *   @return 0
@@ -53,27 +57,31 @@ private:
     /* Operations for stemcells */
 
      /**
-    *   @brief          Function to move stemcells
+    *   @brief          Function to move stem cells
     *   @param[in]      sim : the simulation parameters
     *   @param[in, out] lattice : An array containing of all the points along with the number of fibers at each point
-    *   @param[in, out] cells : The stemcells in the simulation environment
+    *   @param[in, out] cells : The stem cells in the simulation environment
     *   @return         0
     */
     int moveCells(SimulationParameters sim, AutomatonCell ***lattice, std::deque<StemCell> &cells);
 
     /**
-    *   @brief          Function to update ECadherin - &beta; Catenin value
+    *   @brief          Function to update ECadherin - &beta; Catenin value of  stem cells
     *   @param[in]      sim : the simulation parameters
     *   @param[in, out] lattice : An array containing of all the points along with the number of fibers at each point
-    *   @param[in, out] cells : The stemcells in the simulation environment
-    *   @return         0
+    *   @param[in, out] cells : The stem cells in the simulation environment
+    *   @return         The function returns the following values
+    *   Return Value | Meaning
+    *   -------------------|------------
+    *   0                          | Function updated the EB value of the stem cells
+    *   -1                        | There were no stem cells in the environment
     */
     int updateEB(SimulationParameters sim, AutomatonCell ***lattice, std::deque<StemCell> &cells);
 
     /**
-    *   @brief  Function to change the genetic code
+    *   @brief  Function to change the genetic code of stem cells
     *   @param  sim : The simulation parameters (cellCount required)
-    *   @param  cells : The stemcells in the simulation environment
+    *   @param  cells : The stem cells in the simulation environment
     *   @return 0
     */
     int evolveGeneticCode(SimulationParameters sim,std::deque<StemCell> &cells);
@@ -94,7 +102,11 @@ private:
     *   @param[in]      sim : the simulation parameters
     *   @param[in, out] lattice : An array containing of all the points along with the number of fibers at each point
     *   @param[in, out] cells : The TAcells in the simulation environment
-    *   @return         0
+     *   @return         The function returns the following values
+    *   Return Value | Meaning
+    *   -------------------|------------
+    *   0                          | Function updated the EB value of the transit amplifying cells
+    *   -1                        | There were no transit amplifying cells in the environment
     */
     int updateEB(SimulationParameters sim, AutomatonCell ***lattice, std::deque<TACell> &cells);
 

@@ -49,6 +49,8 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
     int sumFiber=0;
     float totalNeighbourEC=0;
     float EBNew;
+    if(cells.size()==0)
+        return -1;
     int totalNeighbours=(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1);
     for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
@@ -68,7 +70,7 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
                 }
             }
         }
-        EBNew=((static_cast<float>(sumFiber))/(sumFiber+k))+(totalNeighbourEC/totalNeighbours);
+        EBNew=0.5F*(((static_cast<float>(k))/(sumFiber+k))*(it->getEB())+(totalNeighbourEC/totalNeighbours));
         it->setEB(EBNew);
     }
     return 0;
@@ -224,6 +226,8 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
     int sumFiber=0;
     float totalNeighbourEC=0;
     float EBNew;
+    if(cells.size()==0)
+        return -1;
     int totalNeighbours=(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1);
     for(std::deque<StemCell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
@@ -243,7 +247,7 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
                 }
             }
         }
-        EBNew=((static_cast<float>(sumFiber))/(sumFiber+k))+(totalNeighbourEC/totalNeighbours);
+        EBNew=0.5F*(((static_cast<float>(k))/(sumFiber+k))*(it->getEB())+(totalNeighbourEC/totalNeighbours));
         it->setEB(EBNew);
     }
     return 0;
@@ -307,6 +311,8 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
     int sumFiber=0;
     float totalNeighbourEC=0;
     float EBNew;
+    if(cells.size()==0)
+        return -1;
     int totalNeighbours=(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1);
     for(std::deque<TACell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
@@ -326,7 +332,7 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
                 }
             }
         }
-        EBNew=((static_cast<float>(sumFiber))/(sumFiber+k))+(totalNeighbourEC/totalNeighbours);
+        EBNew=0.5F*(((static_cast<float>(k))/(sumFiber+k))*(it->getEB())+(totalNeighbourEC/totalNeighbours));
         it->setEB(EBNew);
     }
     return 0;
