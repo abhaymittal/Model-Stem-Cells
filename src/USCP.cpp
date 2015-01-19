@@ -62,57 +62,53 @@ int main() {
 
     //util.writeIteration(sim, environment, cells.normalCell, 0);
 
-    int numcells = cells.normalCell.size();
+    /* collecting data for plotting vs time(iteration) */
 
-    int kval = 20;
-    int arr[kval];
-    int tmp_val;
-    int found;
-    for(int i=0; i<kval; )
-    {
-        tmp_val = rand() % numcells;
-        found=0;
-        for(int j=0; j<i; j++)
-        {
-            if(arr[j]==tmp_val)
-            {
-                found=1;
-                break;
-            }
-        }
-        if(found)
-        {
-            continue;
-        }
-        else
-        {
-            arr[i]=tmp_val;
-            i++;
-        }
-    }
-    cout << "RANDOM : ";
-    for(int i=0; i<kval; i++)
-        cout << arr[i] << ',';
-    cout << endl;
-    maxIteration = 1600;
+    long long numStemCells = 0;
+    long long numTACells = 0;
+    long long numNormalCells = 0;
+    long long numTotalCells = 0;
+    double averageEB = 0.0;
+    long long totalECMFiber = 0;
 
-    ofstream cell_vs_time("cell_vs_time.csv");
-    ofstream evt("avg_eb_vs_time.csv");
-    ofstream avg_k("avg_k.csv");
-    cell_vs_time << 0 << "," << cells.normalCell.size() << endl;
+    ofstream numStemCellsFile("log/numStemCells.csv");
+    ofstream numTACellsFile("log/numTACells.csv");
+    ofstream numNormalCellsFile("log/numNormalCells.csv");
+    ofstream numTotalCellsFile("log/numTotalCells.csv");
+    ofstream averageEBFile("log/averageEB.csv");
+    ofstream totalECMFiberFile("log/totalECMFiber.csv");
+
+    numStemCells = cells.stemCell.size();
+    numTACells = cells.taCell.size();
+    numNormalCells = cells.normalCell.size();
+    numTotalCells = numStemCells + numTACells + numNormalCells;
 
     double sumEB = 0.0;
+    for(std::deque<StemCell>::iterator it = cells.stemCell.begin(); it!=cells.stemCell.end(); it++)
+        sumEB += (it->getEB());
+    for(std::deque<TACell>::iterator it = cells.taCell.begin(); it!=cells.taCell.end(); it++)
+        sumEB += (it->getEB());
     for(std::deque<Cell>::iterator it = cells.normalCell.begin(); it!=cells.normalCell.end(); it++)
         sumEB += (it->getEB());
 
-    evt << 0 << "," << sumEB/cells.normalCell.size() << endl;
+    averageEB = sumEB/numTotalCells;
 
-    avg_k << 0;
-    for(int i=0; i<kval; i++)
-    {
-        avg_k << ',' << cells.normalCell[i].getEB();
+    for(int i=0;i<width;i++) {
+        for(int j=0;j<height;j++) {
+            for(int k=0;k<depth;k++){
+                if(environment[i][j][k].getType() == AutomatonCell::ECM) totalECMFiber++;
+            }
+        }
     }
-    avg_k << endl;
+
+    numStemCellsFile << 0 << "," << numStemCells << endl;
+    numTACellsFile << 0 << "," << numTACells << endl;
+    numNormalCellsFile << 0 << "," << numNormalCells << endl;
+    numTotalCellsFile << 0 << "," << numTotalCells << endl;
+    averageEBFile << 0 << "," << averageEB << endl;
+    totalECMFiberFile << 0 << "," << totalECMFiber << endl;
+
+    /* End data collection for 0th iteration */
 
     for(int itr=1; itr<=maxIteration; itr++)
     {
@@ -121,27 +117,62 @@ int main() {
         simul.simulate(sim,environment,cells.normalCell,opId);
         simul.increaseAge(cells,1,1,sim,environment);
         //util.writeIteration(sim, environment, cells.normalCell, itr);
-        cell_vs_time << itr << "," << cells.normalCell.size() << endl;
+
+        /* collecting data for plotting vs time(iteration) */
+
+        /* Reset values */
+        numStemCells = 0;
+        numTACells = 0;
+        numNormalCells = 0;
+        numTotalCells = 0;
+        averageEB = 0.0;
+        totalECMFiber = 0;
+
+        numStemCells = cells.stemCell.size();
+        numTACells = cells.taCell.size();
+        numNormalCells = cells.normalCell.size();
+        numTotalCells = numStemCells + numTACells + numNormalCells;
 
         sumEB = 0.0;
+        for(std::deque<StemCell>::iterator it = cells.stemCell.begin(); it!=cells.stemCell.end(); it++)
+            sumEB += (it->getEB());
+        for(std::deque<TACell>::iterator it = cells.taCell.begin(); it!=cells.taCell.end(); it++)
+            sumEB += (it->getEB());
         for(std::deque<Cell>::iterator it = cells.normalCell.begin(); it!=cells.normalCell.end(); it++)
             sumEB += (it->getEB());
 
-        evt << itr << "," << sumEB/cells.normalCell.size() << endl;
+        averageEB = sumEB/numTotalCells;
 
-        avg_k << itr;
-        for(int i=0; i<kval; i++)
-        {
-            avg_k << ',' << cells.normalCell[i].getEB();
+        for(int i=0;i<width;i++) {
+            for(int j=0;j<height;j++) {
+                for(int k=0;k<depth;k++){
+                    if(environment[i][j][k].getType() == AutomatonCell::ECM) totalECMFiber++;
+                }
+            }
         }
-        avg_k << endl;
+
+        numStemCellsFile << itr << "," << numStemCells << endl;
+        numTACellsFile << itr << "," << numTACells << endl;
+        numNormalCellsFile << itr << "," << numNormalCells << endl;
+        numTotalCellsFile << itr << "," << numTotalCells << endl;
+        averageEBFile << itr << "," << averageEB << endl;
+        totalECMFiberFile << itr << "," << totalECMFiber << endl;
+
+        /* End data collection for ith iteration */
     }
-    cell_vs_time.close();
+
+    /* close data collection files */
+    numStemCellsFile.close();
+    numStemCellsFile.close();
+    numTACellsFile.close();
+    numNormalCellsFile.close();
+    numTotalCellsFile.close();
+    averageEBFile.close();
+    totalECMFiberFile.close();
 
     cout<<"Going to generate file"<<endl;
     /*******Generate Output file*********/
     util.generateECMFile(sim, environment, Utilities::COUNT);
-    /*Testing for the System class*/
 
     /*Free dynamic memory*/
 
