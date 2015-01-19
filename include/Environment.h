@@ -12,6 +12,7 @@
 
 #include "SimulationParameters.h"
 #include "AutomatonCell.h"
+#include "global.h"
 #include "Point.h"
 #include "Line.h"
 #include "Var.h"
