@@ -54,9 +54,11 @@ int main() {
 	env.setupECM(sim,environment);
 
 	cellGroup cells;
-	cells.normalCell.resize(sim.getCellCount());
+	/*cells.normalCell.resize(sim.getCellCount());
+    env.createCells(1,1,sim,cells.normalCell,environment);*/
 
-    env.createCells(1,1,sim,cells.normalCell,environment);
+    env.insertCell(1,1,Point(sim.getLatticeWidth()/2,sim.getLatticeHeight()/2,sim.getLatticeDepth()/2),sim, AutomatonCell::STEM_CELL,environment,cells);
+
     Simulation simul;
     Utilities util;
 

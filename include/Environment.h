@@ -16,6 +16,7 @@
 #include "Line.h"
 #include "Var.h"
 #include "Cell.h"
+#include "global.h"
 #include <deque>
 
 class Environment
@@ -66,6 +67,8 @@ public:
     *   @return 0
     */
     int createCells(int radius, int senseRadius, SimulationParameters sim, std::deque<Cell> &cells, AutomatonCell ***environment);
+
+    int insertCell(int radius,int senseRadius, Point centroid, SimulationParameters sim,int type , AutomatonCell ***environment,cellGroup cells);
 };
 
 #endif // ENVIRONMENT_H

@@ -226,3 +226,51 @@ int Environment::createCells(int radius, int senseRadius, SimulationParameters s
 
     return 0;
 }
+
+int Environment::insertCell(int radius,int senseRadius, Point centroid, SimulationParameters sim,int type , AutomatonCell ***environment,cellGroup cells) {
+    switch(type) {
+    case AutomatonCell::CELL: {
+        Cell newCell;
+        newCell.setCentroid(centroid);
+        newCell.setId(cells.normalCell.size()+1);
+        newCell.setSenseRadius(senseRadius);
+        newCell.setRadius(radius);
+        newCell.setECadherin(1.0F);
+        newCell.setEB(0.0F);
+        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setId(cells.normalCell.size()+1);
+        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setType(AutomatonCell::CELL);
+        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setCount(0);
+        cells.normalCell.push_back(newCell);
+        break;
+    }
+    case AutomatonCell::STEM_CELL: {
+        StemCell newSCell;
+        newSCell.setCentroid(centroid);
+        newSCell.setId(cells.stemCell.size()+1);
+        newSCell.setSenseRadius(senseRadius);
+        newSCell.setRadius(radius);
+        newSCell.setECadherin(1.0F);
+        newSCell.setEB(0.0F);
+        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setId(cells.stemCell.size()+1);
+        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setType(AutomatonCell::STEM_CELL);
+        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setCount(0);
+        cells.stemCell.push_back(newSCell);
+        break;
+    }
+    case AutomatonCell::TA_CELL: {
+        TACell newTACell;
+        newTACell.setCentroid(centroid);
+        newTACell.setId(cells.taCell.size()+1);
+        newTACell.setSenseRadius(senseRadius);
+        newTACell.setRadius(radius);
+        newTACell.setECadherin(1.0F);
+        newTACell.setEB(0.0F);
+        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setId(cells.taCell.size()+1);
+        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setType(AutomatonCell::TA_CELL);
+        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setCount(0);
+        cells.taCell.push_back(newTACell);
+        break;
+    }
+    }
+    return 0;
+}
