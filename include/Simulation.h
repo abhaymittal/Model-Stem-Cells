@@ -139,7 +139,7 @@ public:
     *   @param[in, out] cells : The cells in the simulation environment
     *   @return         0
     */
-    int simulate(SimulationParameters sim, AutomatonCell ***lattice, std::deque<Cell> &cells, int opId);
+    int simulate(SimulationParameters sim, AutomatonCell ***lattice, cellGroup &cells, int opId);
 
     /**
     *   @brief  Function to increase age of all cells and multiply cells

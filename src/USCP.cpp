@@ -116,7 +116,7 @@ int main() {
     {
         int opId=simul.generateOpId();
         cout<<"Iteration - "<<itr<<endl;
-        simul.simulate(sim,environment,cells.normalCell,opId);
+        simul.simulate(sim,environment,cells,opId);
         simul.increaseAge(cells,1,1,sim,environment);
         //util.writeIteration(sim, environment, cells.normalCell, itr);
 

@@ -76,21 +76,27 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
     return 0;
 }
 
-int Simulation::simulate(SimulationParameters sim, AutomatonCell ***lattice, std::deque<Cell> &cells, int opId)
+int Simulation::simulate(SimulationParameters sim, AutomatonCell ***lattice, cellGroup &cells, int opId)
 {
     cout<<"OPID => "<<opId<<endl;
     switch(opId)
     {
         case MOVE_CELLS:
-            moveCells(sim,lattice,cells);
+            moveCells(sim,lattice,cells.stemCell);
+            moveCells(sim,lattice,cells.taCell);
+            moveCells(sim,lattice,cells.normalCell);
             break;
 
         case UPDATE_EB:
-            updateEB(sim,lattice,cells);
+            updateEB(sim,lattice,cells.stemCell);
+            updateEB(sim,lattice,cells.taCell);
+            updateEB(sim,lattice,cells.normalCell);
             break;
 
         case EVOLVE_GENETIC_CODE:
-            evolveGeneticCode(sim,cells);
+            evolveGeneticCode(sim,cells.stemCell);
+            evolveGeneticCode(sim,cells.taCell);
+            evolveGeneticCode(sim,cells.normalCell);
             break;
     }
     return 0;
@@ -136,11 +142,19 @@ int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<Cell> &cel
 
 int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment) {
     queue<Cell> q;
+    queue<TACell> taQ;
     queue<StemCell> stemQ;
     for(std::deque<Cell>::iterator it = cells.normalCell.begin(); it!=cells.normalCell.end(); it++) {
             if(it->incrementAge()>30) {
                 it->setAge(0);
                 q.push(*it);
+            }
+    }
+
+    for(std::deque<TACell>::iterator it = cells.taCell.begin(); it!=cells.taCell.end(); it++) {
+            if(it->incrementAge()>30) {
+                it->setAge(0);
+                taQ.push(*it);
             }
     }
 
@@ -162,6 +176,8 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
         }
         q.pop();
     }
+
+    //TODO: update taQ
 
     double alpha = sim.getAlpha();
     while(!stemQ.empty())
