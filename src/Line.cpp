@@ -38,6 +38,14 @@ int Line::getNumberOfPoints() const {
     return numberOfPoints;
 }
 
+int Line::setNumberOfPoints(int numberOfPoints_) {
+    if(this->point!=NULL)
+        delete[] this->point;
+        numberOfPoints=numberOfPoints_;
+        point=new Point[numberOfPoints_];
+        return 0;
+    }
+
 Point Line::getPoint(int index) const
 {
     return point[index];

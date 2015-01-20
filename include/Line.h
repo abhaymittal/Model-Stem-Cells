@@ -68,6 +68,13 @@ public:
     int getNumberOfPoints() const;
 
     /**
+    *   @brief  Set the number of points in the line (thereby create a new line)
+    *   @param numberOfPoints_: The number of sampled points
+    *   @return 0
+    */
+    int setNumberOfPoints(int numberOfPoints_);
+
+    /**
     *   @brief  Getter function for getting a particular sampled point
     *   @param  index - The index of the point to return
     *   @return The sampled point at index
