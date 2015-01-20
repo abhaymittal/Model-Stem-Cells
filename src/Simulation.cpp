@@ -28,7 +28,7 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, st
         if(status!=0) continue;
 
         //Remove cell from current location (lattice DB)
-        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(AutomatonCell::ECM);
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(AutomatonCell::EMPTY);
         lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setId(0);
         lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setCount(0);
 
@@ -221,7 +221,7 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, st
         if(status!=0) continue;
 
         //Remove cell from current location (lattice DB)
-        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(AutomatonCell::ECM);
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(AutomatonCell::EMPTY);
         lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setId(0);
         lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setCount(0);
 
@@ -306,7 +306,7 @@ int Simulation::moveCells(SimulationParameters sim, AutomatonCell ***lattice, st
         if(status!=0) continue;
 
         //Remove cell from current location (lattice DB)
-        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(AutomatonCell::ECM);
+        lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(AutomatonCell::EMPTY);
         lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setId(0);
         lattice[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setCount(0);
 
