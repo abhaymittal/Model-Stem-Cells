@@ -13,7 +13,7 @@ Environment::Environment()
 }
 
 
-Line Environment::drawLine(Point p1, Point p2)
+int Environment::drawLine(Point p1, Point p2,Line& outLine)
 {
     char signInd, signDep1, signDep2;
 
@@ -70,7 +70,9 @@ Line Environment::drawLine(Point p1, Point p2)
         }
     }
 
-    Line outLine(indVal.getDelta()+1);
+    //Line outLine(indVal.getDelta()+1);
+    outLine.setNumberOfPoints(indVal.getDelta()+1);
+
 
     int indValF=p2.getVar(indVal.getVarName());
     int counter_1=0, counter_2=0;
@@ -111,24 +113,27 @@ Line Environment::drawLine(Point p1, Point p2)
         outLine.setPoint(ptIndex,tempPt);
         ptIndex++;
     }
-    return outLine;
+    return 0;
 }
 
-int Environment::generatePtFreqMap(Line* line, SimulationParameters sim,AutomatonCell ***cells)
+int Environment::generatePtFreqMap(Line* line, SimulationParameters sim,AutomatonCell ***environment)
 {
     for(long i=0;i<sim.getFiberCount();i++)
     {
+
         for(int j=0;j<line[i].getNumberOfPoints();j++)
         {
            // cout<<" Line ==> "<<line[i].getPoint(j).getX()<<" "<<line[i].getPoint(j).getY()<<" "<<line[i].getPoint(j).getZ()<<endl;
-            cells[line[i].getPoint(j).getX()][line[i].getPoint(j).getY()][line[i].getPoint(j).getZ()].setType(AutomatonCell::ECM);
-            cells[line[i].getPoint(j).getX()][line[i].getPoint(j).getY()][line[i].getPoint(j).getZ()].incrementCount();
+            environment[line[i].getPoint(j).getX()][line[i].getPoint(j).getY()][line[i].getPoint(j).getZ()].setType(AutomatonCell::ECM);
+            environment[line[i].getPoint(j).getX()][line[i].getPoint(j).getY()][line[i].getPoint(j).getZ()].incrementCount();
+
         }
+
     }
     return 0;
 }
 
-int Environment::setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap){
+int Environment::setupECM(SimulationParameters sim,AutomatonCell ***environment){
 
 	Point box[8];
     //Line *lines = new Line[sim.getFiberCount()];
@@ -139,7 +144,7 @@ int Environment::setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap){
     int yMax=sim.getLatticeHeight()-1;
     int zMax=sim.getLatticeDepth()-1;
 
-    //Initialize coordinates of box
+    //Initialize coordinates of environment
     box[0].setX(0);
     box[0].setY(0);
     box[0].setZ(0);
@@ -189,11 +194,13 @@ int Environment::setupECM(SimulationParameters sim,AutomatonCell ***ptFreqMap){
         cout<<"Line = "<<id<<"Pt1 = "<<randX<<" "<<randY<<" "<<randZ<<" | Pt2 = "<<x2<<" "<<y2<<" "<<z2<<endl;
 
 
-        lines[i]=drawLine(p1,p2);
+        drawLine(p1,p2,lines[i]);
         lines[i].setId(id);
         id++;
     }
-    generatePtFreqMap(lines, sim,ptFreqMap);
+
+    generatePtFreqMap(lines, sim,environment);
+
     return 0;
 }
 
