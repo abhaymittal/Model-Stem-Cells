@@ -62,6 +62,7 @@ int main() {
     Simulation simul;
     Utilities util;
 
+
     //util.writeIteration(sim, environment, cells.normalCell, 0);
 
     /* collecting data for plotting vs time(iteration) */
@@ -174,7 +175,7 @@ int main() {
 
     cout<<"Going to generate file"<<endl;
     /*******Generate Output file*********/
-    util.generateECMFile(sim, environment, Utilities::COUNT);
+  //util.generateECMFile(sim, environment, Utilities::COUNT);
 
     /*Free dynamic memory*/
 
