@@ -34,7 +34,7 @@ public:
 
     /**
     *   @brief  Method to increment the current value of Beta
-    *   @return 0
+    *   @return Current value of Beta
     */
     int incrementBeta();
 

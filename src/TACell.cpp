@@ -14,7 +14,7 @@ int setCurrentBeta(int Beta) {
 }
 int incrementBeta() {
     currentBeta=currentBeta+1;
-    return 0;
+    return currentBeta;
 }
 
 int differentiate(Cell& TDC, AutomatonCell ***environment,int id_) {
