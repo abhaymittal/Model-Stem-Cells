@@ -5,19 +5,19 @@ TACell::TACell():Cell(),currentBeta(0)
 
 }
 
-int getCurrentBeta() {
+int TACell::getCurrentBeta() {
     return currentBeta;
 }
-int setCurrentBeta(int Beta) {
+int TACell::setCurrentBeta(int Beta) {
     currentBeta=Beta;
     return 0;
 }
-int incrementBeta() {
+int TACell::incrementBeta() {
     currentBeta=currentBeta+1;
     return currentBeta;
 }
 
-int differentiate(Cell& TDC, AutomatonCell ***environment,int id_) {
+int TACell::differentiate(Cell& TDC, AutomatonCell ***environment,int id_) {
     TDC.setAge(0);
     TDC.setCentroid(this->getCentroid());
     TDC.setRadius(this->getRadius());
@@ -46,7 +46,7 @@ int TACell::divide(TACell& daughter, int id_, AutomatonCell ***environment, Simu
     this->setAge(0);
     this->incrementBeta();
     daughter.setCurrentBeta(this->getCurrentBeta());
-    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setType(AutomatonCell::CELL);
+    environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setType(AutomatonCell::TA_CELL);
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setCount(0);
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setId(daughter.getId());
     return 0;
