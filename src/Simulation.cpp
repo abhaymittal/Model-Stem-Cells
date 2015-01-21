@@ -177,7 +177,38 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
         q.pop();
     }
 
-    //TODO: update taQ
+    //TA cell division
+    while(!taQ.empty())
+    {
+        taQ.front().incrementBeta();
+        TACell newTACell;
+        int newId = (cells.taCell.size()>0) ? cells.taCell.back().getId()+1 : 1;
+        int status=taQ.front().divide(newTACell,newId,environment,sim);
+         if(status==0) //new cell is successfully created
+        {
+            cells.taCell.push_back(newTACell);
+        }
+        taQ.pop();
+    }
+
+    //TA Differentiation
+    int beta = sim.getBeta();
+    std::deque<TACell> tempQ;
+    for(std::deque<TACell>::iterator it = cells.taCell.begin(); it!=cells.taCell.end(); it++) {
+        if(it->getCurrentBeta() > beta)
+        {
+            Cell newCell;
+            int newId = (cells.normalCell.size()>0) ? cells.normalCell.back().getId()+1 : 1;
+            it->differentiate(newCell, environment, newId);
+            cells.normalCell.push_back(newCell);
+        }
+        else
+        {
+            tempQ.push_back(*it);
+        }
+    }
+    cells.taCell.swap(tempQ);
+    //tempQ.clear();
 
     double alpha = sim.getAlpha();
     while(!stemQ.empty())
