@@ -41,10 +41,11 @@ public:
     /**
     *   @brief Function for differentiating  the Transit Amplifying Cell
     *   @param[out] TDC : The terminally differentiated cell to generate
-    *   @param[in,out] taCells : The deque containing all the TA cells in the environment
+    *   @param[in,out] environment : The simulation environment lattice
+    *   @param[in]  id_ : The id of the TDC to be generated
     *   @return 0
     */
-    int differentiate(Cell& TDC, std::deque<TACell> &tacells);
+    int differentiate(Cell& TDC, AutomatonCell ***environment, int id_);
 
     /**
     *   @brief               Method for division of Transit Amplifying Cells

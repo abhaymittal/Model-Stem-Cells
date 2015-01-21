@@ -17,11 +17,15 @@ int incrementBeta() {
     return 0;
 }
 
-int differentiate(Cell& TDC, std::deque<TACell> &tacells) {
+int differentiate(Cell& TDC, AutomatonCell ***environment,int id_) {
     TDC.setAge(0);
     TDC.setCentroid(this->getCentroid());
     TDC.setRadius(this->getRadius());
     TDC.setSenseRadius(this->getSenseRadius());
+    TDC.setId(id_);
+    environment[TDC.getCentroid().getX()][TDC.getCentroid().getY()][TDC.getCentroid().getZ()].setType(AutomatonCell::CELL);
+    environment[TDC.getCentroid().getX()][TDC.getCentroid().getY()][TDC.getCentroid().getZ()].setId(id_);
+    return 0;
 }
 
 
