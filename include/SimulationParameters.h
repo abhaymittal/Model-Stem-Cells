@@ -20,6 +20,7 @@ private:
 	int cellCount;          /**<The number of cells present at the beginning of simulation*/
 	int cellDivisionAge;    /**<The age after which the cell divides*/
     double alpha;           /**<The probability of asymmetric division*/
+    int beta;               /**<The number of rounds of amplification a TA cell undergo before differentiation*/
     int maxIteration;       /**<The maximum number of simulation iteration*/
 
 public:
@@ -118,6 +119,14 @@ public:
     */
 	double getAlpha() const {
 		return alpha;
+	}
+
+	/**
+    *   @brief  Getter function for the beta value
+    *   @return The number of rounds of amplification a TA cell undergo before differentiation
+    */
+	int getBeta() const {
+		return beta;
 	}
 
 	/**

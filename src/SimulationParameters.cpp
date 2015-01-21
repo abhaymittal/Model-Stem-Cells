@@ -51,6 +51,7 @@ void SimulationParameters::loadParametersFromFile(std::string filename)
             cellDivisionAge = rootNode->eval_to_number("//Parameters/CellDivisionAge");
             maxIteration = rootNode->eval_to_number("//Parameters/MaxIteration");
             alpha = rootNode->eval_to_number("//Parameters/Alpha");
+            beta = rootNode->eval_to_number("//Parameters/Beta");
         }
     }
     catch(const std::exception& ex)
