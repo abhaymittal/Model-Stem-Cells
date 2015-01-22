@@ -141,15 +141,34 @@ int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<Cell> &cel
 
 
 int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment) {
-    queue<Cell> q;
-    queue<TACell> taQ;
-    queue<StemCell> stemQ;
-    for(std::deque<Cell>::iterator it = cells.normalCell.begin(); it!=cells.normalCell.end(); it++) {
+    queue<TACell&> taQ;
+    queue<StemCell&> stemQ;
+
+    std::deque<long long> tempDQ;
+    long long delIndex;
+    long long i=0;
+    for(std::deque<Cell>::iterator it = cells.normalCell.begin(); it!=cells.normalCell.end(); it++, i++) {
             if(it->incrementAge()>30) {
-                it->setAge(0);
-                q.push(*it);
+                environment[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(AutomatonCell::EMPTY);
+                tempDQ.push_back(i);
+                std::cout << "\nTo DEl => " << i << std::endl;
             }
     }
+    std::cout << "DQ size : " << cells.normalCell.size();
+    std::cout << "\nTEMP size : " << tempDQ.size();
+    std::cout << "\nPRINTING dq \n";
+    for(std::deque<long long>::iterator it=tempDQ.begin(); it!=tempDQ.end(); it++)
+    {
+        std::cout << *it << "\t";
+    }
+    std::cout << "\nEND dq \n";
+    while(!tempDQ.empty()){
+        delIndex = tempDQ.back();
+        cells.normalCell.erase(cells.normalCell.begin()+delIndex);
+        tempDQ.pop_back();
+    }
+    //ERROR
+
 
     for(std::deque<TACell>::iterator it = cells.taCell.begin(); it!=cells.taCell.end(); it++) {
             if(it->incrementAge()>30) {
@@ -165,22 +184,9 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
             }
     }
 
-    while(!q.empty())
-    {
-        Cell newCell;
-        int newId = (cells.normalCell.size()>0) ? cells.normalCell.back().getId()+1 : 1;
-        int status=q.front().divide(newCell,newId,environment,sim);
-         if(status==0) //new cell is successfully created
-        {
-            cells.normalCell.push_back(newCell);
-        }
-        q.pop();
-    }
-
     //TA cell division
     while(!taQ.empty())
     {
-        taQ.front().incrementBeta();
         TACell newTACell;
         int newId = (cells.taCell.size()>0) ? cells.taCell.back().getId()+1 : 1;
         int status=taQ.front().divide(newTACell,newId,environment,sim);
@@ -207,7 +213,7 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
             tempQ.push_back(*it);
         }
     }
-    cells.taCell.swap(tempQ);
+    //cells.taCell.swap(tempQ);
     //tempQ.clear();
 
     double alpha = sim.getAlpha();
