@@ -5,6 +5,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <queue>
+#include <map>
 
 #define MOVE_CELLS 1
 #define UPDATE_EB 2
@@ -52,6 +53,13 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
     if(cells.size()==0)
         return -1;
     int totalNeighbours=(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1);
+
+    std::map<long int, long int> idToIndexMap;
+    long int i=0;
+    for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++, i++){
+        idToIndexMap[it->getId()] = i;
+    }
+
     for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
         sumFiber=0;
@@ -65,7 +73,7 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
                     if(lattice[x][y][z].getType()==AutomatonCell::CELL)
                     {
                         //Cell index in array = id -1 as id was created using index +1 in createCells (Environment.h)
-                        totalNeighbourEC+=cells[lattice[x][y][z].getId()-1].getECadherin();
+                        totalNeighbourEC+=cells[idToIndexMap[lattice[x][y][z].getId()]].getECadherin();
                     }
                 }
             }
@@ -141,8 +149,8 @@ int Simulation::evolveGeneticCode(SimulationParameters sim,std::deque<Cell> &cel
 
 
 int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, SimulationParameters sim, AutomatonCell ***environment) {
-    queue<TACell&> taQ;
-    queue<StemCell&> stemQ;
+    std::queue<long long> taQ;
+    std::queue<long long> stemQ;
 
     std::deque<long long> tempDQ;
     long long delIndex;
@@ -169,18 +177,19 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
     }
     //ERROR
 
-
-    for(std::deque<TACell>::iterator it = cells.taCell.begin(); it!=cells.taCell.end(); it++) {
+    i=0;
+    for(std::deque<TACell>::iterator it = cells.taCell.begin(); it!=cells.taCell.end(); it++, i++) {
             if(it->incrementAge()>30) {
                 it->setAge(0);
-                taQ.push(*it);
+                taQ.push(i);
             }
     }
 
-    for(std::deque<StemCell>::iterator it = cells.stemCell.begin(); it!=cells.stemCell.end(); it++) {
+    i=0;
+    for(std::deque<StemCell>::iterator it = cells.stemCell.begin(); it!=cells.stemCell.end(); it++, i++) {
             if(it->incrementAge()>30) {
                 it->setAge(0);
-                stemQ.push(*it);
+                stemQ.push(i);
             }
     }
 
@@ -189,7 +198,7 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
     {
         TACell newTACell;
         int newId = (cells.taCell.size()>0) ? cells.taCell.back().getId()+1 : 1;
-        int status=taQ.front().divide(newTACell,newId,environment,sim);
+        int status=cells.taCell.at(taQ.front()).divide(newTACell,newId,environment,sim);
          if(status==0) //new cell is successfully created
         {
             cells.taCell.push_back(newTACell);
@@ -199,22 +208,23 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
 
     //TA Differentiation
     int beta = sim.getBeta();
-    std::deque<TACell> tempQ;
-    for(std::deque<TACell>::iterator it = cells.taCell.begin(); it!=cells.taCell.end(); it++) {
+    if(!tempDQ.empty())tempDQ.clear();
+    i=0;
+    for(std::deque<TACell>::iterator it = cells.taCell.begin(); it!=cells.taCell.end(); it++, i++) {
         if(it->getCurrentBeta() > beta)
         {
             Cell newCell;
             int newId = (cells.normalCell.size()>0) ? cells.normalCell.back().getId()+1 : 1;
             it->differentiate(newCell, environment, newId);
             cells.normalCell.push_back(newCell);
-        }
-        else
-        {
-            tempQ.push_back(*it);
+            tempDQ.push_back(i); //we'll remove these from DQ later
         }
     }
-    //cells.taCell.swap(tempQ);
-    //tempQ.clear();
+    while(!tempDQ.empty()){
+        delIndex = tempDQ.back();
+        cells.taCell.erase(cells.taCell.begin()+delIndex);
+        tempDQ.pop_back();
+    }
 
     double alpha = sim.getAlpha();
     while(!stemQ.empty())
@@ -224,7 +234,7 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
         {
             TACell newTACell;
             int newId = (cells.taCell.size()>0) ? cells.taCell.back().getId()+1 : 1;
-            int status = stemQ.front().divide(newTACell, newId, environment, sim);
+            int status = cells.stemCell.at(stemQ.front()).divide(newTACell, newId, environment, sim);
             if(status==0) //new cell is successfully created
             {
                 cells.taCell.push_back(newTACell);
@@ -234,7 +244,7 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
         {
             StemCell newStemCell;
             int newId = (cells.stemCell.size()>0) ? cells.stemCell.back().getId()+1 : 1;
-            int status = stemQ.front().divide(newStemCell, newId, environment, sim);
+            int status = cells.stemCell.at(stemQ.front()).divide(newStemCell, newId, environment, sim);
             if(status==0) //new cell is successfully created
             {
                 cells.stemCell.push_back(newStemCell);
@@ -282,6 +292,13 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
     if(cells.size()==0)
         return -1;
     int totalNeighbours=(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1);
+
+    std::map<long int, long int> idToIndexMap;
+    long int i=0;
+    for(std::deque<StemCell>::iterator it = cells.begin(); it!=cells.end(); it++, i++){
+        idToIndexMap[it->getId()] = i;
+    }
+
     for(std::deque<StemCell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
         sumFiber=0;
@@ -295,7 +312,7 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
                     if(lattice[x][y][z].getType()==AutomatonCell::STEM_CELL)
                     {
                         //Cell index in array = id -1 as id was created using index +1 in createCells (Environment.h)
-                        totalNeighbourEC+=cells[lattice[x][y][z].getId()-1].getECadherin();
+                        totalNeighbourEC+=cells[idToIndexMap[lattice[x][y][z].getId()]].getECadherin();
                     }
                 }
             }
@@ -367,6 +384,13 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
     if(cells.size()==0)
         return -1;
     int totalNeighbours=(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1)*(2*cells[0].getSenseRadius()+1);
+
+    std::map<long int, long int> idToIndexMap;
+    long int i=0;
+    for(std::deque<TACell>::iterator it = cells.begin(); it!=cells.end(); it++, i++){
+        idToIndexMap[it->getId()] = i;
+    }
+
     for(std::deque<TACell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
         sumFiber=0;
@@ -380,7 +404,7 @@ int Simulation::updateEB(SimulationParameters sim, AutomatonCell ***lattice, std
                     if(lattice[x][y][z].getType()==AutomatonCell::TA_CELL)
                     {
                         //Cell index in array = id -1 as id was created using index +1 in createCells (Environment.h)
-                        totalNeighbourEC+=cells[lattice[x][y][z].getId()-1].getECadherin();
+                        totalNeighbourEC+=cells[idToIndexMap[lattice[x][y][z].getId()]].getECadherin();
                     }
                 }
             }
