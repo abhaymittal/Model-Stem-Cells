@@ -16,8 +16,10 @@ int StemCell::divide(StemCell& daughter, int id_, AutomatonCell ***environment, 
     daughter.setId(id_);
     daughter.setRadius(this->getRadius());
     daughter.setSenseRadius(this->getSenseRadius());
-    daughter.setECadherin(1.0F);
-    daughter.setEB(0.0F);
+    daughter.setECadherin(this->getECadherin());
+    daughter.setEB(this->getEB());
+    for(int i=0;i<15;i++)
+        daughter.setGeneticCode(i,this->getGeneticCode(i));
     daughter.setAge(0);
     this->setAge(0);
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setType(AutomatonCell::STEM_CELL);
@@ -36,8 +38,10 @@ int StemCell::divide(TACell& daughter, int id_, AutomatonCell*** environment, Si
     daughter.setId(id_);
     daughter.setRadius(this->getRadius());
     daughter.setSenseRadius(this->getSenseRadius());
-    daughter.setECadherin(1.0F);
-    daughter.setEB(0.0F);
+    daughter.setECadherin(this->getECadherin());
+    daughter.setEB(this->getEB());
+    for(int i=0;i<15;i++)
+        daughter.setGeneticCode(i,this->getGeneticCode(i));
     daughter.setAge(0);
     this->setAge(0);
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setType(AutomatonCell::TA_CELL);
