@@ -209,7 +209,7 @@ int Environment::createCells(int radius, int senseRadius, SimulationParameters s
     int height=sim.getLatticeHeight();
     int depth=sim.getLatticeDepth();
      int x,y,z;
-    int i=0;
+    int i=1;
     for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
     {
         do {
@@ -218,12 +218,12 @@ int Environment::createCells(int radius, int senseRadius, SimulationParameters s
             z=sim.getFiberLength()+(rand()%(depth-2*sim.getFiberLength()));
         } while(environment[x][y][z].getId()!=0);
         it->setCentroid(Point(x,y,z));
-        it->setId(i+1);
+        it->setId(i);
         it->setSenseRadius(senseRadius);
         it->setRadius(radius);
         it->setECadherin(1.0F);
         it->setEB(0.0F);
-        environment[x][y][z].setId(i+1);
+        environment[x][y][z].setId(i);
         environment[x][y][z].setType(AutomatonCell::CELL);
         environment[x][y][z].setCount(0);
         i++;
@@ -235,16 +235,18 @@ int Environment::createCells(int radius, int senseRadius, SimulationParameters s
 }
 
 int Environment::insertCell(int radius,int senseRadius, Point centroid, SimulationParameters sim,int type , AutomatonCell ***environment,cellGroup& cells) {
+    long int newId;
     switch(type) {
     case AutomatonCell::CELL: {
         Cell newCell;
         newCell.setCentroid(centroid);
-        newCell.setId(cells.normalCell.size()+1);
+        newId = (cells.normalCell.size()>0) ? cells.normalCell.back().getId()+1 : 1;
+        newCell.setId(newId);
         newCell.setSenseRadius(senseRadius);
         newCell.setRadius(radius);
         newCell.setECadherin(1.0F);
         newCell.setEB(0.0F);
-        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setId(cells.normalCell.size()+1);
+        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setId(newId);
         environment[centroid.getX()][centroid.getY()][centroid.getZ()].setType(AutomatonCell::CELL);
         environment[centroid.getX()][centroid.getY()][centroid.getZ()].setCount(0);
         cells.normalCell.push_back(newCell);
@@ -253,12 +255,13 @@ int Environment::insertCell(int radius,int senseRadius, Point centroid, Simulati
     case AutomatonCell::STEM_CELL: {
         StemCell newSCell;
         newSCell.setCentroid(centroid);
-        newSCell.setId(cells.stemCell.size()+1);
+        newId = (cells.stemCell.size()>0) ? cells.stemCell.back().getId()+1 : 1;
+        newSCell.setId(newId);
         newSCell.setSenseRadius(senseRadius);
         newSCell.setRadius(radius);
         newSCell.setECadherin(1.0F);
         newSCell.setEB(0.0F);
-        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setId(cells.stemCell.size()+1);
+        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setId(newId);
         environment[centroid.getX()][centroid.getY()][centroid.getZ()].setType(AutomatonCell::STEM_CELL);
         environment[centroid.getX()][centroid.getY()][centroid.getZ()].setCount(0);
         cells.stemCell.push_back(newSCell);
@@ -267,12 +270,13 @@ int Environment::insertCell(int radius,int senseRadius, Point centroid, Simulati
     case AutomatonCell::TA_CELL: {
         TACell newTACell;
         newTACell.setCentroid(centroid);
-        newTACell.setId(cells.taCell.size()+1);
+        newId = (cells.taCell.size()>0) ? cells.taCell.back().getId()+1 : 1;
+        newTACell.setId(newId);
         newTACell.setSenseRadius(senseRadius);
         newTACell.setRadius(radius);
         newTACell.setECadherin(1.0F);
         newTACell.setEB(0.0F);
-        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setId(cells.taCell.size()+1);
+        environment[centroid.getX()][centroid.getY()][centroid.getZ()].setId(newId);
         environment[centroid.getX()][centroid.getY()][centroid.getZ()].setType(AutomatonCell::TA_CELL);
         environment[centroid.getX()][centroid.getY()][centroid.getZ()].setCount(0);
         cells.taCell.push_back(newTACell);
