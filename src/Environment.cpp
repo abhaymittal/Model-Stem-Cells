@@ -4,7 +4,6 @@
 #include <cstdlib>  //rand
 #include <cmath>    //sqrt, floor, ceil
 #include <iostream>
-#define PI 3.141592
 
 using namespace std;
 Environment::Environment()
@@ -282,6 +281,27 @@ int Environment::insertCell(int radius,int senseRadius, Point centroid, Simulati
         cells.taCell.push_back(newTACell);
         break;
     }
+    }
+    return 0;
+}
+
+int Environment::clearSphericalRegion(int xc, int yc, int zc, int radius, AutomatonCell ***environment){
+    int sqrRadius = radius * radius;
+    for(int x=0; x<=radius; x++){
+        for(int y=0; y<=radius; y++){
+            for(int z=0; z<=radius; z++){
+                if((x*x)+(y*y)+(z*z) <= sqrRadius){
+                    environment[x+xc][y+yc][z+zc].setType(AutomatonCell::EMPTY);
+                    environment[x+xc][y+yc][-z+zc].setType(AutomatonCell::EMPTY);
+                    environment[x+xc][-y+yc][z+zc].setType(AutomatonCell::EMPTY);
+                    environment[x+xc][-y+yc][-z+zc].setType(AutomatonCell::EMPTY);
+                    environment[-x+xc][y+yc][z+zc].setType(AutomatonCell::EMPTY);
+                    environment[-x+xc][y+yc][-z+zc].setType(AutomatonCell::EMPTY);
+                    environment[-x+xc][-y+yc][z+zc].setType(AutomatonCell::EMPTY);
+                    environment[-x+xc][-y+yc][-z+zc].setType(AutomatonCell::EMPTY);
+                }
+            }
+        }
     }
     return 0;
 }

@@ -83,6 +83,18 @@ public:
     *   @return 0
     */
     int insertCell(int radius,int senseRadius, Point centroid, SimulationParameters sim,int type , AutomatonCell ***environment,cellGroup& cells);
+
+    /**
+    *   @brief  Function to clear the spherical region in the Environment
+    *   This function creates an imaginary sphere and removes all the fibers within the sphere.
+    *   @param[in]  xc : The x-coordinate of the center of the spherical region.
+    *   @param[in]  yc : The y-coordinate of the center of the spherical region.
+    *   @param[in]  zc : The z-coordinate of the center of the spherical region.
+    *   @param[in]  radius : The radius of the spherical region.
+    *   @param[in]  environment :  The simulation environment lattice.
+    *   @return 0
+    */
+    int clearSphericalRegion(int xc, int yc, int zc, int radius, AutomatonCell ***environment);
 };
 
 #endif // ENVIRONMENT_H
