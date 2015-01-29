@@ -9,6 +9,8 @@
 
 using namespace std;
 
+#define PI 3.141592
+
 #include <deque>
 #include "Cell.h"
 #include "StemCell.h"
