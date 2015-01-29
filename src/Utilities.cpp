@@ -15,19 +15,24 @@ Utilities::~Utilities() {
 
 using namespace std;
 
-void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***environment, int field)
+void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***environment, int field, int iterationNumber)
 {
 	//field = 1, type
 	//field = 2, count
 	//field = 3, ID
 
-    switch(field)
-    {
-        case COUNT:
-            ofstream outputFile("ptMap.xyz");
+	string filename;
+    stringstream ss;
+    ss << "iterations/" << iterationNumber << ".xyz";
+    filename = ss.str();
+    ofstream outputFile(filename.c_str());
 
-            if(outputFile.is_open())
-            {
+    if(outputFile.is_open())
+    {
+        switch(field)
+        {
+            case COUNT:
+
                 outputFile<<(sim.getLatticeWidth() * sim.getLatticeHeight() * sim.getLatticeDepth()); //store num of points in .xyz file
                 outputFile<<"\n"<<"Box Dimensions: width = "<<sim.getLatticeWidth()<<", height = "<<sim.getLatticeHeight()<<", depth = "<<sim.getLatticeDepth(); //comment line of .xyz file
 
@@ -38,18 +43,54 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
                         for(int z=0;z<sim.getLatticeDepth();z++)
                         {
                            // if(environment[x][y][z].getType()!=AutomatonCell::EMPTY)
-                                outputFile<<"\n"<<environment[x][y][z].getType()<<" "<<x<<" "<<y<<" "<<z<<" "<<environment[x][y][z].getCount();
+                                outputFile<<"\n"<<environment[x][y][z].getCount()<<" "<<x<<" "<<y<<" "<<z;
                         }
                     }
                 }
-                outputFile.close();
-                cout << "\nOutput file saved\n";
-            }
-            else
-            {
-                cout << "Error in saving output file\n";
-            }
-        break;
+            break;
+
+            case TYPE:
+
+                outputFile<<(sim.getLatticeWidth() * sim.getLatticeHeight() * sim.getLatticeDepth()); //store num of points in .xyz file
+                outputFile<<"\n"<<"Box Dimensions: width = "<<sim.getLatticeWidth()<<", height = "<<sim.getLatticeHeight()<<", depth = "<<sim.getLatticeDepth(); //comment line of .xyz file
+
+                for(int x=0;x<sim.getLatticeWidth();x++)
+                {
+                    for(int y=0;y<sim.getLatticeHeight();y++)
+                    {
+                        for(int z=0;z<sim.getLatticeDepth();z++)
+                        {
+                           // if(environment[x][y][z].getType()!=AutomatonCell::EMPTY)
+                                outputFile<<"\n"<<environment[x][y][z].getType()<<" "<<x<<" "<<y<<" "<<z;
+                        }
+                    }
+                }
+            break;
+
+            case ID:
+
+                outputFile<<(sim.getLatticeWidth() * sim.getLatticeHeight() * sim.getLatticeDepth()); //store num of points in .xyz file
+                outputFile<<"\n"<<"Box Dimensions: width = "<<sim.getLatticeWidth()<<", height = "<<sim.getLatticeHeight()<<", depth = "<<sim.getLatticeDepth(); //comment line of .xyz file
+
+                for(int x=0;x<sim.getLatticeWidth();x++)
+                {
+                    for(int y=0;y<sim.getLatticeHeight();y++)
+                    {
+                        for(int z=0;z<sim.getLatticeDepth();z++)
+                        {
+                           // if(environment[x][y][z].getType()!=AutomatonCell::EMPTY)
+                                outputFile<<"\n"<<environment[x][y][z].getId()<<" "<<x<<" "<<y<<" "<<z;
+                        }
+                    }
+                }
+            break;
+        }
+        outputFile.close();
+        cout << "\nOutput file saved\n";
+    }
+    else
+    {
+        cout << "Error in saving output file\n";
     }
 }
 

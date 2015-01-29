@@ -9,6 +9,9 @@
 #include <cstdlib>
 #include "Simulation.h"
 #include <deque>
+#include <ctime>    //time
+#include <cstdlib>  //rand
+#include <cmath>    //sqrt, floor, ceil
 
 #include <fstream>
 
@@ -53,11 +56,23 @@ int main() {
     }
 	env.setupECM(sim,environment);
 
+	int sphereRadius = 20;
+	int cellRadius = 1;
+	env.clearSphericalRegion(sim.getLatticeWidth()/2, sim.getLatticeHeight()/2, sim.getLatticeDepth()/2, sphereRadius, environment);
+
 	cellGroup cells;
 	/*cells.normalCell.resize(sim.getCellCount());
     env.createCells(1,1,sim,cells.normalCell,environment);*/
 
-    env.insertCell(1,1,Point(sim.getLatticeWidth()/2,sim.getLatticeHeight()/2,sim.getLatticeDepth()/2),sim, AutomatonCell::STEM_CELL,environment,cells);
+    double randTheta=(rand()%360)*PI/180;
+    double randPhi=(rand()%360)*PI/180;
+    int dist = sphereRadius - cellRadius; //distance between centers of the sphere and a cell attached to its boundary
+
+    int x=(int)((sim.getLatticeWidth()/2)+dist*sin(randTheta)*cos(randPhi));
+    int y=(int)((sim.getLatticeHeight()/2)+dist*sin(randTheta)*sin(randPhi));
+    int z=(int)((sim.getLatticeDepth()/2)+dist*cos(randTheta));
+
+    env.insertCell(cellRadius,1,Point(x,y,z),sim, AutomatonCell::STEM_CELL,environment,cells);
 
     Simulation simul;
     Utilities util;
@@ -112,6 +127,7 @@ int main() {
     totalECMFiberFile << 0 << "," << totalECMFiber << endl;
 
     /* End data collection for 0th iteration */
+    util.generateECMFile(sim, environment, Utilities::TYPE, 0);
 
     for(int itr=1; itr<=maxIteration; itr++)
     {
@@ -162,6 +178,7 @@ int main() {
         totalECMFiberFile << itr << "," << totalECMFiber << endl;
 
         /* End data collection for ith iteration */
+        util.generateECMFile(sim, environment, Utilities::TYPE, itr);
     }
 
     /* close data collection files */
@@ -175,7 +192,7 @@ int main() {
 
     cout<<"Going to generate file"<<endl;
     /*******Generate Output file*********/
-  //util.generateECMFile(sim, environment, Utilities::COUNT);
+  //util.generateECMFile(sim, environment, Utilities::COUNT, maxIteration);
 
     /*Free dynamic memory*/
 

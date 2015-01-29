@@ -31,9 +31,10 @@ public:
     *   @param[in]  sim 		: the simulation parameters
     *   @param[in]  environment : the Automaton Cell
     *   @param[in]  field 		: the field (TYPE | COUNT | ID) according to which the output points are listed
+    *   @param[in]  iterationNumber 		: used as filename
     *   @return 	void
     */
-	void generateECMFile(SimulationParameters sim, AutomatonCell ***environment, int field);
+	void generateECMFile(SimulationParameters sim, AutomatonCell ***environment, int field, int iterationNumber);
 
 	static const int 	TYPE = 1,	/**<The CONSTANT value to specify the listing of points according to their TYPE*/
 						COUNT = 2,	/**<The CONSTANT value to specify the listing of points according to their COUNT*/
