@@ -155,8 +155,10 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
     std::deque<long long> tempDQ;
     long long delIndex;
     long long i=0;
+
+    int cellDivisionAge = sim.getCellDivisionAge();
     for(std::deque<Cell>::iterator it = cells.normalCell.begin(); it!=cells.normalCell.end(); it++, i++) {
-            if(it->incrementAge()>=30) {
+            if(it->incrementAge()>=cellDivisionAge) {
                 environment[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(AutomatonCell::EMPTY);
                 tempDQ.push_back(i);
                 std::cout << "\nTo DEl => " << i << std::endl;
@@ -178,7 +180,7 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
 
     i=0;
     for(std::deque<TACell>::iterator it = cells.taCell.begin(); it!=cells.taCell.end(); it++, i++) {
-            if(it->incrementAge()>=30) {
+            if(it->incrementAge()>=cellDivisionAge) {
                 it->setAge(0);
                 taQ.push(i);
             }
@@ -186,7 +188,7 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
 
     i=0;
     for(std::deque<StemCell>::iterator it = cells.stemCell.begin(); it!=cells.stemCell.end(); it++, i++) {
-            if(it->incrementAge()>=30) {
+            if(it->incrementAge()>=cellDivisionAge) {
                 it->setAge(0);
                 stemQ.push(i);
             }
