@@ -178,7 +178,7 @@ int main() {
         totalECMFiberFile << itr << "," << totalECMFiber << endl;
 
         /* End data collection for ith iteration */
-        util.generateECMFile(sim, environment, Utilities::TYPE, itr);
+        //util.generateECMFile(sim, environment, Utilities::TYPE, itr);
     }
 
     /* close data collection files */
