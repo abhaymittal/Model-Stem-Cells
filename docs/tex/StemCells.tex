@@ -145,9 +145,9 @@ Following are the various levels of signal processing :
     \item MEK{\_}ERK 	= 	PD'
     \item GBX2		=	STAT3
     \item KLF4		=	STAT3 . GBX2
-    \item TFCP2L1	=	ESMB . TCF3' . STAT3 . KLF4 . OCT4'
-    \item ESMB		=	TFCP2L1 . TCF3' . NANOG
-    \item OCT4		=	SOX2 . KLF2 . ESMB'
+    \item TFCP2L1	=	ESRRB . TCF3' . STAT3 . KLF4 . OCT4'
+    \item ESRRB		=	TFCP2L1 . TCF3' . NANOG
+    \item OCT4		=	SOX2 . KLF2 . ESRRB'
     \item SOX2		=	SALL4 . NANOG
     \item NANOG		=	MEK{\_}ERK' . OCT4 . KLF2
     \item KLF2		=	KLF4 . SALL4
@@ -157,6 +157,12 @@ Following are the various levels of signal processing :
   \subsection{\color{blue}Increase age of cells}
   This function increases the age of all cells by 1 and splits(divides) a cell into two if its age becomes more than 30.
   The location of the new cell is determined using Gaussian probabilty concept as used in moving cells.
+  
+  \subsection{\color{blue}TACell differentiation}
+  Transit Amplifying Cells can undergo upto $ \beta $ rounds of amplification. After that, they differentiate to normal cells.
+  
+  \subsection{\color{blue}Cell death}
+  Totally differentiated cells can live upto certain age. After a particular age ($ \gamma $), these cells die out.
 
   \section{\color{red} Operations done by cell class}
   The following operations are supported
