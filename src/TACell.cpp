@@ -1,6 +1,6 @@
 #include "TACell.h"
 
-TACell::TACell():Cell(),currentBeta(0)
+TACell::TACell():Cell(),currentBeta(0),Beta(0)
 {
 
 }
@@ -8,10 +8,20 @@ TACell::TACell():Cell(),currentBeta(0)
 int TACell::getCurrentBeta() {
     return currentBeta;
 }
-int TACell::setCurrentBeta(int Beta) {
-    currentBeta=Beta;
+int TACell::setCurrentBeta(int Beta_) {
+    currentBeta=Beta_;
     return 0;
 }
+
+int TACell::getBeta() {
+    return Beta;
+}
+int TACell::setBeta(int Beta_) {
+    Beta=Beta_;
+    return 0;
+}
+
+
 int TACell::incrementBeta() {
     currentBeta=currentBeta+1;
     return currentBeta;
@@ -52,6 +62,7 @@ int TACell::divide(TACell& daughter, int id_, AutomatonCell ***environment, Simu
     this->setAge(0);
     this->incrementBeta();
     daughter.setCurrentBeta(this->getCurrentBeta());
+    daughter.setBeta(this->getBeta());
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setType(AutomatonCell::TA_CELL);
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setCount(0);
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setId(daughter.getId());

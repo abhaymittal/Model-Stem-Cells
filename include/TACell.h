@@ -15,6 +15,7 @@ class TACell : public Cell
 {
 private:
     int currentBeta;
+    int Beta;
 
 public:
     TACell();
@@ -27,10 +28,23 @@ public:
 
     /**
     *   @brief  Method to set the current value of Beta
+    *   @param  The current value of Beta
+    *   @return 0
+    */
+    int setCurrentBeta(int Beta_);
+
+     /**
+    *   @brief  Method to return the value of Beta
+    *   @return The value of Beta
+    */
+    int getBeta();
+
+    /**
+    *   @brief  Method to set the value of Beta
     *   @param  The new value of Beta
     *   @return 0
     */
-    int setCurrentBeta(int Beta);
+    int setBeta(int Beta_);
 
     /**
     *   @brief  Method to increment the current value of Beta
