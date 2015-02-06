@@ -21,6 +21,7 @@ private:
 	int cellDivisionAge;    /**<The age after which the cell divides*/
     double alpha;           /**<The probability of asymmetric division*/
     int beta;               /**<The number of rounds of amplification a TA cell undergo before differentiation*/
+    int gamma;      /**< The age at which TDC die*/
     int maxIteration;       /**<The maximum number of simulation iteration*/
 
 public:
@@ -136,6 +137,15 @@ public:
 	int getMaxIteration() const {
 		return maxIteration;
 	}
+
+    /**
+    *   @brief  Getter function for the gamma value
+    *   @return The value of gamma at which TDC die
+    */
+	int getGamma() const {
+        return gamma;
+	}
+
 };
 
 #endif /* SIMULATIONPARAMETERS_H_ */

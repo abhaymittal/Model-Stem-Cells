@@ -157,21 +157,13 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
     long long i=0;
 
     int cellDivisionAge = sim.getCellDivisionAge();
+    int cellDeathAge=sim.getGamma();
     for(std::deque<Cell>::iterator it = cells.normalCell.begin(); it!=cells.normalCell.end(); it++, i++) {
-            if(it->incrementAge()>=cellDivisionAge) {
+            if(it->incrementAge()>=cellDeathAge) {
                 environment[it->getCentroid().getX()][it->getCentroid().getY()][it->getCentroid().getZ()].setType(AutomatonCell::EMPTY);
                 tempDQ.push_back(i);
-                std::cout << "\nTo DEl => " << i << std::endl;
             }
     }
-    std::cout << "DQ size : " << cells.normalCell.size();
-    std::cout << "\nTEMP size : " << tempDQ.size();
-    std::cout << "\nPRINTING dq \n";
-    for(std::deque<long long>::iterator it=tempDQ.begin(); it!=tempDQ.end(); it++)
-    {
-        std::cout << *it << "\t";
-    }
-    std::cout << "\nEND dq \n";
     while(!tempDQ.empty()){
         delIndex = tempDQ.back();
         cells.normalCell.erase(cells.normalCell.begin()+delIndex);
@@ -230,7 +222,7 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
     while(!stemQ.empty())
     {
         double r =(static_cast<double>(rand()%100))/100;
-        if(r < alpha) //asymmetric division
+        if(r  >= alpha) //asymmetric division
         {
             TACell newTACell;
             int newId = (cells.taCell.size()>0) ? cells.taCell.back().getId()+1 : 1;

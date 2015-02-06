@@ -52,6 +52,7 @@ void SimulationParameters::loadParametersFromFile(std::string filename)
             maxIteration = rootNode->eval_to_number("//Parameters/MaxIteration");
             alpha = rootNode->eval_to_number("//Parameters/Alpha");
             beta = rootNode->eval_to_number("//Parameters/Beta");
+            gamma=rootNode->eval_to_number("//Parameters/Gamma");
         }
     }
     catch(const std::exception& ex)
