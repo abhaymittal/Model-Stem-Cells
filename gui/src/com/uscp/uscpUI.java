@@ -89,7 +89,6 @@ public class uscpUI extends javax.swing.JFrame {
         configFileChooser.setDialogTitle("Select the configuration file");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setEnabled(false);
         setMinimumSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Configuration"));
