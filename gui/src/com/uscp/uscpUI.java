@@ -104,6 +104,7 @@ public class uscpUI extends javax.swing.JFrame {
 
         jLabel6.setText("Gamma :");
 
+        alphaSpinner.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 1.0d, 0.01d));
         alphaSpinner.setName(""); // NOI18N
 
         jLabel7.setText("Fiber Count :");
