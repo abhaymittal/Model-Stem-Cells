@@ -142,6 +142,11 @@ public class uscpUI extends javax.swing.JFrame {
         });
 
         run.setText("Run Program");
+        run.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                runActionPerformed(evt);
+            }
+        });
 
         exit.setText("Exit");
         exit.addActionListener(new java.awt.event.ActionListener() {
@@ -504,6 +509,17 @@ public class uscpUI extends javax.swing.JFrame {
             statusLabel.setText("File access cancelled by user.");
         }
     }//GEN-LAST:event_saveConfigActionPerformed
+
+    private void runActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runActionPerformed
+        try {
+            saveConfigToFile(new File("uscp.conf"));
+            ProcessBuilder pb = new ProcessBuilder("bin/Debug/stem_cel").inheritIO();
+            pb.start();
+          } catch (Exception ex) {
+            ex.printStackTrace();
+          }
+        statusLabel.setText("Writing uscp.conf and loading program");
+    }//GEN-LAST:event_runActionPerformed
 
     /**
      * @param args the command line arguments
