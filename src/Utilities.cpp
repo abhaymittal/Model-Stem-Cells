@@ -23,7 +23,7 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
 
 	string filename;
     stringstream ss;
-    ss << "iterations/" << iterationNumber << ".xyz";
+    ss << "iterations/iter.csv." << iterationNumber;
     filename = ss.str();
     ofstream outputFile(filename.c_str());
 
@@ -33,8 +33,7 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
         {
             case COUNT:
 
-                outputFile<<(sim.getLatticeWidth() * sim.getLatticeHeight() * sim.getLatticeDepth()); //store num of points in .xyz file
-                outputFile<<"\n"<<"Box Dimensions: width = "<<sim.getLatticeWidth()<<", height = "<<sim.getLatticeHeight()<<", depth = "<<sim.getLatticeDepth(); //comment line of .xyz file
+                outputFile<< "count,x,y,z";
 
                 for(int x=0;x<sim.getLatticeWidth();x++)
                 {
@@ -43,7 +42,7 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
                         for(int z=0;z<sim.getLatticeDepth();z++)
                         {
                            // if(environment[x][y][z].getType()!=AutomatonCell::EMPTY)
-                                outputFile<<"\n"<<environment[x][y][z].getCount()<<" "<<x<<" "<<y<<" "<<z;
+                                outputFile<<"\n"<<environment[x][y][z].getCount()<<","<<x<<","<<y<<","<<z;
                         }
                     }
                 }
@@ -51,8 +50,7 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
 
             case TYPE:
 
-                outputFile<<(sim.getLatticeWidth() * sim.getLatticeHeight() * sim.getLatticeDepth()); //store num of points in .xyz file
-                outputFile<<"\n"<<"Box Dimensions: width = "<<sim.getLatticeWidth()<<", height = "<<sim.getLatticeHeight()<<", depth = "<<sim.getLatticeDepth(); //comment line of .xyz file
+                outputFile<< "type,x,y,z";
 
                 for(int x=0;x<sim.getLatticeWidth();x++)
                 {
@@ -61,7 +59,7 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
                         for(int z=0;z<sim.getLatticeDepth();z++)
                         {
                            // if(environment[x][y][z].getType()!=AutomatonCell::EMPTY)
-                                outputFile<<"\n"<<environment[x][y][z].getType()<<" "<<x<<" "<<y<<" "<<z;
+                                outputFile<<"\n"<<environment[x][y][z].getType()<<","<<x<<","<<y<<","<<z;
                         }
                     }
                 }
@@ -69,8 +67,7 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
 
             case ID:
 
-                outputFile<<(sim.getLatticeWidth() * sim.getLatticeHeight() * sim.getLatticeDepth()); //store num of points in .xyz file
-                outputFile<<"\n"<<"Box Dimensions: width = "<<sim.getLatticeWidth()<<", height = "<<sim.getLatticeHeight()<<", depth = "<<sim.getLatticeDepth(); //comment line of .xyz file
+                outputFile<< "id,x,y,z";
 
                 for(int x=0;x<sim.getLatticeWidth();x++)
                 {
@@ -79,7 +76,7 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
                         for(int z=0;z<sim.getLatticeDepth();z++)
                         {
                            // if(environment[x][y][z].getType()!=AutomatonCell::EMPTY)
-                                outputFile<<"\n"<<environment[x][y][z].getId()<<" "<<x<<" "<<y<<" "<<z;
+                                outputFile<<"\n"<<environment[x][y][z].getId()<<","<<x<<","<<y<<","<<z;
                         }
                     }
                 }
