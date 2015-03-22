@@ -17,7 +17,7 @@ renderView.Background = [0.32, 0.34, 0.43]
 fileList=[];
 a=int(raw_input("Enter the number of iteration files"));
 for i in range(0,a):
-    fileList.append('/mnt/Entertainment/education/Projects/major_proj_USCP/cellular-automata/iterations/iter.csv.'+str(i))
+    fileList.append('iterations/iter.csv.'+str(i))
 
 csvRead=CSVReader(FileName=fileList)
 tableToPointsFilter=TableToPoints(Input=csvRead)
