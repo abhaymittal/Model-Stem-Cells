@@ -43,6 +43,7 @@ scalarPWF.ScalarRangeInitialized = 1
 tableToPointsDisplay=Show(tableToPointsFilter,renderView)
 tableToPointsDisplay.ColorArrayName=['POINTS', 'type']
 tableToPointsDisplay.LookupTable=scalarLUT
+tableToPointsDisplay.PointSize = 1.0
 
 #show color legend
 tableToPointsDisplay.SetScalarBarVisibility(renderView, True)
@@ -51,3 +52,11 @@ tableToPointsDisplay.SetScalarBarVisibility(renderView, True)
 scalarLUTColorBar = GetScalarBar(scalarLUT, renderView)
 scalarLUTColorBar.Title = 'type'
 scalarLUTColorBar.ComponentTitle = ''
+
+# create a new 'Outline'
+envOutline = Outline(Input=tableToPointsFilter)
+
+#display the outline
+envOutDisplay = Show(envOutline, renderView)
+envOutDisplay.ColorArrayName = [None, '']
+envOutDisplay.PointSize = 1.0
