@@ -35,7 +35,7 @@ scalarLUT.ScalarRangeInitialized = 1.0
 
 
 scalarPWF = GetOpacityTransferFunction('type')
-scalarPWF.Points = [0.0, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0, 2.0, 1.0, 0.5, 0.0, 3.0, 1.0, 0.5, 0.0, 3.0, 1.0, 0.5, 0.0, 4.0, 1.0, 0.5, 0.0]
+scalarPWF.Points = [0.0, 0.0, 0.5, 0.0, 1.0, 1.0, 0.5, 0.0, 2.0, 1.0, 0.5, 0.0, 3.0, 1.0, 0.5, 0.0, 4.0, 1.0, 0.5, 0.0]
 scalarPWF.ScalarRangeInitialized = 1
 
 #Setup vizualization
