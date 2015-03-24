@@ -1,6 +1,7 @@
 #include "Utilities.h"
 #include <iostream>
 #include <fstream>
+#include<map>
 #include <string>
 #include <sstream>
 
@@ -102,10 +103,10 @@ int Utilities::writeIteration(SimulationParameters sim, AutomatonCell ***environ
     if(outputFile.is_open())
     {
         //Map cellId to corresponding cellAge
-        int* cellAge = new int[(cells.back()).getId()+1](); // array of zeroes
+        std::map<long long int, int> idToAgeMap;
         for(std::deque<Cell>::iterator it = cells.begin(); it!=cells.end(); it++)
         {
-            cellAge[it->getId()]=it->getAge();
+            idToAgeMap[it->getId()]=it->getAge();
         }
 
         //write to file
@@ -118,7 +119,7 @@ int Utilities::writeIteration(SimulationParameters sim, AutomatonCell ***environ
                     outputFile << x << "," << y << "," << z <<"," << environment[x][y][z].getType() << "," << environment[x][y][z].getId() << ",";
                     if(environment[x][y][z].getType()==AutomatonCell::CELL)
                     {
-                        outputFile << cellAge[environment[x][y][z].getId()] << "\n";
+                        outputFile <<idToAgeMap[environment[x][y][z].getId()] << "\n";
                     }
                     else
                     {
@@ -129,7 +130,6 @@ int Utilities::writeIteration(SimulationParameters sim, AutomatonCell ***environ
         }
         outputFile.close();
         cout << "\n" << filename << " saved\n";
-        delete[] cellAge;
     }
     else
     {
