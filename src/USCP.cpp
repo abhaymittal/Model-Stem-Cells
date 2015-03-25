@@ -56,7 +56,7 @@ int main() {
     }
 	env.setupECM(sim,environment);
 
-	int sphereRadius = 20;
+	int sphereRadius = 10;
 	int cellRadius = 1;
 	env.clearSphericalRegion(sim.getLatticeWidth()/2, sim.getLatticeHeight()/2, sim.getLatticeDepth()/2, sphereRadius, environment);
 
@@ -140,7 +140,7 @@ int main() {
         /* collecting data for plotting vs time(iteration) */
 
         /* Reset values */
-        numStemCells = 0;
+     /*   numStemCells = 0;
         numTACells = 0;
         numNormalCells = 0;
         numTotalCells = 0;
@@ -175,7 +175,7 @@ int main() {
         numNormalCellsFile << itr << "," << numNormalCells << endl;
         numTotalCellsFile << itr << "," << numTotalCells << endl;
         averageEBFile << itr << "," << averageEB << endl;
-        totalECMFiberFile << itr << "," << totalECMFiber << endl;
+        totalECMFiberFile << itr << "," << totalECMFiber << endl;*/
 
         /* End data collection for ith iteration */
         util.generateECMFile(sim, environment, Utilities::TYPE, itr);
