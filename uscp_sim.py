@@ -45,13 +45,6 @@ tableToPointsDisplay.ColorArrayName=['POINTS', 'type']
 tableToPointsDisplay.LookupTable=scalarLUT
 tableToPointsDisplay.PointSize = 2.0
 
-#show color legend
-tableToPointsDisplay.SetScalarBarVisibility(renderView, True)
-
-# get color legend/bar for scalarLUT in view renderView1
-scalarLUTColorBar = GetScalarBar(scalarLUT, renderView)
-scalarLUTColorBar.Title = 'type'
-scalarLUTColorBar.ComponentTitle = ''
 
 # create a new 'Outline'
 envOutline = Outline(Input=tableToPointsFilter)
@@ -60,3 +53,50 @@ envOutline = Outline(Input=tableToPointsFilter)
 envOutDisplay = Show(envOutline, renderView)
 envOutDisplay.ColorArrayName = [None, '']
 envOutDisplay.PointSize = 2.0
+
+
+#Display Annotations
+# 'Annotate ECM Data'
+annotateECMData = AnnotateAttributeData(Input=tableToPointsFilter)
+annotateECMData.ArrayAssociation = 'Point Data'
+annotateECMData.ArrayName = 'type'
+annotateECMData.ElementId = 1
+annotateECMData.Prefix = 'ECM Fiber    : '
+annotateECMDataDisplay = Show(annotateECMData, renderView)
+annotateECMDataDisplay.Color = [0.0196078431372549, 0.32941176470588235, 1.0]
+annotateECMDataDisplay.FontSize = 10
+annotateECMDataDisplay.Position = [0.718292, 0.683952]
+
+# 'Annotate Normal Cell Data'
+annotateNormalData = AnnotateAttributeData(Input=tableToPointsFilter)
+annotateNormalData.ArrayAssociation = 'Point Data'
+annotateNormalData.ArrayName = 'type'
+annotateNormalData.ElementId = 2
+annotateNormalData.Prefix = 'Normal Cell : '
+annotateNormalDataDisplay = Show(annotateNormalData, renderView)
+annotateNormalDataDisplay.Color = [0.0, 1.0, 0.0]
+annotateNormalDataDisplay.FontSize = 10
+annotateNormalDataDisplay.Position = [0.7182922357723578, 0.7620951550255537]
+
+
+# create a new 'Annotate TA Cell Data'
+annotateTAData = AnnotateAttributeData(Input=tableToPointsFilter)
+annotateTAData.ArrayAssociation = 'Point Data'
+annotateTAData.ArrayName = 'type'
+annotateTAData.ElementId = 3
+annotateTAData.Prefix = 'TA Cell         : '
+annotateTADataDisplay = Show(annotateTAData, renderView)
+annotateTADataDisplay.Color = [1.0, 0.0, 0.0]
+annotateTADataDisplay.FontSize = 10
+annotateTADataDisplay.Position = [0.718292, 0.835349]
+
+# create a new 'Annotate Stem Cell Data'
+annotateStemCellData = AnnotateAttributeData(Input=tableToPointsFilter)
+annotateStemCellData.ArrayAssociation = 'Point Data'
+annotateStemCellData.ArrayName = 'type'
+annotateStemCellData.ElementId = 4
+annotateStemCellData.Prefix = 'Stem Cell     : '
+annotateStemCellDataDisplay = Show(annotateStemCellData, renderView)
+annotateStemCellDataDisplay.Color = [1.0, 1.0, 1.0]
+annotateStemCellDataDisplay.FontSize = 10
+annotateStemCellDataDisplay.Position = [0.718292, 0.91431]
