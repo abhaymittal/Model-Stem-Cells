@@ -61,9 +61,10 @@ annotateECMData = AnnotateAttributeData(Input=tableToPointsFilter)
 annotateECMData.ArrayAssociation = 'Point Data'
 annotateECMData.ArrayName = 'type'
 annotateECMData.ElementId = 1
-annotateECMData.Prefix = 'ECM Fiber    : '
+annotateECMData.Prefix = 'ECM Fiber   : '
 annotateECMDataDisplay = Show(annotateECMData, renderView)
 annotateECMDataDisplay.Color = [0.0196078431372549, 0.32941176470588235, 1.0]
+annotateECMDataDisplay.FontFamily = 'Courier'
 annotateECMDataDisplay.FontSize = 10
 annotateECMDataDisplay.Position = [0.718292, 0.683952]
 
@@ -75,6 +76,7 @@ annotateNormalData.ElementId = 2
 annotateNormalData.Prefix = 'Normal Cell : '
 annotateNormalDataDisplay = Show(annotateNormalData, renderView)
 annotateNormalDataDisplay.Color = [0.0, 1.0, 0.0]
+annotateNormalDataDisplay.FontFamily = 'Courier'
 annotateNormalDataDisplay.FontSize = 10
 annotateNormalDataDisplay.Position = [0.7182922357723578, 0.7620951550255537]
 
@@ -84,9 +86,10 @@ annotateTAData = AnnotateAttributeData(Input=tableToPointsFilter)
 annotateTAData.ArrayAssociation = 'Point Data'
 annotateTAData.ArrayName = 'type'
 annotateTAData.ElementId = 3
-annotateTAData.Prefix = 'TA Cell         : '
+annotateTAData.Prefix = 'TA Cell     : '
 annotateTADataDisplay = Show(annotateTAData, renderView)
 annotateTADataDisplay.Color = [1.0, 0.0, 0.0]
+annotateTADataDisplay.FontFamily = 'Courier'
 annotateTADataDisplay.FontSize = 10
 annotateTADataDisplay.Position = [0.718292, 0.835349]
 
@@ -95,8 +98,9 @@ annotateStemCellData = AnnotateAttributeData(Input=tableToPointsFilter)
 annotateStemCellData.ArrayAssociation = 'Point Data'
 annotateStemCellData.ArrayName = 'type'
 annotateStemCellData.ElementId = 4
-annotateStemCellData.Prefix = 'Stem Cell     : '
+annotateStemCellData.Prefix = 'Stem Cell   : '
 annotateStemCellDataDisplay = Show(annotateStemCellData, renderView)
 annotateStemCellDataDisplay.Color = [1.0, 1.0, 1.0]
+annotateStemCellDataDisplay.FontFamily = 'Courier'
 annotateStemCellDataDisplay.FontSize = 10
 annotateStemCellDataDisplay.Position = [0.718292, 0.91431]
