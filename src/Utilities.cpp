@@ -22,6 +22,8 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
 	//field = 2, count
 	//field = 3, ID
 
+	unsigned long long int numECM=0, numNormalCells=0, numTACells=0, numStemCells=0;
+
 	string filename;
     stringstream ss;
     ss << "iterations/iter.csv." << iterationNumber;
@@ -53,6 +55,35 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
 
                 outputFile<< "type,x,y,z";
 
+                //count of each type of cell
+                for(int x=0;x<sim.getLatticeWidth();x++)
+                {
+                    for(int y=0;y<sim.getLatticeHeight();y++)
+                    {
+                        for(int z=0;z<sim.getLatticeDepth();z++)
+                        {
+                            switch(environment[x][y][z].getType())
+                            {
+                            case AutomatonCell::ECM :
+                                numECM++;
+                                break;
+
+                            case AutomatonCell::CELL :
+                                numNormalCells++;
+                                break;
+
+                            case AutomatonCell::TA_CELL :
+                                numTACells++;
+                                break;
+
+                            case AutomatonCell::STEM_CELL :
+                                numStemCells++;
+                                break;
+                            }
+                        }
+                    }
+                }
+
                 for(int x=0;x<sim.getLatticeWidth();x++)
                 {
                     for(int y=0;y<sim.getLatticeHeight();y++)
@@ -60,7 +91,31 @@ void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***envir
                         for(int z=0;z<sim.getLatticeDepth();z++)
                         {
                            // if(environment[x][y][z].getType()!=AutomatonCell::EMPTY)
-                                outputFile<<"\n"<<environment[x][y][z].getType()<<","<<x<<","<<y<<","<<z;
+                           if(x==0 && y==0 && (z==AutomatonCell::ECM || z==AutomatonCell::CELL || z==AutomatonCell::TA_CELL || z==AutomatonCell::STEM_CELL ))
+                           {
+                               switch(z)
+                                {
+                                case AutomatonCell::ECM :
+                                    outputFile<<"\n"<<numECM<<","<<x<<","<<y<<","<<z;
+                                    break;
+
+                                case AutomatonCell::CELL :
+                                    outputFile<<"\n"<<numNormalCells<<","<<x<<","<<y<<","<<z;
+                                    break;
+
+                                case AutomatonCell::TA_CELL :
+                                    outputFile<<"\n"<<numTACells<<","<<x<<","<<y<<","<<z;
+                                    break;
+
+                                case AutomatonCell::STEM_CELL :
+                                    outputFile<<"\n"<<numStemCells<<","<<x<<","<<y<<","<<z;
+                                    break;
+                                }
+                           }
+                           else
+                           {
+                               outputFile<<"\n"<<environment[x][y][z].getType()<<","<<x<<","<<y<<","<<z;
+                           }
                         }
                     }
                 }
