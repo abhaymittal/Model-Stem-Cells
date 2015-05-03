@@ -81,7 +81,7 @@ annotateNormalDataDisplay.FontSize = 10
 annotateNormalDataDisplay.Position = [0.7182922357723578, 0.7620951550255537]
 
 
-# create a new 'Annotate TA Cell Data'
+# 'Annotate TA Cell Data'
 annotateTAData = AnnotateAttributeData(Input=tableToPointsFilter)
 annotateTAData.ArrayAssociation = 'Point Data'
 annotateTAData.ArrayName = 'type'
@@ -93,7 +93,7 @@ annotateTADataDisplay.FontFamily = 'Courier'
 annotateTADataDisplay.FontSize = 10
 annotateTADataDisplay.Position = [0.718292, 0.835349]
 
-# create a new 'Annotate Stem Cell Data'
+# 'Annotate Stem Cell Data'
 annotateStemCellData = AnnotateAttributeData(Input=tableToPointsFilter)
 annotateStemCellData.ArrayAssociation = 'Point Data'
 annotateStemCellData.ArrayName = 'type'
@@ -104,3 +104,12 @@ annotateStemCellDataDisplay.Color = [1.0, 1.0, 1.0]
 annotateStemCellDataDisplay.FontFamily = 'Courier'
 annotateStemCellDataDisplay.FontSize = 10
 annotateStemCellDataDisplay.Position = [0.718292, 0.91431]
+
+
+# 'Annotate Time'
+annotateIteration=AnnotateTimeFilter(Input=tableToPointsFilter)
+annotateIteration.Format = 'Iteration: %-8.0f'
+annotateIterationDisplay=Show(annotateIteration,renderView)
+annotateIterationDisplay.FontFamily = 'Courier'
+annotateIterationDisplay.FontSize = 10
+annotateIterationDisplay.WindowLocation = 'LowerRightCorner'
