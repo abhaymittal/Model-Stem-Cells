@@ -52,9 +52,6 @@ public:
     Cell();
 
 
-    /** Default destructor */
-    virtual ~Cell();
-
     /**
     *   @brief  Getter function for the cell ID
     *   @return cell id
