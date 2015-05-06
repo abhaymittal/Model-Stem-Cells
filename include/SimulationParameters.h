@@ -32,10 +32,6 @@ public:
     */
 	SimulationParameters();
 
-	/**
-    *   @brief  A virtual destructor
-    */
-	virtual ~SimulationParameters();
 
 	/**
     *   @brief  Function for loading Simulation Parameters from default file "uscp.conf"

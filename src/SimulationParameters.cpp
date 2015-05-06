@@ -11,9 +11,6 @@ SimulationParameters::SimulationParameters() {
 	// TODO Auto-generated constructor stub
 }
 
-SimulationParameters::~SimulationParameters() {
-	// TODO Auto-generated destructor stub
-}
 
 void SimulationParameters::loadParameters()
 {
