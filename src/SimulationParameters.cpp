@@ -53,6 +53,7 @@ void SimulationParameters::loadParametersFromFile(std::string filename)
             alpha = rootNode->eval_to_number("//Parameters/Alpha");
             beta = rootNode->eval_to_number("//Parameters/Beta");
             gamma=rootNode->eval_to_number("//Parameters/Gamma");
+            sphereRadius=rootNode->eval_to_number("//Parameters/SphereRadius");
         }
     }
     catch(const std::exception& ex)

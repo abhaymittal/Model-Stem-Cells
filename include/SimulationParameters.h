@@ -21,8 +21,9 @@ private:
 	int cellDivisionAge;    /**<The age after which the cell divides*/
     double alpha;           /**<The probability of asymmetric division*/
     int beta;               /**<The number of rounds of amplification a TA cell undergo before differentiation*/
-    int gamma;      /**< The age at which TDC die*/
+    int gamma;              /**<The age at which TDC die*/
     int maxIteration;       /**<The maximum number of simulation iteration*/
+    int sphereRadius;       /**<The Radius of the empty spherical region at the center*/
 
 public:
 
@@ -146,6 +147,13 @@ public:
         return gamma;
 	}
 
+    /**
+    *   @brief  Getter function for the sphereRadius value
+    *   @return The radius of empty spherical region
+    */
+	int getSphereRadius() const {
+        return sphereRadius;
+	}
 };
 
 #endif /* SIMULATIONPARAMETERS_H_ */
