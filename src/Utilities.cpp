@@ -10,10 +10,6 @@ Utilities::Utilities() {
 
 }
 
-Utilities::~Utilities() {
-	// TODO Auto-generated destructor stub
-}
-
 using namespace std;
 
 void Utilities::generateECMFile(SimulationParameters sim, AutomatonCell ***environment, int field, int iterationNumber)

@@ -16,15 +16,15 @@
 class Utilities {
 public:
 
+    	static const int 	TYPE = 1,	/**<The CONSTANT value to specify the listing of points according to their TYPE*/
+						COUNT = 2,	/**<The CONSTANT value to specify the listing of points according to their COUNT*/
+						ID = 3;		/**<The CONSTANT value to specify the listing of points according to their ID*/
+
 	/**
     *   @brief  Default no argument constructor
     */
 	Utilities();
 
-	/**
-    *   @brief  A virtual destructor
-    */
-	virtual ~Utilities();
 
 	/**
     *   @brief  	Function for generating the Output file "ptMap.xyz"
@@ -36,9 +36,7 @@ public:
     */
 	void generateECMFile(SimulationParameters sim, AutomatonCell ***environment, int field, int iterationNumber);
 
-	static const int 	TYPE = 1,	/**<The CONSTANT value to specify the listing of points according to their TYPE*/
-						COUNT = 2,	/**<The CONSTANT value to specify the listing of points according to their COUNT*/
-						ID = 3;		/**<The CONSTANT value to specify the listing of points according to their ID*/
+
 
 
     /**
