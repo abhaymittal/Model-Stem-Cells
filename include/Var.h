@@ -30,7 +30,6 @@ public:
     Var(int varN, int ind, int del, int val):varName(varN),index(ind),delta(del),value(val)
     {}
 
-    virtual ~Var();
 
     /**
      *   @brief  Getter function for variable coordinate name
@@ -49,7 +48,7 @@ public:
       this->varName = varName;
     }
 
-    
+
     int getIndex() const {
       return index;
     }
@@ -61,7 +60,7 @@ public:
     /**
     *   @brief  Getter function for the delta value of the variable coordinate.
     *   @return The delta value of the variable coordinate
-    */    
+    */
     int getDelta() const {
       return delta;
     }
