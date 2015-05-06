@@ -34,34 +34,34 @@ automaton_cell [label=<
 >,shape=plaintext,height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-cell [label="{Cell\n|- id\l- radius\l- senseRadius\l- eCadherin\l- EB\l- geneticCode[3]\l- age\l|+ Cell()\l+ ~Cell()\l+ getId()\l+ setId()\l+ getRadius()\l+ setRadius()\l+ getSenseRadius()\l+ setSenseRadius()\l+ getCentroid()\l+ setCentroid()\l+ getECadherin()\l+ setECadherin()\l+ getEB()\l+ setEB()\l+ getGeneticCode()\l+ setGeneticCode()\l+ getAge()\l+ setAge()\l+ incrementAge()\l+ getFavorableLocation()\l+ divide()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+cell [label="{Cell\n|- id\l- radius\l- senseRadius\l- eCadherin\l- EB\l- geneticCode[15]\l- age\l|+ Cell()\l+ getId()\l+ setId()\l+ getRadius()\l+ setRadius()\l+ getSenseRadius()\l+ setSenseRadius()\l+ getCentroid()\l+ setCentroid()\l+ getECadherin()\l+ setECadherin()\l+ getEB()\l+ setEB()\l+ getGeneticCode()\l+ setGeneticCode()\l+ getAge()\l+ setAge()\l+ incrementAge()\l+ getFavorableLocation()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-environment [label="{Environment\n||+ Environment()\l+ setupECM()\l+ createCells()\l- generatePtFreqMap()\l- drawLine()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+environment [label="{Environment\n||- generatePtFreqMap()\l- drawLine()\l+ Environment()\l+ setupECM()\l+ createCells()\l+ insertCell()\l+ clearSphericalRegion()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-line [label="{Line\n|- id\l- numberOfPoints\l- point[]\l|+ Line()\l+ Line()\l+ Line()\l+ ~Line()\l+ getId()\l+ setId()\l+ getNumberOfPoints()\l+ getPoint()\l+ setPoint()\l+ getPointArray()\l+ setPointArray()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+line [label="{Line\n|- id\l- numberOfPoints\l- point[]\l|+ Line()\l+ ~Line()\l+ getId()\l+ setId()\l+ getNumberOfPoints()\l+ getPoint()\l+ setPoint()\l+ getPointArray()\l+ setPointArray()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-point [label="{Point\n|- x\l- y\l- z\l|+ Point()\l+ Point()\l+ getX()\l+ setX()\l+ getY()\l+ setY()\l+ getZ()\l+ setZ()\l+ getVar()\l+ setVar()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+point [label="{Point\n|- x\l- y\l- z\l|+ Point()\l+ getX()\l+ setX()\l+ getY()\l+ setY()\l+ getZ()\l+ setZ()\l+ getVar()\l+ setVar()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-simulation [label="{Simulation\n||+ Simulation()\l+ generateOpId()\l+ simulate()\l- moveCells()\l- updateEB()\l- evolveGeneticCode()\l+ increaseAge()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+simulation [label="{Simulation\n||- moveCells()\l- updateEB()\l- evolveGeneticCode()\l+ Simulation()\l+ generateOpId()\l+ simulate()\l+ increaseAge()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-simulation_param [label="{SimulationParameters\n|- latticeHeight\l- latticeWidth\l- latticeDepth\l- fiberLength\l- fiberCount\l- cellCount\l- cellDivisionAge\l- alpha\l- maxIteration\l|+ SimulationParameters()\l+ ~SimulationParameters()\l+ loadParameters()\l+ loadParametersFromFile()\l+ getFiberCount()\l+ setFiberCount()\l+ getFiberLength()\l+ getLatticeDepth()\l+ getLatticeHeight()\l+ getLatticeWidth()\l+ getCellCount()\l+ getCellDivisonAge()\l+ getAlpha()\l+ getMaxIteration()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+simulation_param [label="{SimulationParameters\n|- latticeHeight\l- latticeWidth\l- latticeDepth\l- fiberLength\l- fiberCount\l- cellCount\l- cellDivisionAge\l- alpha\l- maxIteration\l- sphereRadius\l|+ SimulationParameters()\l+ loadParameters()\l+ loadParametersFromFile()\l+ getFiberCount()\l+ setFiberCount()\l+ getFiberLength()\l+ getLatticeDepth()\l+ getLatticeHeight()\l+ getLatticeWidth()\l+ getCellCount()\l+ getCellDivisonAge()\l+ getAlpha()\l+ getMaxIteration()\l+ getSphereRadius()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-utilities [label=<<TABLE ALIGN="LEFT" CELLBORDER="0" CELLSPACING="0" ><TR><TD>Utilities</TD></TR><HR/><TR><TD ALIGN="LEFT">+ <u>TYPE</u></TD></TR><TR><TD ALIGN="LEFT">+ <U>COUNT</U></TD></TR><TR><TD ALIGN="LEFT">+ <U>ID</U></TD></TR><HR/><TR><TD ALIGN="LEFT">+ Utilities()</TD></TR><TR><TD ALIGN="LEFT">+ ~Utilities()</TD></TR><TR><TD ALIGN="LEFT">+ generateECMFile()</TD></TR><TR><TD ALIGN="LEFT">+ writeIteration()</TD></TR></TABLE>>,shape=plaintext,height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+utilities [label=<<TABLE ALIGN="LEFT" CELLBORDER="0" CELLSPACING="0" ><TR><TD>Utilities</TD></TR><HR/><TR><TD ALIGN="LEFT">+ <u>TYPE</u></TD></TR><TR><TD ALIGN="LEFT">+ <U>COUNT</U></TD></TR><TR><TD ALIGN="LEFT">+ <U>ID</U></TD></TR><HR/><TR><TD ALIGN="LEFT">+ Utilities()</TD></TR><TR><TD ALIGN="LEFT">+ generateECMFile()</TD></TR><TR><TD ALIGN="LEFT">+ writeIteration()</TD></TR></TABLE>>,shape=plaintext,height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-var [label="{Var\n|- varName\l- index\l- delta\l- value\l|+ Var()\l+ Var()\l+ ~Var()\l+ getVarName()\l+ setVarName()\l+ getIndex()\l+ setIndex()\l+ getDelta()\l+ setDelta()\l+ getValue()\l+ setValue()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+var [label="{Var\n|- varName\l- index\l- delta\l- value\l|+ Var()\l+ getVarName()\l+ setVarName()\l+ getIndex()\l+ setIndex()\l+ getDelta()\l+ setDelta()\l+ getValue()\l+ setValue()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
 stem_cell [label="{StemCell\n||+ StemCell()\l+ divide()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 //----------------------------------------------------------------------------------------------
-ta_cell [label="{TACell\n||+ TACell()\l+ differentiate()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
+ta_cell [label="{TACell\n|- beta\l- betaCount\l|+ TACell()\l+ getBetaCount()\l+ setBetaCount()\l+ getBeta()\l+ setBeta()\l+ incrementBetaCount()\l+ differentiate()\l+ divide()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled" fontcolor="black"];
 
 
 //----------------------------------------------------------------------------------------------
