@@ -14,24 +14,24 @@
 class TACell : public Cell
 {
 private:
-    int currentBeta;
-    int Beta;
+    int betaCount;
+    int beta;
 
 public:
     TACell();
 
     /**
-    *   @brief  Method to return the current value of Beta
-    *   @return The current value of Beta
+    *   @brief  Method to return the value of beta counter
+    *   @return The value of betaCounter
     */
-    int getCurrentBeta();
+    int getBetaCount();
 
     /**
-    *   @brief  Method to set the current value of Beta
-    *   @param  The current value of Beta
+    *   @brief  Method to set the value of betaCounter
+    *   @param  The value of betaCounter
     *   @return 0
     */
-    int setCurrentBeta(int Beta_);
+    int setBetaCount(int betaCount_);
 
      /**
     *   @brief  Method to return the value of Beta
@@ -44,13 +44,13 @@ public:
     *   @param  The new value of Beta
     *   @return 0
     */
-    int setBeta(int Beta_);
+    int setBeta(int beta_);
 
     /**
-    *   @brief  Method to increment the current value of Beta
+    *   @brief  Method to increment the value of betaCounter
     *   @return Current value of Beta
     */
-    int incrementBeta();
+    int incrementBetaCount();
 
     /**
     *   @brief Function for differentiating  the Transit Amplifying Cell

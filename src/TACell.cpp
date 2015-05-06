@@ -1,30 +1,30 @@
 #include "TACell.h"
 
-TACell::TACell():Cell(),currentBeta(0),Beta(0)
+TACell::TACell():Cell(),betaCount(0),beta(0)
 {
 
 }
 
-int TACell::getCurrentBeta() {
-    return currentBeta;
+int TACell::getBetaCount() {
+    return betaCount;
 }
-int TACell::setCurrentBeta(int Beta_) {
-    currentBeta=Beta_;
+int TACell::setBetaCount(int beta_) {
+    betaCount=beta_;
     return 0;
 }
 
 int TACell::getBeta() {
-    return Beta;
+    return beta;
 }
-int TACell::setBeta(int Beta_) {
-    Beta=Beta_;
+int TACell::setBeta(int betaCount_) {
+    beta=betaCount_;
     return 0;
 }
 
 
-int TACell::incrementBeta() {
-    currentBeta=currentBeta+1;
-    return currentBeta;
+int TACell::incrementBetaCount() {
+    betaCount+=1;
+    return betaCount;
 }
 
 int TACell::differentiate(Cell& TDC, AutomatonCell ***environment,int id_) {
@@ -60,8 +60,8 @@ int TACell::divide(TACell& daughter, int id_, AutomatonCell ***environment, Simu
         daughter.setGeneticCode(i,this->getGeneticCode(i));
     daughter.setAge(0);
     this->setAge(0);
-    this->incrementBeta();
-    daughter.setCurrentBeta(this->getCurrentBeta());
+    this->incrementBetaCount();
+    daughter.setBetaCount(this->getBetaCount());
     daughter.setBeta(this->getBeta());
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setType(AutomatonCell::TA_CELL);
     environment[childPoint.getX()][childPoint.getY()][childPoint.getZ()].setCount(0);

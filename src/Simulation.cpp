@@ -203,7 +203,7 @@ int Simulation::increaseAge(cellGroup &cells, int radius, int senseRadius, Simul
     if(!tempDQ.empty())tempDQ.clear();
     i=0;
     for(std::deque<TACell>::iterator it = cells.taCell.begin(); it!=cells.taCell.end(); it++, i++) {
-        if(it->getCurrentBeta() >= it->getBeta())
+        if(it->getBetaCount() >= it->getBeta())
         {
             Cell newCell;
             int newId = (cells.normalCell.size()>0) ? cells.normalCell.back().getId()+1 : 1;
