@@ -111,7 +111,7 @@
                               <Component id="fLengthSpinner" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               <Component id="divisionAgeSpinner" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               <Component id="nIterationSpinner" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                              <Component id="cellCountSpinner" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="sRadiusSpinner" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="58" pref="58" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -125,6 +125,7 @@
                               <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel25" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel28" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -209,9 +210,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cellCountSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sRadiusSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -321,16 +323,6 @@
             <Property name="name" type="java.lang.String" value="" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel11">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cell Count :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JSpinner" name="cellCountSpinner">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="" noResource="true"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator3">
         </Component>
         <Component class="javax.swing.JButton" name="loadConfig">
@@ -382,17 +374,17 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
-            <Property name="text" type="java.lang.String" value="The probability of symmetric division."/>
+            <Property name="text" type="java.lang.String" value="The probability of symmetric division"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel16">
           <Properties>
-            <Property name="text" type="java.lang.String" value="The number of stages in which a TAC differentiates to TDC."/>
+            <Property name="text" type="java.lang.String" value="The number of stages in which a TAC differentiates to TDC"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel18">
           <Properties>
-            <Property name="text" type="java.lang.String" value="The age at which TDC die."/>
+            <Property name="text" type="java.lang.String" value="The age at which TDC die"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel24">
@@ -423,6 +415,21 @@
         <Component class="javax.swing.JLabel" name="jLabel27">
           <Properties>
             <Property name="text" type="java.lang.String" value="The number of ECM Fibers"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sphere Radius"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="sRadiusSpinner">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel28">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="The radius of the empty spherical region at the center"/>
           </Properties>
         </Component>
       </SubComponents>

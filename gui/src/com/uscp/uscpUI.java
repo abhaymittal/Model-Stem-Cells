@@ -66,8 +66,6 @@ public class uscpUI extends javax.swing.JFrame {
         divisionAgeSpinner = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
         nIterationSpinner = new javax.swing.JSpinner();
-        jLabel11 = new javax.swing.JLabel();
-        cellCountSpinner = new javax.swing.JSpinner();
         jSeparator3 = new javax.swing.JSeparator();
         loadConfig = new javax.swing.JButton();
         saveConfig = new javax.swing.JButton();
@@ -85,6 +83,9 @@ public class uscpUI extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        sRadiusSpinner = new javax.swing.JSpinner();
+        jLabel28 = new javax.swing.JLabel();
 
         configFileChooser.setDialogTitle("Select the configuration file");
 
@@ -124,10 +125,6 @@ public class uscpUI extends javax.swing.JFrame {
 
         nIterationSpinner.setName(""); // NOI18N
 
-        jLabel11.setText("Cell Count :");
-
-        cellCountSpinner.setName(""); // NOI18N
-
         loadConfig.setText("Load Configuration");
         loadConfig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,11 +159,11 @@ public class uscpUI extends javax.swing.JFrame {
 
         jLabel14.setText("The depth (along z-axis) of the simulation environment");
 
-        jLabel15.setText("The probability of symmetric division.");
+        jLabel15.setText("The probability of symmetric division");
 
-        jLabel16.setText("The number of stages in which a TAC differentiates to TDC.");
+        jLabel16.setText("The number of stages in which a TAC differentiates to TDC");
 
-        jLabel18.setText("The age at which TDC die.");
+        jLabel18.setText("The age at which TDC die");
 
         jLabel24.setText("The number of iterations for the simulation");
 
@@ -178,6 +175,12 @@ public class uscpUI extends javax.swing.JFrame {
         jLabel26.setText("The length of each ECM fiber");
 
         jLabel27.setText("The number of ECM Fibers");
+
+        jLabel11.setText("Sphere Radius");
+
+        sRadiusSpinner.setName(""); // NOI18N
+
+        jLabel28.setText("The radius of the empty spherical region at the center");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -226,7 +229,7 @@ public class uscpUI extends javax.swing.JFrame {
                             .addComponent(fLengthSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(divisionAgeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nIterationSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cellCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sRadiusSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(58, 58, 58)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
@@ -238,7 +241,8 @@ public class uscpUI extends javax.swing.JFrame {
                             .addComponent(jLabel27)
                             .addComponent(jLabel26)
                             .addComponent(jLabel25)
-                            .addComponent(jLabel24))
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel28))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
         );
@@ -305,8 +309,9 @@ public class uscpUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(cellCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(sRadiusSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28))
+                .addGap(46, 46, 46)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -398,6 +403,8 @@ public class uscpUI extends javax.swing.JFrame {
                 divisionAgeSpinner.setValue(Integer.parseInt(divisionAge.getTextContent()));
                 Node nIteration=doc.getElementsByTagName("MaxIteration").item(0);
                 nIterationSpinner.setValue(Integer.parseInt(nIteration.getTextContent()));
+                Node sRadius=doc.getElementsByTagName("SphereRadius").item(0);
+                sRadiusSpinner.setValue(Integer.parseInt(sRadius.getTextContent()));
             } catch (Exception ex) {
                 System.out.println("problem accessing file"+confFile.getAbsolutePath());
                 ex.printStackTrace();
@@ -473,6 +480,11 @@ public class uscpUI extends javax.swing.JFrame {
           maxIteration.appendChild(doc.createTextNode(nIterationSpinner.getValue().toString()));
           rootElement.appendChild(maxIteration);
           
+          // sphereRadius element
+          Element sRadius = doc.createElement("SphereRadius");
+          sRadius.appendChild(doc.createTextNode(sRadiusSpinner.getValue().toString()));
+          rootElement.appendChild(sRadius);
+          
 
           // write the content into xml file
           TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -533,7 +545,6 @@ public class uscpUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner alphaSpinner;
     private javax.swing.JSpinner betaSpinner;
-    private javax.swing.JSpinner cellCountSpinner;
     private javax.swing.JFileChooser configFileChooser;
     private javax.swing.JSpinner depthSpinner;
     private javax.swing.JSpinner divisionAgeSpinner;
@@ -556,6 +567,7 @@ public class uscpUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -571,6 +583,7 @@ public class uscpUI extends javax.swing.JFrame {
     private javax.swing.JButton loadConfig;
     private javax.swing.JSpinner nIterationSpinner;
     private javax.swing.JButton run;
+    private javax.swing.JSpinner sRadiusSpinner;
     private javax.swing.JButton saveConfig;
     private javax.swing.JFileChooser saveConfigFileChooser;
     private javax.swing.JLabel statusLabel;
