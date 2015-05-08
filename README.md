@@ -7,11 +7,11 @@ Language: C++
 ###Requirements for compilation and execution
 1. Code::Blocks v13.12
 2. For reading/writing XML files
-    1. Required Packages (OS: Ubuntu 14.04)
-       	   libxml++2.6-dev libxml++2.6-doc
+  1. Required Packages (OS: Ubuntu 14.04)  
+       `libxml++2.6-dev libxml++2.6-doc`
        
-    2. Add to Linker options in Code::Blocks:
-       	   pkg-config --cf lags --libs libxml++-2.6
+  2. Add to Linker options in Code::Blocks:  
+       `pkg-config --cf lags --libs libxml++-2.6`
 3. Doxygen v1.8.6
 4. Netbeans v8.0
 5. MATLAB R2012b
