@@ -8,6 +8,7 @@ package com.uscp;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -351,13 +352,16 @@ public class uscpUI extends javax.swing.JFrame {
 
     private void runActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runActionPerformed
         try {
+            statusLabel.setText("Busy: Executing program");
             saveConfigToFile(new File("uscp.conf"));
             ProcessBuilder pb = new ProcessBuilder("bin/Debug/stem_cel").inheritIO();
-            pb.start();
+            Process p = pb.start();
+            p.waitFor();
+            JOptionPane.showMessageDialog(null, "Program executed successfully.");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        statusLabel.setText("Writing uscp.conf and loading program");
+        statusLabel.setText("Execution Completed.");
     }//GEN-LAST:event_runActionPerformed
 
     private void saveConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveConfigActionPerformed
