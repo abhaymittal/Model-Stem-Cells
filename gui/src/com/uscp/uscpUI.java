@@ -354,7 +354,7 @@ public class uscpUI extends javax.swing.JFrame {
         try {
             statusLabel.setText("Busy: Executing program");
             saveConfigToFile(new File("uscp.conf"));
-            ProcessBuilder pb = new ProcessBuilder("bin/Debug/stem_cel").inheritIO();
+            ProcessBuilder pb = new ProcessBuilder("bin/Release/stem_cel").inheritIO();
             Process p = pb.start();
             p.waitFor();
             JOptionPane.showMessageDialog(null, "Program executed successfully.");
