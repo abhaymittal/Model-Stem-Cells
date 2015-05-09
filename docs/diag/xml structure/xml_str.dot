@@ -26,8 +26,21 @@ digraph tree
 
     {
         rank=same;
-        lattice -> lattice_lheight -> lattice_lwidth -> lattice_ldepth [arrowhead=none]
+        lattice -> lattice_lwidth -> lattice_lheight -> lattice_ldepth [arrowhead=none]
     }
+
+
+    param_alpha [shape=point]
+    alpha [label="Alpha", width=3]
+    param_alpha -> alpha
+
+    param_beta [shape=point]
+    beta [label="Beta", width=3]
+    param_beta -> beta
+
+    param_gamma [shape=point]
+    gamma [label="Gamma", width=3]
+    param_gamma -> gamma
 
     param_fibcount [shape=point]
     fibcount [label="FiberCount", width=3]
@@ -37,12 +50,19 @@ digraph tree
     fiblength [label="FiberLength", width=3]
     param_fiblength -> fiblength
 
-    param_cellcount [shape=point]
-    cellcount [label="CellCount", width=3]
-    param_cellcount -> cellcount
- 
+    param_celldiv [shape=point]
+    celldiv [label="CellDivisionAge", width=3]
+    param_celldiv -> celldiv
+
+    param_maxiter [shape=point]
+    maxiter [label="MaxIteration", width=3]
+    param_maxiter -> maxiter
+
+    param_sphereradius [shape=point]
+    sphereradius [label="SphereRadius", width=3]
+    param_sphereradius -> sphereradius 
     {
         rank=same;
-        param -> param_lattice -> param_fibcount -> param_fiblength -> param_cellcount [arrowhead=none]
+        param -> param_lattice -> param_alpha -> param_beta -> param_gamma -> param_fibcount -> param_fiblength -> param_celldiv -> param_maxiter -> param_sphereradius [arrowhead=none]
     }
 }
